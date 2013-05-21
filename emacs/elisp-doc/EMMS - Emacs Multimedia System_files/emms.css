@@ -1,0 +1,105 @@
+
+body {
+    font-family: sans-serif, serif;
+}
+
+pre.elisp {
+    background-color: #537182;
+    color: #fff8dc;
+}
+
+.string {
+    color: #7fffd4;
+}
+
+.comment {
+    color: #66cdaa;
+}
+
+.keyword {
+    color: #b0c4de;
+    font-weight: bold;
+}
+
+.constant {
+    color: #7fffd4;
+    font-weight: bold;
+}
+
+#page {
+}
+
+.abstract {
+    width: 40%;
+    float: left;
+    padding: 1em;
+    margin-top: 2em;
+    text-align: justify;
+    background: #83cdf7;
+    border: solid;
+    border-color: #4997c4;
+}
+
+#image {
+    float: left;
+    width: 49%;
+    padding-left: 2em;
+}
+
+#top {
+    width: 100%;
+    float: right;
+    margin-bottom: 2em;
+}
+
+#links {
+    width: 15%;
+    max-width: 15%;
+    float: left;
+    background: #a2f0b8;
+    border: solid;
+    border-color: #47a662;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+#links a {
+    color: #dd3131;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+}
+
+#links a:hover {
+    color: #438fcf;
+    background: #ffa281;
+}
+
+#linksheader {
+    border: solid;
+    border-width:0 0 3px 0;
+    color: #438fcf;
+    font-weight: bold;
+}
+
+#contenu {
+    max-width: 75%;
+    float: left;
+    background: #ffa281;
+    border: solid;
+    border-color: #ff6161;
+    padding: 10px;
+    margin-left: 30px;
+}
+
+#footer {
+    float: left;
+    font-size : 0.8em;
+    text-align : center;
+    width: 100%;
+    bottom: 1em;
+}
+

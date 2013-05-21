@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0048)http://www.gnu.org/software/emms/quickstart.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="Keywords" content="EMMS, GNU, Free Software">
+
+    <link rel="StyleSheet" href="./EMMS - Emacs Multimedia System_files/emms.css" type="text/css" media="screen">
+    <title> EMMS - Emacs Multimedia System </title>
+  </head>
+
+  <body>
+    <div id="top">
+      <div class="abstract">
+        <h1> What is Emacs ? </h1> <p> Emacs is the extensible,
+          customizable, self-documenting real-time display editor. This
+          Editor is used to do a lot of things, from IRC to reading mails
+          and news, along with "basic" editing, advanced macro, remote
+          control, multimedia player, and so on..</p>
+        <p> This webpage is about EMMS, an Emacs "package" that you use
+          to extend Emacs features to multimedia. </p>
+      </div>
+      <div id="image">
+        <img src="./EMMS - Emacs Multimedia System_files/emms-logo-small-2.png" alt="The cute EMMS logo">
+        <!-- 569 x 227 -->
+      </div>
+    </div>
+    <div id="links">
+      <p id="linksheader"> LINKS </p>
+      <p> <a href="http://www.gnu.org/software/emms/index.html"> Index </a> </p>
+      <p> <a href="http://www.gnu.org/software/emms/screenshots.html"> Screenshots </a> </p>
+      <p> <a href="./EMMS - Emacs Multimedia System_files/EMMS - Emacs Multimedia System.html"> Quickstart guide </a> </p>
+      <p> <a href="http://www.gnu.org/software/emms/snapshots.html"> Code Snapshots </a> </p>
+      <p> <a href="http://www.gnu.org/software/emms/faq.html"> FAQ </a> </p>
+      <p> <a href="http://www.gnu.org/software/emms/devel.html"> Developing EMMS </a> </p>
+      <p> <a href="http://www.gnu.org/software/emms/manual/"> Manual </a> </p>
+      <p> <a href="http://www.gnu.org/software/emms/logos.html"> Wallpapers </a> </p>
+      <p> <a href="http://www.emacswiki.org/cgi-bin/wiki/EMMS"> EmacsWiki page </a> </p>
+      <p> <a href="http://savannah.nongnu.org/projects/emms/"> Savannah page </a> </p>
+    </div>
+
+    <div id="contenu">
+      <h1> Quick-Start Guide </h1>
+
+      <p style="background: #ff7777; padding: 1em;">
+        DISCLAIMER: EMMS is being constantly developed, and
+        the README file is the definitive guide for using EMMS.
+      </p>
+
+      <h2> Installation </h2>
+
+      <p>
+        Get the development branch (it's very stable) via git or the
+        <a href="http://www.gnu.org/software/emms/snapshots.html">latest snapshot</a>:
+        </p><pre class="elisp"> <!-- not elisp, but it looks pretty -->
+         $ git clone git://git.sv.gnu.org/emms.git
+        </pre>
+        If you are behind a restrictive firewall, then do the
+        following instead:
+        <pre class="elisp"> <!-- not elisp, but it looks pretty -->
+         $ git clone http://git.sv.gnu.org/r/emms.git
+        </pre>
+      <p></p>
+      <p>
+        Next, add the following lines to your emacs config:
+
+        </p><pre class="elisp">
+        (add-to-list 'load-path "~/elisp/emms/")
+        (require 'emms-setup)
+        (emms-standard)
+        (emms-default-players)
+        </pre>
+
+        That's it, EMMS is now installed and ready to use!
+      <p></p>
+      <h2> Configuration </h2>
+      <p>
+        If you want to use some of the latest features, such as the
+        collection browser, consider changing <em>(emms-standard)</em>
+        to <em>(emms-devel)</em>
+      </p>
+
+      <h2> Usage </h2>
+
+      <p>
+        More information about keybindings, etc are available in the
+        <a href="http://www.gnu.org/software/emms/README">README</a> file.
+
+      </p><h2> Further configuration </h2>
+      <p>
+        EMMS is very customizable. Here are some code snippits as
+        examples of what can be done.
+      </p>
+      <pre class="elisp">        <span class="comment">
+          ;; Show the current track each time EMMS
+          ;; starts to play a track with "NP : "</span>
+        (add-hook 'emms-player-started-hook 'emms-show)
+        (setq emms-show-format <span class="string">"NP: %s"</span>)
+        <span class="comment">
+          ;; When asked for emms-play-directory,
+          ;; always start from this one </span>
+        (setq emms-source-file-default-directory <span class="string">"~/zic/"</span>)
+        <span class="comment">
+          ;; Want to use alsa with mpg321 ? </span>
+        (setq emms-player-mpg321-parameters '(<span class="string">"-o" "alsa"</span>))
+      </pre>
+
+      <h2> Configuration files </h2>
+
+      Some example configuration files:
+      <ul>
+        <li><a href="http://www.gnu.org/software/emms/configs/de-emms.el">resolve's config</a></li>
+        <li><a href="http://www.gnu.org/software/emms/configs/lb-emms.el">Lucas' messy config</a></li>
+      </ul>
+    </div>
+    <div id="footer">
+      <p>
+        (C) Lucas Bonnet, <i>lucas {at} rincevent {dot} net</i> <br>
+        Based on a document by Terry Patcher, aka. <i>terryp {at} daimi {dot} au {dot} dk</i><br>
+        The logo is (C) Yoni Rabkin Katzenell, many thanks ! <br>
+
+        The logo is licensed under the
+        <a href="http://creativecommons.org/licenses/by-sa/2.5/">
+          Creative Commons Attribute-Share-Alike license</a>
+      </p>
+    </div>
+  
+
+</body></html>

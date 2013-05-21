@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0071)http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>懒惰的程序员 : etags揭秘</title>
+	
+	<link rel="stylesheet" type="text/css" media="screen,projection" href="./懒惰的程序员   etags揭秘_files/style.css" title="Barthelme">
+	<link rel="stylesheet" type="text/css" media="print" href="./懒惰的程序员   etags揭秘_files/print.css">
+	<link rel="alternate" type="application/rss+xml" href="http://alpha-blog.wanglianghome.org/feed/" title="懒惰的程序员 RSS feed">
+	<link rel="alternate" type="application/rss+xml" href="http://alpha-blog.wanglianghome.org/comments/feed/" title="懒惰的程序员 comments RSS feed">
+	<link rel="pingback" href="http://alpha-blog.wanglianghome.org/xmlrpc.php">
+
+<link rel="alternate" type="application/rss+xml" title="懒惰的程序员 » etags揭秘 Comments Feed" href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://alpha-blog.wanglianghome.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://alpha-blog.wanglianghome.org/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="imenu与函数指针" href="http://alpha-blog.wanglianghome.org/2011/09/11/imenu-and-function-pointer/">
+<link rel="next" title="阅读新方式" href="http://alpha-blog.wanglianghome.org/2011/11/22/reading-in-new-way/">
+<meta name="generator" content="WordPress 3.4.2">
+<link rel="canonical" href="./懒惰的程序员   etags揭秘_files/懒惰的程序员   etags揭秘.html">
+<link rel="shortlink" href="http://alpha-blog.wanglianghome.org/?p=273">
+
+<style type="text/css" media="screen,projection">
+/*<![CDATA[*/
+/* CSS inserted by Barthelme theme options */
+	body{font-family:arial,helvetica,sans-serif;font-size:90%;}
+	div#content h2,div#content h3,div#content h4,div#content h5,div#content h6,body.archive div.archive-meta,body.attachment div.entry-content div.attachment-content p.attachment-name,body.home div#content div.entry-meta span,body.archive div#content div.entry-meta span,body.search div#content div.entry-meta span,body.single div.entry-date,body.single div.entry-meta,div#content blockquote,div.comments ol.commentlist li div.comment-meta,div.entry-content div.page-link,div.entry-content span.tag-links,body.page div.archive-meta,div.formcontainer form#commentform div.form-input input,div.formcontainer form#commentform div.form-textarea textarea#comment,input#s,div.entry-content div.entry-caption{font-family:georgia,times,serif;}
+	body div#content div.hentry{text-align:left;}
+	body div#wrapper{width:auto;}
+	div#header,div#header h1#blog-title a,div#header h1#blog-title a:link,div#header h1#blog-title a:visited{color:#fefefe;outline:none;text-decoration:none;}
+	body div#header{background:#bbc8d9 url("http://alpha-blog.wanglianghome.org/wp-content/themes/Barthelme/images/header-img.php?upper=8999b0&lower=bbc8d9") repeat-x left top;}
+/*]]>*/
+</style>
+
+</head>
+
+<body class="wordpress y2012 m09 d16 h09 single s-y2011 s-m10 s-d26 s-h08 s-category-emacs s-author-netcasper">
+
+<div id="wrapper">
+
+	<div id="header" onclick="location.href=&#39;http://alpha-blog.wanglianghome.org/&#39;;">
+		<h1 id="blog-title"><a href="http://alpha-blog.wanglianghome.org/" title="懒惰的程序员">懒惰的程序员</a></h1>
+		<div id="blog-description">将开源进行到底</div>
+	</div><!-- #header -->
+	
+	<div class="access"><span class="content-access"><a href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/#content" title="Skip to content">Skip to content</a></span></div>
+
+<div id="globalnav"><ul id="menu"><li class="page_item_home home-link"><a href="http://alpha-blog.wanglianghome.org/" title="懒惰的程序员" rel="home">Home</a></li><li class="page_item page-item-2"><a href="http://alpha-blog.wanglianghome.org/about/">About</a></li></ul></div>
+
+	<div id="container">
+		<div id="content" class="hfeed">
+
+
+			<div id="post-273" class="hentry p1 post publish author-netcasper category-emacs y2011 m10 d26 h08">
+				<div class="entry-date"><span class="meta-sep">{</span> <abbr class="published" title="2011-10-26T12:39:00+0000">2011 10 26</abbr> <span class="meta-sep">}</span></div>
+				<h2 class="entry-title">etags揭秘</h2>
+				<div class="entry-content">
+<p>etags是一个索引源代码的工具，经过一段时间的使用，发现某些行为与手册上的描述不一致，还有一些地方的描述比较模糊。通过阅读源代码，发现了一些不曾出现在手册上的规则，也明白了一些原来感觉很模糊的地方。</p>
+<p>etags分为两个部分：可执行程序etags，由<code>lib-src/etags.c</code>编译而来，用于扫描源代码，生成TAGS文件；etags.el是Emacs的一部分，它使用TAGS文件来完成定位、查找等各项工作。</p>
+<h3>生成TAGS文件</h3>
+<p>生成TAGS文件的方式很简单，比如给Emacs源代码生成TAGS文件</p>
+<blockquote>
+<pre>$&nbsp;etags src/*.[hc] lib-src/*.[hc] lib/*.[hc] \
+    lisp/*.el lisp/*/*.el</pre>
+</blockquote>
+<p>这条命令在当前目录生成一个TAGS文件。</p>
+<p>另外一种复杂的方式是生成多个TAGS文件，然后使用<code>--include</code>生成一个主文件，如</p>
+<blockquote>
+<pre>$ for dir in src lib-src lib; do \
+    pushed $dir; \
+    etags *.[hc] -o TAGS.sub; \
+    INCLUDES="$INCLUDES --include $PWD/TAGS.sub"; \
+    popd \
+  done
+
+$ for dir in lisp lisp/*; do \
+    pushd $dir; \
+    etags *.[hc] -o TAGS.sub; \
+    INCLUDES="$INCLUDES --include $PWD/TAGS.sub";&nbsp;\
+    popd \
+  done
+
+$ etags -o TAGS $INCLUDES</pre>
+</blockquote>
+<p>按照手册的说法，使用这两种方式生成的TAGS文件的效果应该是一样的。然而在实际使用中，我发现它们的行为有较大差别，至少对于部分命令如此，根据我的感受，推荐使用第一种方式生成TAGS文件，第二种方式的体验较差。</p>
+<p>首先是<code>find-tag</code>命令，使用第一种方式生成的TAGS文件能够更快定位，而第二种方式则需要更多次地用<code>C-u M-.</code>查找。</p>
+<p>其次是<code>list-tags</code>命令，第一种方式可以正常工作，而第二种则完全不能工作，因为<code>list-tags</code>只查找在主TAGS文件里引用的那些文件，然而这个TAGS里只有include指令，没有引用任何源文件，因此甚至没法完成输入（我个人认为这是个bug），如下图：</p>
+<p style="text-align: center;"><a href="./懒惰的程序员   etags揭秘_files/list-tags-no-match.png"><img class="aligncenter size-full wp-image-295" title="list-tags显示No match" src="./懒惰的程序员   etags揭秘_files/list-tags-no-match.png" alt="list-tags显示No match" width="397" height="394"></a></p>
+<h3>使用TAGS文件</h3>
+<p>在Emacs里运行<code>M-x visit-tags-table RET</code>，然后输入TAGS文件路径即可。Emacs将这个文件放在一个buffer里面，并将major mode设置为<code>tags-table-mode</code>。在使用过程中，我们并不会直接使用这个buffer，而是通过一系列命令（比如<code>find-tag</code>）间接使用它。</p>
+<p>如果我们希望切换到另一个项目的TAGS文件，比如从Emacs切换到gcc，那么只需要再次调用<code>M-x visit-tags-table</code>并读入gcc相关的TAGS文件即可。需要注意的是，在第二次（以及之后）调用<code>visit-tags-table</code>的时候，会被询问：</p>
+<blockquote>
+<pre>Keep current list of&nbsp;tags tables also? (y or n)</pre>
+</blockquote>
+<p>这时需要回答<code>n</code>。之后Emacs会显示一条信息：</p>
+<blockquote>
+<pre>Starting a new list of tags tables</pre>
+</blockquote>
+<p>这时我们再使用任何etags命令，就只操作在gcc的TAGS文件上，Emacs的TAGS文件不会参与任何操作。如果想切换回Emacs的TAGS文件，只需调用select-tags-table，然后按照提示在相应TAGS文件上按<code>t</code>键即可。</p>
+<p>那我们如果回答<code>y</code>会如何呢？在这种情况下，Emacs的TAGS文件和gcc的TAGS文件会同时参与etags命令。具体的影响可能有以下几种：</p>
+<ul>
+<li>tag数量增大，使得etags命令执行时间变长，响应迟钝；</li>
+<li>如果两个TAGS文件里面有类似或相同的tag，则会严重影响使用体验；</li>
+</ul>
+<p>因此，如果没有特殊的需求，最好不要合并不同项目的TAGS文件。</p>
+<p>理解了TAGS文件、文件集合和集合的集合这三个概念，就可以根据自己需要，选择回答<code>y</code>还是<code>n</code>。</p>
+<dl>
+<dt>TAGS文件（<code>tags-file-name</code>）</dt>
+<dd>初始值为用户创建的TAGS文件，如：<code>"/home/liang/src/gcc/4.6.1/TAGS"</code>。如果是用上述第二种方式创建的，在使用过程中<code>tags-file-name</code>的值可能会发生改变，它指向当前正在访问的TAGS文件。</dd>
+<dt>文件集合（<code>tags-table-list</code>）</dt>
+<dd>在回答 “Keep current list of&nbsp;tags tables also?” 时选择<code>y</code>而合并了不同项目的TAGS文件而形成的集合，如：<code>("/home/liang/project/emacs/trunk/TAGS" "/home/liang/src/gcc/4.6.1/TAGS")</code></dd>
+<dt>集合的集合（<code>tags-table-set-list</code>）</dt>
+<dd>在回答 “Keep current list of&nbsp;tags tables also?” 时选择<code>n</code>，而将之前的文件集合搁置，重新组建新的文件集合，这些文件的集合放在一起，就是集合的集合。从数据结构上来说，它就是tags-table-list可能取值的集合。如：<code>(("/home/liang/project/emacs/trunk/TAGS" "/home/liang/src/gcc/4.6.1/TAGS")<br>
+("/home/liang/project/go/go/src/TAGS")<br>
+("/home/liang/src/gcc/4.6.1/TAGS"))</code></dd>
+</dl>
+<h3>TAGS文件格式</h3>
+<p>TAGS文件不一定非要用etags程序生成，如果理解了它的文件格式，自己手写一个，照样能用，或者另外写个程序生成也可以。具体的格式描述参见源代码下的etc/ETAGS.EBNF文件。这里面有两个概念非常重要，即：explicit tag name和implicit tag name。etags程序会尽量使用implicit tag name，以减小TAGS文件的大小。所以我们在生成TAGS文件的时候，也应该尽量遵守这个规则，毕竟文件越小，响应越快。</p>
+<p>implict tag name的例子如下：</p>
+<blockquote>
+<pre>find_base_value <span style="color: #0000ff;">^?</span>998,33275</pre>
+</blockquote>
+<p>explicit tag name的例子如下：</p>
+<blockquote>
+<pre>static char *reg_seen;<span style="color: #0000ff;">^?</span>reg_seen<span style="color: #0000ff;">^A</span>1175,38518</pre>
+</blockquote>
+<p>其中<code>^?</code>和<code>^A</code>是分隔符，分别对应字符<code>\177</code>和<code>\001</code>。后面两个数字分别为行号和行首字符位置。</p>
+<p>判断是否可以使用implicit tag name的规则如下（摘自etags.c）：</p>
+<pre> * make_tag creates tags with "implicit tag names" (unnamed tags)
+ * if the following are all true, assuming NONAM=" \f\t\n\r()=,;":
+ *  1. NAME does not contain any of the characters in NONAM;
+ *  2. LINESTART contains name as either a rightmost, or rightmost but
+ *     one character, substring;
+ *  3. the character, if any, immediately before NAME in LINESTART must
+ *     be a character in NONAM;
+ *  4. the character, if any, immediately after NAME in LINESTART must
+ *     also be a character in NONAM.</pre>
+<p>由于reg_seen左边的字符为<code>*</code>，不属于<code>NONAM</code>，不符合生成implicit tag name的规则，所以必须生成explicit tag name，即之后重复出现的reg_seen部分。</p>
+<h3>索引etags不认识的语言</h3>
+<p>etags默认支持多种编程语言或者文档结构，在这种情况下，etags能够根据上述规则尽量使用implicit tag name。对于etags不支持的语言，我们可以使用<code>--regex</code>选项来指导etags生成TAGS文件，这时就要我们自己注意，在能够使用implicit tag name的情况下尽量使用，以减小文件大小。当然，生成更多的explicit tag name并不会产生任何正确性的问题。</p>
+<p>下面的例子是用来索引go源程序的：</p>
+<blockquote>
+<pre>$&nbsp;find . -name "*.go" | \
+etags --language=none \
+    --regex='/type[ \t]+[^ \t]+[ \t]/' \
+    --regex='/func[ \t]+[^( \t]+[( \t]/' \
+    --regex='/func[ \t]+([ \t]*[^( \t]*[ \t]+\*?\([^) \t]+\)[ \t]*)[ \t]*\([^( \t]+\)[( \t]/\1.\2/' -</pre>
+</blockquote>
+<p>前面两个regex产生implicit tag name，最后一个regex生成explicit tag name，它生成的tag line如下：</p>
+<blockquote>
+<pre>func (url *URL) IsAbs(<span style="color: #0000ff;">^?</span>URL.IsAbs<span style="color: #0000ff;">^A</span>611,16231</pre>
+</blockquote>
+<p>也就是说，对于有receiver的函数，我们使用explicit tag name来进行更精确地定位，即通过<code>M-x find-tag RET URL.IsAbs RET</code>定位该函数的定义位置。</p>
+<h3>改进与BUG</h3>
+<p>我希望<code>find-tag</code>能够智能一点，比如在etags.c文件里运行<code>M-x&nbsp;find-tag&nbsp;RET LOOKING_AT&nbsp;RET</code>，不要跳到ebrowse.c文件里，而是定位到etags.c里的定义，即优先选择本文件里出现的tag。有人已经提出了<a href="http://debbugs.gnu.org/cgi/bugreport.cgi?bug=2544">类似的需求</a>，但是一直没有实现。</p>
+<p>另外，<code>list-tags</code>有个bug，不能正确处理explicit tag name，比如<code>M-x&nbsp;list-tags&nbsp;RET&nbsp;src/buffer.c&nbsp;RET</code>，然后在<code>*Tags&nbsp;List*</code> buffer的第三行按回车，会看到错误信息为</p>
+<blockquote>
+<pre>Rerun etags: `^current_buffer' not found in /User/wangliang/src/emacs/trunk/src/buffer.c</pre>
+</blockquote>
+<p>修改的方法很简单，patch如下：</p>
+<blockquote>
+<pre>diff --git a/lisp/progmodes/etags.el b/lisp/progmodes/etags.el
+index d321e9c..f38af05 100644
+--- a/lisp/progmodes/etags.el
++++ b/lisp/progmodes/etags.el
+@@ -1409,7 +1409,7 @@ hits the start of file."
+ 	  tag tag-info pt)
+     (forward-line 1)
+     (while (not (or (eobp) (looking-at "\f")))
+-      (setq tag-info (save-excursion (funcall snarf-tag-function t))
++      (setq tag-info (save-excursion (funcall snarf-tag-function nil))
+ 	    tag (car tag-info)
+ 	    pt (with-current-buffer standard-output (point)))
+       (princ tag)</pre>
+</blockquote>
+<p>list-tags可以列出一个文件里的所有tag，所以我想是否可以把这个功能和<a href="http://www.emacswiki.org/emacs/Anything">Anything</a>集成起来，实现类似anything+imenu的功能。通常来讲，anything+etags能够比anything+imenu获得更多的candidates。具体实现如下：</p>
+<blockquote>
+<pre>(defun wl-list-tags (file)
+  (with-current-buffer (get-file-buffer tags-file-name)
+    (goto-char (point-min))
+    (when (re-search-forward
+	   (concat "\f\n"
+		   (if (&lt; (length default-directory)
+			  (length file))
+		       (concat "\\(.*"
+			       file
+			       "\\|"
+			       (substring file (length default-directory))
+			       "\\)")
+		     file)
+		   ",") nil t)
+      (let (tags)
+	(forward-line 1)
+	(while (not (or (eobp) (looking-at "\f")))
+	  (add-to-list 'tags
+		       (cons (car (save-excursion (funcall snarf-tag-function t)))
+			     (save-excursion (funcall snarf-tag-function nil))))
+	  (forward-line 1))
+	tags))))
+
+(defun wl-anything-c-etags-in-current-buffer ()
+  (when (buffer-file-name)
+    (let ((file (buffer-file-name))
+	  (first-time t)
+	  tags tmp)
+      (while (visit-tags-table-buffer (not first-time))
+	(setq first-time nil)
+	(setq tmp (wl-list-tags file))
+	(when tmp
+	  (setq tags (append tmp tags))))
+      tags)))
+
+(defvar wl-anything-c-source-etags-in-current-buffer
+  '((name . "Tags")
+    (candidates . (lambda ()
+		    (when (or tags-file-name
+			      tags-table-list)
+		      (with-current-buffer anything-current-buffer
+			(wl-anything-c-etags-in-current-buffer)))))
+    (action . (("Find tag" . (lambda (tag-info)
+			       (etags-goto-tag-location tag-info)))))
+    (persistent-action . (("Find tag" . (lambda (tag-info)
+					  (etags-goto-tag-location tag-info)))))))
+
+(defun wl-anything-etags-in-currect-buffer ()
+  (interactive)
+  (anything 'wl-anything-c-source-etags-in-current-buffer
+            nil nil nil nil "*anything etags for buffer*"))</pre>
+</blockquote>
+<p>调用命令<code>wl-anything-etags-in-currect-buffer</code>，就可以列出当前buffer里面的所有tag，供选择定位。效果如图：</p>
+<p style="text-align: center;"><a href="./懒惰的程序员   etags揭秘_files/anything-etags.png"><img class="aligncenter size-full wp-image-296" title="anything+etags" src="./懒惰的程序员   etags揭秘_files/anything-etags.png" alt="anything+etags" width="395" height="392"></a></p>
+<p>而<code>wl-anything-c-source-etags-in-current-buffer</code>作为一个symbol可以和其它source symbol组合起来使用，如：</p>
+<blockquote>
+<pre>(setq wl-anything-sources
+      (append anything-for-files-prefered-list
+	      '(anything-c-source-emacs-process
+		anything-c-source-imenu
+		wl-anything-c-source-etags-in-current-buffer)))
+
+(defun wl-anything ()
+  (interactive)
+  (anything wl-anything-sources))</pre>
+</blockquote>
+<p>其实Anything默认已经集成了etags，只不过用法不一样，它显示TAGS文件里面的所有tag供选择，但是要求当前buffer对应的文件必须被TAGS文件索引，否则提示创建TAGS文件。</p>
+<p>如果觉得传统的使用方式——<code>M-.</code>加<code>C-u&nbsp;M-.</code>——不爽，可以使用<code>tags-apropos</code>列出所有匹配正则表达式的tag，如果想限定到完全匹配的symbol，可以使用如下<code>wl-etags-apropos-symbol</code>命令：</p>
+<blockquote>
+<pre>(eval-after-load 'etags
+  '(progn
+     (defun wl-etags-apropos-symbol (tagname)
+       (interactive (find-tag-interactive "Locate tag: "))
+       (tags-apropos (concat "\\_&lt;" tagname "\\_&gt;")))))</pre>
+</blockquote>
+<h3>学习心得</h3>
+<p>etags.c和etags.el两个文件，断断续续看了近两个月。开始的时候，一头雾水，看哪都不懂，一天天坚持下来，突然有一天开窍了，然后每天一个小模块，看到最后，竟然也明白个大概。有时想想，Emacs真得给了我很多，它</p>
+<ul>
+<li>让我养成了读手册的习惯；</li>
+<li>带我进入了Lisp的神奇世界；</li>
+<li>使我能够持续改善工作流程；</li>
+<li>甚至“强迫”我阅读它的实现代码！</li>
+</ul>
+
+
+
+				</div>
+
+				<div class="entry-meta">
+					<span class="entry-published">Posted by <span class="entry-author author vcard"><a class="url fn" href="http://alpha-blog.wanglianghome.org/author/netcasper/" title="View all posts by netcasper">netcasper</a></span> on <abbr class="published" title="2011-10-26T12:39:00+0000">Wednesday, October 26, 2011, at 12:39</abbr>.</span> <span class="cat-links">Filed under <a href="http://alpha-blog.wanglianghome.org/category/emacs/" title="View all posts in Emacs" rel="category tag">Emacs</a>.</span> <span class="tag-links">Tagged <a href="http://alpha-blog.wanglianghome.org/tag/etags/" rel="tag">etags</a>.</span> <span class="entry-rsslink">Follow any responses to this post with its <a href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/feed/" title="Comments RSS to etags揭秘" rel="alternate" type="application/rss+xml">comments RSS</a> feed.</span>
+					<span class="entry-interact">You can <a href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/#respond" title="Post a comment">post a comment</a> or <a href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/trackback/" rel="trackback" title="Trackback URL for your post">trackback</a> from your blog.</span>
+				</div>
+			</div><!-- .post -->
+
+<div class="comments">
+
+	<h3 class="comment-header" id="numcomments"><span class="comment-count"><span class="meta-sep">{</span> 2 <span class="meta-sep">}</span></span> Comments</h3>
+	<ol id="comments" class="commentlist">
+		<li id="comment-152" class="comment c-y2011 c-m11 c-d06 c-h07 alt c1">
+			<div class="comment-meta">
+				<span class="comment-author vcard"><img alt="" src="./懒惰的程序员   etags揭秘_files/2f64ee1b61bb4263866fdda82e13c630" class="photo avatar avatar-32 photo" height="32" width="32"> <span class="fn n">jin</span></span>
+				<span class="meta-sep">|</span>
+				<span class="comment-datetime"><abbr class="comment-published" title="2011-10-26T12:39:00+0000">2011/11/06 at 11:36</abbr></span>
+				<span class="meta-sep">|</span>
+				<span class="comment-permalink"><a href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/#comment-152" title="Permalink to this comment">Permalink</a></span>
+			</div>
+			
+			<p>请问截图用的是什么字体</p>
+<p>我发现读emacs lisp的手册比较痛苦，有没有比较友好点的教程，让我更顺利的度过这个瓶颈</p>
+		</li>
+
+		<li id="comment-157" class="comment byuser commentauthor-netcasper bypostauthor c-y2011 c-m11 c-d10 c-h06 c2">
+			<div class="comment-meta">
+				<span class="comment-author vcard"><img alt="" src="./懒惰的程序员   etags揭秘_files/a6051a63ab747ac67614d546eba8d57d" class="photo avatar avatar-32 photo" height="32" width="32"> <span class="fn n">netcasper</span></span>
+				<span class="meta-sep">|</span>
+				<span class="comment-datetime"><abbr class="comment-published" title="2011-10-26T12:39:00+0000">2011/11/09 at 22:03</abbr></span>
+				<span class="meta-sep">|</span>
+				<span class="comment-permalink"><a href="http://alpha-blog.wanglianghome.org/2011/10/26/etags-beyond-the-manual/#comment-157" title="Permalink to this comment">Permalink</a></span>
+			</div>
+			
+			<p>字体是Mac上的Monaco。如果是想学Lisp可以看一些Common Lisp的书，但是要写程序的话，看Emacs Lisp手册是不能避免的。</p>
+		</li>
+
+
+	</ol><!-- end #comments .commentlist -->
+
+
+
+
+	<h3 id="respond">Post a Comment</h3>
+
+	<div class="formcontainer">	
+
+		<form id="commentform" action="http://alpha-blog.wanglianghome.org/wp-comments-post.php" method="post">
+
+			<div id="comment-notes">Your email is <em>never</em> published nor shared. Required fields are marked <span class="req-field">*</span></div>
+
+			<div class="form-label"><label for="author">Name <span class="req-field">*</span></label></div>
+			<div class="form-input"><input id="author" name="author" type="text" value="" size="30" maxlength="20" tabindex="3"></div>
+
+			<div class="form-label"><label for="email">Email <span class="req-field">*</span></label></div>
+			<div class="form-input"><input id="email" name="email" type="text" value="" size="30" maxlength="50" tabindex="4"></div>
+
+			<div class="form-label"><label for="url">Website</label></div>
+			<div class="form-input"><input id="url" name="url" type="text" value="" size="30" maxlength="50" tabindex="5"></div>
+
+
+			<div class="form-label"><label for="comment">Comment</label></div>
+			<div class="form-textarea"><textarea id="comment" name="comment" cols="45" rows="8" tabindex="6"></textarea></div>
+			<div class="form-submit"><input id="submit" name="submit" type="submit" value="Submit comment" tabindex="7"><input type="hidden" name="comment_post_ID" value="273"></div>
+
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="f5f1850b25"></p>		</form><!-- #commentform -->
+	</div><!-- .formcontainer -->
+
+</div><!-- .comments -->
+
+			<div id="nav-below" class="navigation">
+				<div class="nav-previous">« <a href="http://alpha-blog.wanglianghome.org/2011/09/11/imenu-and-function-pointer/" rel="prev">imenu与函数指针</a></div>
+				<div class="nav-next"><a href="http://alpha-blog.wanglianghome.org/2011/11/22/reading-in-new-way/" rel="next">阅读新方式</a> »</div>
+			</div>
+
+		</div><!-- #content .hfeed -->
+	</div><!-- #container -->
+
+	<div id="primary" class="sidebar">
+		<ul>
+<li id="linkcat-4" class="widget widget_links"><h3 class="widgettitle">订阅</h3>
+
+	<ul class="xoxo blogroll">
+<li><a href="http://feeds2.feedburner.com/casper"><img src="http://feeds.feedburner.com/~fc/casper?bg=&fg=&anim=" alt="http://feeds2.feedburner.com/casper"></a></li>
+
+	</ul>
+</li>
+
+<li id="categories-3" class="widget widget_categories"><h3 class="widgettitle">Categories</h3>
+		<ul>
+	<li class="cat-item cat-item-5"><a href="http://alpha-blog.wanglianghome.org/category/emacs/" title="View all posts filed under Emacs">Emacs</a> (16)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://alpha-blog.wanglianghome.org/category/gtd/" title="View all posts filed under GTD">GTD</a> (2)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://alpha-blog.wanglianghome.org/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a> (3)
+</li>
+	<li class="cat-item cat-item-18"><a href="http://alpha-blog.wanglianghome.org/category/%e4%bf%9d%e9%99%a9/" title="View all posts filed under 保险">保险</a> (1)
+</li>
+	<li class="cat-item cat-item-21"><a href="http://alpha-blog.wanglianghome.org/category/%e5%a4%87%e4%bb%bd%e5%85%b1%e4%ba%ab/" title="View all posts filed under 备份共享">备份共享</a> (1)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://alpha-blog.wanglianghome.org/category/%e6%95%b0%e7%a0%81%e4%ba%a7%e5%93%81/" title="View all posts filed under 数码产品">数码产品</a> (1)
+</li>
+	<li class="cat-item cat-item-29"><a href="http://alpha-blog.wanglianghome.org/category/%e6%96%87%e4%bb%b6%e6%93%8d%e4%bd%9c/" title="View all posts filed under 文件操作">文件操作</a> (1)
+</li>
+	<li class="cat-item cat-item-32"><a href="http://alpha-blog.wanglianghome.org/category/%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb/" title="View all posts filed under 源码阅读">源码阅读</a> (4)
+</li>
+	<li class="cat-item cat-item-16"><a href="http://alpha-blog.wanglianghome.org/category/%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6/" title="View all posts filed under 版本控制">版本控制</a> (3)
+</li>
+	<li class="cat-item cat-item-23"><a href="http://alpha-blog.wanglianghome.org/category/%e7%bc%96%e8%af%91/" title="View all posts filed under 编译">编译</a> (19)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://alpha-blog.wanglianghome.org/category/%e8%b6%b3%e7%90%83/" title="View all posts filed under 足球">足球</a> (1)
+</li>
+	<li class="cat-item cat-item-25"><a href="http://alpha-blog.wanglianghome.org/category/%e8%bd%af%e4%bb%b6%e4%bb%8b%e7%bb%8d/" title="View all posts filed under 软件介绍">软件介绍</a> (4)
+</li>
+		</ul>
+</li>
+		<li id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="widgettitle">Recent Posts</h3>
+		<ul>
+				<li><a href="http://alpha-blog.wanglianghome.org/2012/07/13/heap-management-and-garbage-collection-of-go/" title="go内存管理和垃圾收集简介">go内存管理和垃圾收集简介</a></li>
+				<li><a href="http://alpha-blog.wanglianghome.org/2012/06/13/org-beamer-tricks/" title="org-beamer技巧">org-beamer技巧</a></li>
+				<li><a href="http://alpha-blog.wanglianghome.org/2012/05/24/etags-guide/" title="etags guide">etags guide</a></li>
+				<li><a href="http://alpha-blog.wanglianghome.org/2012/05/04/find-tag-in-from-buffer/" title="让find-tag首先定位当前buffer的tag">让find-tag首先定位当前buffer的tag</a></li>
+				<li><a href="http://alpha-blog.wanglianghome.org/2012/04/13/go-channel-implementation/" title="go channel实现">go channel实现</a></li>
+				</ul>
+		</li>
+<li id="meta-3" class="widget widget_meta"><h3 class="widgettitle">Meta</h3>
+			<ul>
+						<li><a href="http://alpha-blog.wanglianghome.org/wp-login.php">Log in</a></li>
+			<li><a href="http://alpha-blog.wanglianghome.org/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://alpha-blog.wanglianghome.org/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+						</ul>
+</li>
+<li id="tag_cloud-4" class="widget widget_tag_cloud"><h3 class="widgettitle">Tags</h3>
+<div class="tagcloud"><a href="http://alpha-blog.wanglianghome.org/tag/android/" class="tag-link-28" title="3 topics" style="font-size: 12.941176470588pt;">android</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/conky/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">conky</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/cp/" class="tag-link-31" title="1 topic" style="font-size: 8pt;">cp</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/etags/" class="tag-link-34" title="5 topics" style="font-size: 15.905882352941pt;">etags</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/evernote/" class="tag-link-15" title="1 topic" style="font-size: 8pt;">evernote</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/gcc/" class="tag-link-24" title="13 topics" style="font-size: 22pt;">gcc</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/git/" class="tag-link-17" title="3 topics" style="font-size: 12.941176470588pt;">git</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/go/" class="tag-link-33" title="3 topics" style="font-size: 12.941176470588pt;">go</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/kindledx/" class="tag-link-10" title="1 topic" style="font-size: 8pt;">KindleDX</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/ln/" class="tag-link-30" title="1 topic" style="font-size: 8pt;">ln</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/orgmode/" class="tag-link-6" title="4 topics" style="font-size: 14.588235294118pt;">orgmode</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/pomodoro/" class="tag-link-13" title="1 topic" style="font-size: 8pt;">pomodoro</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/samba/" class="tag-link-22" title="1 topic" style="font-size: 8pt;">samba</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/screencast/" class="tag-link-27" title="1 topic" style="font-size: 8pt;">screencast</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/%e4%b8%96%e7%95%8c%e6%9d%af/" class="tag-link-9" title="1 topic" style="font-size: 8pt;">世界杯</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/%e5%ad%97%e4%bd%93/" class="tag-link-7" title="1 topic" style="font-size: 8pt;">字体</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/%e5%af%bf%e9%99%a9/" class="tag-link-19" title="1 topic" style="font-size: 8pt;">寿险</a>
+<a href="http://alpha-blog.wanglianghome.org/tag/%e6%8a%80%e5%b7%a7/" class="tag-link-14" title="2 topics" style="font-size: 10.964705882353pt;">技巧</a></div>
+</li>
+
+		</ul>
+	</div>
+
+	<div id="footer">
+		<span id="copyright">© 2012 <span class="vcard"><a class="url fn n" href=""><span class="given-name"></span> <span class="family-name"></span></a></span></span>
+		<span class="meta-sep">|</span>
+		<span id="generator-link">Thanks, <a href="http://wordpress.org/" title="WordPress" rel="generator">WordPress</a></span>
+		<span class="meta-sep">|</span>
+		<span id="theme-link"><a href="http://www.plaintxt.org/themes/barthelme/" title="Barthelme theme for WordPress" rel="follow designer">Barthelme</a> theme by <span class="vcard"><a class="url fn n" href="http://scottwallick.com/" title="scottwallick.com" rel="follow designer"><span class="given-name">Scott</span><span class="additional-name"> Allan</span><span class="family-name"> Wallick</span></a></span></span><!-- Theme design credit, that's all -->
+		<span class="meta-sep">|</span>
+		<span id="web-standards"> Standards Compliant <a href="http://validator.w3.org/check/referer" title="Valid XHTML">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/validator?profile=css2&warning=2&uri=http://alpha-blog.wanglianghome.org/wp-content/themes/Barthelme/style.css" title="Valid CSS">CSS</a></span>
+		<span class="meta-sep">|</span>
+		<span id="footer-rss"> RSS <a href="http://alpha-blog.wanglianghome.org/feed/" title="懒惰的程序员 RSS 2.0 Feed" rel="alternate" type="application/rss+xml">Posts</a> &amp; <a href="http://alpha-blog.wanglianghome.org/comments/feed/" title="懒惰的程序员 Comments RSS 2.0 Feed" rel="alternate" type="application/rss+xml">Comments</a></span>
+	</div><!-- #footer -->
+
+
+</div><!-- #wrapper -->
+
+
+</body><!-- end trasmission --></html>

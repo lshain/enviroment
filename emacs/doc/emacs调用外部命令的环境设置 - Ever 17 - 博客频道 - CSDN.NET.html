@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0054)http://blog.csdn.net/winterttr/article/details/7273283 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET</title>
+
+<meta name="description" content="作者：winterTTr  转载请注明无论我们在windows下或者在Linux下使用emacs，毫无疑问，我们都需要借助很多外部命令来完成相应的任务。那么，在emacs中，是通过什么方式找到外部命令的呢？我们都知道，无论在什么系统下，将某个可执行文件的目录加入PATH环境变量，就可以在命令行下使用这个命令，无论这个命令放在哪里。所以，emacs启动时的PATH变量">
+<script type="text/javascript" async="" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ga.js"></script><script src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+<script src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/plugins.js" type="text/javascript"></script>
+<script src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/common.js" type="text/javascript"></script>
+<link rel="Stylesheet" type="text/css" href="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/style.css">
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/winterTTr/rss/list">
+<link rel="shortcut icon" href="http://blog.csdn.net/favicon.ico">
+<link type="text/css" rel="stylesheet" href="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/blue.css">
+</head>
+<body>
+<script src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/pub_topnav_2011.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/navtop_2012.css">
+<div class="nav_top_2011">
+<p><span style="color:red;">您还未登录！</span>|<a href="https://passport.csdn.net/account/login" target="_top">登录</a>|<a href="https://passport.csdn.net/account/register" target="_top">注册</a>|<a href="https://passport.csdn.net/help/faq" target="_blank">帮助</a></p><ul>
+<li><a href="http://www.csdn.net/" target="_blank">首页</a></li>
+<li><a href="http://news.csdn.net/" target="_blank">业界</a></li>
+<li><a href="http://mobile.csdn.net/" target="_blank">移动</a></li>
+<li><a href="http://cloud.csdn.net/" target="_blank">云计算</a></li>
+<li><a href="http://sd.csdn.net/" target="_blank">研发</a></li>
+<li><a href="http://bbs.csdn.net/" target="_blank">论坛</a></li>
+<li><a href="http://blog.csdn.net/" target="_blank">博客</a></li>
+<li><a href="http://download.csdn.net/" target="_blank">下载</a></li>
+<li class="more"><h2 id="topnav_btnmore" onclick="showNavMore(this)"><a href="javascript:void(0);">更多</a></h2>
+<div id="topnav_hidlist">
+<iframe name="nav_frm" src="about:blank" width="92" height="178" scrolling="no" frameborder="no"></iframe>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="http://blog.csdn.net/winterTTr">Ever 17</a></h1>
+            <h2></h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="http://blog.csdn.net/winterTTr?viewmode=contents"><span><img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="http://blog.csdn.net/winterTTr?viewmode=list"><span><img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="http://blog.csdn.net/winterTTr/rss/list"><span><img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "winterTTr";
+    var blog_address = "http://blog.csdn.net/winterttr";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+        
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7863031" target="_blank">
+<font color="red">新版论坛系列介绍之二——功能介绍篇</font></a>
+
+&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7868152" target="_blank">
+<font color="red">公告：CSDN博客频道博客搬家功能上线！</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/csdnproduct/article/details/7964475" target="_blank">
+<font color="red">CSDN产品客服新浪微博正式上线公告 </font></a>
+
+<br>
+
+<a href="http://mdcc.csdn.net/" target="_blank">
+<font color="blue">中国最大规模移动开发者高水平盛会 
+ </font></a>
+
+&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7867718" target="_blank">
+<font color="red">没有重量只有质量：iPad版《程序员杂志》应用上线 </font></a>
+
+&nbsp;&nbsp;
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/7954317" target="_blank">
+<font color="blue">“第一次亲密接触”——有奖征文活动  </font></a>
+
+</div><script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ad.js"></script>
+
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET.html">
+        emacs调用外部命令的环境设置
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="http://blog.csdn.net/winterTTr/article/category/1081035">emacs</a> 
+        </span>
+    <span class="link_postdate">2012-02-19 22:07</span>
+    <span class="link_view" title="阅读次数">230人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="http://blog.csdn.net/winterttr/article/details/7273283#comments">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;emacs调用外部命令的环境设置&#39;,&#39;7273283&#39;);return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="http://blog.csdn.net/winterttr/article/details/7273283#report" onclick="javascript:report(7273283,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+    
+<div id="article_content" class="article_content">
+
+<p>作者：winterTTr&nbsp; 转载请注明</p>
+<p><br>
+</p>
+<p>无论我们在windows下或者在Linux下使用emacs，毫无疑问，我们都需要借助很多外部命令来完成相应的任务。</p>
+<p>那么，在emacs中，是通过什么方式找到外部命令的呢？</p>
+<p><br>
+</p>
+<p>我们都知道，无论在什么系统下，将某个可执行文件的目录加入PATH环境变量，就可以在命令行下使用这个命令，无论这个命令放在哪里。</p>
+<p>所以，emacs启动时的PATH变量，是emacs中寻找外部命令的一个因素。</p>
+<p><br>
+</p>
+<p>除此之外，emacs中还有一个主要的变量，那就是exec-path。</p>
+<p><br>
+</p>
+<p><strong>exec-path和PATH环境变量有什么区别？</strong></p>
+<p>exec-path是用来帮助emacs寻找可以<strong>*直接</strong>*使用的外部程序。所谓直接，表明是作为一个子进程存在的程序。这个子进程可以继承PATH环境变量，从而让子进程也可以找到对应的程序的执行路径。举个例子来说，如果你你指设置grep的执行路径给exec-path，你会发现，M-x grep执行不正确。那是因为，grep是通过一个sh子进程去执行的，所以，正确的办法是，更新PATH环境变量。</p>
+<p><br>
+</p>
+<p><strong>究竟应该何时设置exec-path和PATH环境变量？</strong></p>
+<p>当然，除非你可以很明确的区分emacs启动某些子进程的方式，否则，不必明显的区分exec-path和PATH，我得建议是同时将两者更新即可。</p>
+<p></p><div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 400px; top: 862px; width: 21px; height: 12px; z-index: 99; "><embed id="ZeroClipboardMovie_1" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="21" height="12" name="ZeroClipboardMovie_1" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=21&amp;height=12" wmode="transparent"></div></div></div><ol start="1"><li class="alt"><span><span>(defun&nbsp;wttr/prepend-to-exec-path&nbsp;(path)&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;"prepand&nbsp;the&nbsp;path&nbsp;to&nbsp;the&nbsp;emacs&nbsp;intenral&nbsp;`exec-path'&nbsp;and&nbsp;\"PATH\"&nbsp;env&nbsp;variable.&nbsp;&nbsp;</span></li><li class="alt"><span>Return&nbsp;the&nbsp;updated&nbsp;`exec-path'"&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;(setenv&nbsp;"PATH"&nbsp;(concat&nbsp;(expand-file-name&nbsp;path)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path-separator&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(getenv&nbsp;"PATH")))&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;(setq&nbsp;exec-path&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cons&nbsp;(expand-file-name&nbsp;path)&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exec-path)))&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="plain" style="display: none; ">(defun wttr/prepend-to-exec-path (path)
+&nbsp; "prepand the path to the emacs intenral `exec-path' and \"PATH\" env variable.
+Return the updated `exec-path'"
+&nbsp; (setenv "PATH" (concat (expand-file-name path)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; path-separator
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (getenv "PATH")))
+&nbsp; (setq exec-path
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (cons (expand-file-name path)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exec-path)))</pre><br>
+这里提供一个我使用的函数，可以比较方便的同时更新这两个变量。使用举例：<p></p>
+<p></p><div class="dp-highlighter bg_plain"><div class="bar"><div class="tools"><b>[plain]</b> <a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="ViewSource" title="view plain" onclick="dp.sh.Toolbar.Command(&#39;ViewSource&#39;,this);return false;">view plain</a><a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="CopyToClipboard" title="copy" onclick="dp.sh.Toolbar.Command(&#39;CopyToClipboard&#39;,this);return false;">copy</a><a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="PrintSource" title="print" onclick="dp.sh.Toolbar.Command(&#39;PrintSource&#39;,this);return false;">print</a><a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="About" title="?" onclick="dp.sh.Toolbar.Command(&#39;About&#39;,this);return false;">?</a><div style="position: absolute; left: 400px; top: 1139px; width: 21px; height: 12px; z-index: 99; "><embed id="ZeroClipboardMovie_2" src="http://static.blog.csdn.net/scripts/ZeroClipboard/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" width="21" height="12" name="ZeroClipboardMovie_2" align="middle" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=21&amp;height=12" wmode="transparent"></div></div></div><ol start="1"><li class="alt"><span><span>(mapc&nbsp;#'wttr/prepend-to-exec-path&nbsp;&nbsp;</span></span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reverse&nbsp;&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'("~/bin"&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"~/.emacs.d/extra-bin/unix-utils-bin"&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"~/.emacs.d/extra-bin/etc"&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"~/.emacs.d/extra-bin/PuTTY"&nbsp;&nbsp;</span></li><li class="alt"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"~/.emacs.d/extra-bin/clang"&nbsp;&nbsp;</span></li><li class=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)))&nbsp;&nbsp;</span></li></ol></div><pre name="code" class="plain" style="display: none; ">  (mapc #'wttr/prepend-to-exec-path
+        (reverse 
+         '("~/bin"
+           "~/.emacs.d/extra-bin/unix-utils-bin"
+           "~/.emacs.d/extra-bin/etc"
+           "~/.emacs.d/extra-bin/PuTTY"
+           "~/.emacs.d/extra-bin/clang"
+           )))</pre><br>
+<br>
+<p></p>
+<p><strong>为什么不选择将emacs使用的命令全加入系统的PATH？</strong></p>
+<p>就如同我上面的例子，emacs使用了很多linux下的命令，这些命令（例如：find）和windows系统的命令会有冲突。</p>
+<p>如果全部加入系统PATH，可以会引起一些系统脚本不能正常运行。所以，比较安全的方式是，只更新emacs内部的状态，对外部不会有任何影响。</p>
+<p><br>
+</p>
+<p>以上~<br>
+</p>
+<p><br>
+</p>
+<br>
+
+</div>
+<div class="share_buttons" id="sharePanel"><span>分享到：</span> <a name="sina" class="share_sina" title="分享到新浪微博"></a><a name="qq" class="share_qq" title="分享到腾讯微博"></a></div>
+<!--192.168.1.237-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="http://blog.csdn.net/winterttr/article/details/7256404">一题多解 -- 循环填充二维数组</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="http://blog.csdn.net/winterttr/article/details/7273345">emacs下使用clang补全C++</a></li>
+</div>
+
+
+    
+</div>
+<div id="ad_cen"><iframe id="ad_frm_0" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 1649px; height: 97px; " src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ad(1).html"></iframe></div>
+<script type="text/javascript">
+    new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"><br>&nbsp;&nbsp;暂无评论<br><br><div class="clear"></div></div>
+<div id="comment_bar"></div>
+<div id="comment_form"><div class="guest_link">您还没有登录,请<a href="http://passport.csdn.net/account/login?from=http%3A%2F%2Fblog.csdn.net%2Fwinterttr%2Farticle%2Fdetails%2F7273283">[登录]</a>或<a href="http://passport.csdn.net/account/register?from=http%3A%2F%2Fblog.csdn.net%2Fwinterttr%2Farticle%2Fdetails%2F7273283">[注册]</a></div></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7273283';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/comment.js"></script>
+<div id="ad_bot"><iframe id="ad_frm_1" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 1649px; height: 170px; " src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ad(2).html"></iframe></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top">
+<a href="http://blog.csdn.net/winterttr/article/details/7273283#" onclick="javascript:document.body.scrollTop=0;document.documentElement.scrollTop=0;this.blur();return false;" title="回到顶部">
+<img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/top.png" alt="TOP"></a>
+</div>
+
+
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+    <ul class="panel_head"><span>个人资料</span></ul>
+    <ul class="panel_body profile">
+        <div id="blog_userface">
+            <a href="http://my.csdn.net/winterTTr" target="_blank">
+            <img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/1_winterttr.jpg" title="访问我的空间" style="max-width:90%">
+            </a>
+            <br>
+            <span><a href="http://my.csdn.net/winterTTr" target="_blank">winterTTr</a></span>
+        </div>
+<div class="interact">
+<!--<a href="#" class="attented" title="已关注"></a>-->
+<a href="http://blog.csdn.net/winterttr/article/details/7273283#" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="http://my.csdn.net/my/letter/send/winterTTr" class="letter" title="[发私信]"></a>
+</div>
+        <div id="blog_medal">
+        <div id="bms_box"></div></div>
+        <ul id="blog_rank">
+            <li>访问：<span>32453次</span></li>
+            <li>积分：<span>756分</span></li>
+            <li>排名：<span>第11268名</span></li>
+        </ul>
+        <ul id="blog_statistics">
+            <li>原创：<span>38篇</span></li>
+            <li>转载：<span>7篇</span></li>
+            <li>译文：<span>3篇</span></li>
+            <li>评论：<span>24条</span></li>
+        </ul>
+    </ul>
+</div>
+<script type="text/javascript">
+    var _blogger = 'winterTTr';
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    var un = getUN().toLowerCase();
+    if (un == _blogger.toLowerCase()) {
+        $('.interact').hide();
+    } else if(un) {
+        var url = "http://my.csdn.net/index.php/follow/check_is_followed/" + encodeURIComponent(un) + "/" + encodeURIComponent(_blogger) + "?jsonpcallback=?";
+        $.getJSON(url, {}, function (data) {
+            if (data.succ == 1 && data.info == 1) {
+                $('#span_add_follow').attr('class', 'attented');
+            } else {
+                $('#span_add_follow').click(guanzhu);
+            }
+        }, 'json');
+    }
+});
+function guanzhu() {
+    var url = "http://my.csdn.net/index.php/follow/do_follow?jsonpcallback=?";
+    $.getJSON(url, { "username": _blogger }, function (data) {
+        if (data.succ == 1) {
+            alert('关注成功！');
+            $('#span_add_follow').attr('class', 'attented').click(function () { return false; });
+        } else {
+            alert(data.msg);
+        }
+    });
+    return false;
+}
+function getUN() {
+    var m = document.cookie.match(new RegExp("(^| )UserName=([^;]*)(;|$)"));
+    if (m) return m[2];
+    else return '';
+}
+</script>
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+    <ul class="panel_head"><span>文章分类</span></ul>
+    <ul class="panel_body">
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/675430">C++</a><span>(17)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/788048">javascript</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/803397">lisp</a><span>(3)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/419043">python</a><span>(10)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/698797">sqlite</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/580175">STL Boost</a><span>(10)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/444899">Win32</a><span>(4)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/736720">wxWidget</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/735539">工具使用</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/555637">模式模式</a><span>(0)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/681406">汇编相关</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/731560">浏览器开发</a><span>(2)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/1056746">git</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/1080395">F#</a><span>(1)</span>
+        </li>
+        <li>
+        <a href="http://blog.csdn.net/winterttr/article/category/1081035">emacs</a><span>(4)</span>
+        </li>
+    </ul>
+</div><div id="panel_Archive" class="panel">
+    <ul class="panel_head"><span>文章存档</span></ul>
+    <ul class="panel_body">
+        <div id="archive_list"><li><a href="http://blog.csdn.net/winterttr/article/month/2012/04">2012年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2012/03">2012年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2012/02">2012年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/12">2011年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/05">2011年05月</a><span>(1)</span></li><span class="hidelist" style="display:none;"><li><a href="http://blog.csdn.net/winterttr/article/month/2011/04">2011年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/03">2011年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/02">2011年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/09">2010年09月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/07">2010年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/06">2010年06月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/05">2010年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/04">2010年04月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2009/08">2009年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2009/03">2009年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2009/02">2009年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2008/08">2008年08月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2008/07">2008年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2008/06">2008年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2005/10">2005年10月</a><span>(3)</span></li></span><div id="archive_list_button" class="list_closed">展开</div></div>
+    </ul>
+</div>
+<div id="hotarticls" class="panel">
+    <ul class="panel_head"><span>阅读排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/2590741" title="Python的函数参数传递：传值？引用？">Python的函数参数传递：传值？引用？</a><span>(9712)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/514027" title="修改右键菜单">修改右键菜单</a><span>(1921)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/4446860" title="C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）">C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）</a><span>(1878)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/7273345" title="emacs下使用clang补全C++">emacs下使用clang补全C++</a><span>(1701)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/5546832" title="C++菱形继承内存深度探究">C++菱形继承内存深度探究</a><span>(943)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/2662995" title="Python+ctypes 列举进程信息">Python+ctypes 列举进程信息</a><span>(819)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/6329776" title="小议common lisp程序开发流程">小议common lisp程序开发流程</a><span>(713)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/6290211" title="ccl命令行运行lisp脚本">ccl命令行运行lisp脚本</a><span>(654)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/2826182" title="windows上NTFS共享文件不能访问">windows上NTFS共享文件不能访问</a><span>(644)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/3931894" title="利用ElementTree读写XML文件">利用ElementTree读写XML文件</a><span>(621)</span>
+        </li>
+    </ul>
+</div>
+<div id="hotarticls2" class="panel">
+    <ul class="panel_head"><span>评论排行</span></ul>
+    <ul class="panel_body itemlist">
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/2590741" title="Python的函数参数传递：传值？引用？">Python的函数参数传递：传值？引用？</a><span>(8)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/7273345" title="emacs下使用clang补全C++">emacs下使用clang补全C++</a><span>(5)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/4446860" title="C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）">C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/5520133" title="初始化函数中的虚函数调用（ C++ vs python ）">初始化函数中的虚函数调用（ C++ vs python ）</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/6290211" title="ccl命令行运行lisp脚本">ccl命令行运行lisp脚本</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/6329776" title="小议common lisp程序开发流程">小议common lisp程序开发流程</a><span>(2)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/5505599" title="STL学习笔记 ---- 神秘的auto_ptr">STL学习笔记 ---- 神秘的auto_ptr</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/7524336" title="emacs中使用auto-complete的详细设置">emacs中使用auto-complete的详细设置</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/6300536" title="clozure common lisp命令行运行脚本解决方案">clozure common lisp命令行运行脚本解决方案</a><span>(1)</span>
+        </li>
+        <li>
+            <a href="http://blog.csdn.net/winterttr/article/details/5870885" title="开启Firefox控制台dump">开启Firefox控制台dump</a><span>(0)</span>
+        </li>
+    </ul>
+</div>
+<div id="homepageArticles" class="panel">
+    <ul class="panel_head"><span>推荐文章</span></ul>
+    <ul class="panel_body" id="ad_commend">
+    <iframe id="ad_frm_2" frameborder="0" scrolling="no" style="border-width: 0px; overflow: hidden; width: 194px; height: 264px; " src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ad.html"></iframe></ul>
+</div>
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ad.js"></script>
+<script type="text/javascript">
+    new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;">maerceci:
+lz你的emacs颜色是怎么配的，貌似很好看啊
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/7524336#comments">emacs中使用auto-complete的详细设置</a>
+    <p style="margin:0px;">acaaka:
+关于与yasnippet相兼容它们的tab冲突你的意思是auto-complete 里面有处理这个问...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/6329776#comments">小议common lisp程序开发流程</a>
+    <p style="margin:0px;">wakemecn:
+test.test();
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;">winterTTr:
+@fang_xx:应该是可以的，ac-clang就是ac的一个扩展实例。可以参考我的另一篇文章：ht...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/6290211#comments">ccl命令行运行lisp脚本</a>
+    <p style="margin:0px;">ElwinLuo:
+我的机器上，对冒号做转义字符要用反斜杠才可以跑。
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;">fang_xx:
+ac-source-clang能和其它source一起工作吗? 比如yasnippet, 我的不行....
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;">winterTTr:
+@cp298674954:linum-mode具体的配置可以参考：https://github.co...
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;">cp298674954:
+请问您用的行号显示  是哪一个插件
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;">copy202:
+确实写得相当的通俗易懂，像我这样的初学者一看就明白了，好文章！
+    </p>
+    </li>
+    <li>
+    <a href="http://blog.csdn.net/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;">wanshengxian:
+写的非常好，赞这样的博主。
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/shCore-src.js"></script>
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ZeroClipboard.js"></script>
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/article_code.js"></script>
+
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/show.js"></script>
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script><img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/pv.aspx" border="0" width="0" height="0">
+
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/publib_footer.js"></script><link rel="stylesheet" type="text/css" href="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/pub_footer_2012.css"><div class="pub_footerall"><dl><dt></dt> <dd><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a>|<a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a>|<a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a>|<a href="http://www.csdn.net/company/account.html" target="_blank">银行汇款帐号</a>|<a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a>|<a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a>|<a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a>|<a href="mailto:webmaster@csdn.net">问题报告</a></dd><dd>京&nbsp;ICP&nbsp;证&nbsp;070598&nbsp;号</dd><dd>北京创新乐知信息技术有限公司 版权所有</dd><dd><img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ico_email.gif" alt="" title=""> 联系邮箱：webmaster@csdn.net</dd><dd>Copyright © 1999-2012, CSDN.NET, All Rights Reserved&nbsp;<a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div>
+
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/counter.js"></script><script type="text/javascript" charset="UTF-8" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/msg.popup.js"></script>
+
+<!--ad.csdn.net-->
+<script type="text/javascript" src="./emacs调用外部命令的环境设置 - Ever 17 - 博客频道 - CSDN.NET_files/ad-blog.js"></script>
+
+
+
+</div>
+
+</body></html>

@@ -1,0 +1,411 @@
+/*********************
+** RESET ALL STYLES **
+*********************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 12px;
+vertical-align: baseline;
+background: transparent;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+body {
+line-height: 1.4em;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+text-decoration: none;
+}
+del {
+text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+
+/****************
+** MAIN LAYOUT **
+****************/
+html, body, #content {
+min-height: 100%;
+width: 100%;		
+height: 100%;
+}
+html>body, html>body #content {
+height: auto;
+}
+#content {
+position: absolute;
+top: 0;
+left: auto;
+}
+#navigation {
+position: fixed;
+top: 0;
+left: 0;
+width: 12em;
+min-height: 100%;
+z-index: 20;
+background-color: #007a00;
+color: #ffffff;
+/*border-right: 1px solid #bbbbbb;*/
+}
+#header {
+margin-left: 13em;
+min-width: 388px;
+max-width: 780px;
+}
+#table-of-contents {
+float: right;
+background-color: #ffffff;
+padding: 0 0 1em 1em;
+}
+#org-content {
+padding-left: 13em;
+margin-top: 4em;
+min-width: 388px;
+max-width: 780px;
+margin-bottom: 9em;
+}
+#footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+border-top: 1px dotted gray;
+}
+
+
+/*****************
+** OTHER STYLES **
+*****************/
+.image, .quoted {
+text-align: center;
+}
+/*
+#container {
+min-width: 640px;
+max-width:1049px;
+margin:0 auto;
+padding: 0.5em;
+}
+*/
+h1 { 
+font-size: 2em;
+line-height: 1.4em;
+color: green;
+border-bottom: 2px solid #aaa;
+margin: 1.4em 0 0.6em 0;
+}
+h2 {
+font-size: 1.5em;
+border-top: 1px solid #a5cb94;
+background: #e6ffe6;
+margin: 1.2em 0 0.5em 0;
+padding: 0.1em 0 0.2em 0.3em;
+}
+h3 {
+font-size: 1.3em;
+margin: 1em 0 0.4em 1em;
+padding: 0 0 0.1em 0.1em;
+border-bottom: 1px solid #cccccc;
+}
+h4 {
+font-size: 1.1em;
+margin: 0.8em 0 0.3em 2em;
+}
+h5 {
+margin: 0.6em 0 0.2em 3em;
+}
+p, dl {
+margin: 0.6em 1em 0.6em 3.5em;
+}
+ul {
+list-style-type: disc;
+margin-left: 4.8em;
+}
+ul ul {
+margin-left: 2em;
+}
+ol {
+list-style-type: decimal;
+margin-left: 5.3em;
+}
+dd {
+margin-left: 2em;
+}
+pre.src, pre.example {
+clear: both;
+margin: 1em 1em 1em 3.2em;
+padding: 0.3em 0.5em;
+background-color: #ffffde;
+border: 1px dotted #cccccc;
+}
+
+pre.src span.command {
+color: #ff0000;
+}
+pre.src span.comment {
+color: #00aa00;
+/* Commented by FNI on 2008-09-26 */
+/* display: block; */
+}
+pre, code {
+font-family: "Courier New", Courier, Monospace;
+font-size: 1.1em;
+}
+code.src {
+clear: both;
+display: block;
+margin: 1em 1em 1em 3.2em;
+padding: 0.3em 0.5em;
+background-color: #ffffde;
+border: 1px dotted #cccccc;
+}
+code.src span.command {
+color: #ff0000;
+}
+code.src span.comment {
+color: #00aa00;
+display: block;
+}
+#navigation h2 {
+margin: 0 0 0.5em ;
+padding: 0.3em 0 0.5em;
+color: #ffffff;
+background-color: #214f0d;
+border: none;
+font-size: 1em;
+text-align: center;
+}
+#navigation ul {
+list-style: none;
+margin: 0;
+padding-left: 1em;
+color: #ffffff;
+}
+#navigation ul ul {
+padding-left: 1em;
+}
+#navigation li {
+font-size: 0.9em;
+font-weight: bold;
+}
+#navigation li li {
+font-weight: normal;
+}
+#navigation li a {
+margin-left: -1.1em;
+padding-left: 1.1em;
+}
+#navigation li li a {
+margin-left: -2.2em;
+padding-left: 2.2em;
+}
+#navigation a {
+display: block;
+color: #ffffff;
+font-size: 1em;
+text-decoration: none;
+}
+#navigation a:hover {
+background-color: #00cc00;
+}
+#navigation li a.current {
+background: url('http://www.mygooglest.com/fni/pic/current.gif') no-repeat;
+background-position: 101% center;
+cursor: text;
+}
+#table-of-contents h2 {
+margin: 0;
+color: #ffffff;
+background-color: #00cc00;
+font-size: 1em;
+text-align: center;
+border-width: 1px;
+border-style: solid solid none solid;
+border-color: #666666;
+}
+#table-of-contents ol {
+list-style: none;
+padding: 0.5em 1em 1em;
+margin: 0;
+border-width: 1px;
+border-style: none solid solid solid;
+border-color: #666666;
+background-color: #e6ffe6;
+}
+#table-of-contents ol ol {
+border: none;
+margin-left: 2em;
+padding: 0;
+}
+#table-of-contents ol li {
+border: none;
+margin-top: 0.5em;
+padding: 0;
+}
+#table-of-contents ol ol li {
+margin-top: 0;
+}
+#table-of-contents ol { 
+counter-reset: item;
+}
+#table-of-contents ol li:before {
+content: counters(item, ".");
+counter-increment: item;
+margin-right: 0.5em;
+}
+#table-of-contents h2 {
+margin: 0;
+color: #ffffff;
+background-color: #00cc00;
+font-size: 1em;
+text-align: center;
+border-width: 1px;
+border-style: solid solid none solid;
+border-color: #666666;
+}
+#text-table-of-contents ol {
+list-style: none;
+padding: 0.5em 1em 1em;
+margin: 0;
+border-width: 1px;
+border-style: none solid solid solid;
+border-color: #666666;
+background-color: #e6ffe6;
+}
+#text-table-of-contents ol ol {
+border: none;
+margin-left: 2em;
+padding: 0;
+}
+#text-table-of-contents ol li {
+border: none;
+margin-top: 0.5em;
+padding: 0;
+}
+#text-table-of-contents ol ol li {
+margin-top: 0;
+}
+#text-table-of-contents ol { 
+counter-reset: item;
+}
+#text-table-of-contents ol li:before {
+content: counters(item, ".");
+counter-increment: item;
+margin-right: 0.5em;
+}
+#footer p {
+margin: 0;
+padding-left: 13em;
+}
+#navigation h2 {
+background: url('http://www.mygooglest.com/fni/pic/197786_54294899.jpg') no-repeat;
+padding-top: 100px;
+}
+
+/* Added by FNI on 2008-09-26 */
+pre.src span.builtin {
+    /* font-lock-builtin-face */
+    color: #da70d6;
+}
+pre.src span {
+font-family: "Courier New", Courier, Monospace;
+}
+pre.src span.comment {
+    /* font-lock-comment-face */
+    color: #ff0000;
+}
+pre.src span.comment-delimiter {
+    /* font-lock-comment-delimiter-face */
+    color: #ff0000;
+}
+pre.src span.constant {
+    /* font-lock-constant-face */
+    color: #008b8b;
+}
+pre.src span.doc {
+    /* font-lock-doc-face */
+    color: #008b00;
+}
+pre.src span.flyspell-duplicate {
+    /* flyspell-duplicate */
+    color: #cdad00;
+    font-weight: bold;
+    text-decoration: underline;
+}
+pre.src span.function-name {
+    /* font-lock-function-name-face */
+    color: #0000ff;
+}
+pre.src span.keyword {
+    /* font-lock-keyword-face */
+    color: #9b30ff;
+}
+pre.src span.negation-char {
+}
+pre.src span.regexp-grouping-backslash {
+    /* font-lock-regexp-grouping-backslash */
+    font-weight: bold;
+}
+pre.src span.regexp-grouping-construct {
+    /* font-lock-regexp-grouping-construct */
+    font-weight: bold;
+}
+pre.src span.sh-heredoc {
+    /* sh-heredoc */
+    color: #ffa54f;
+}
+pre.src span.string {
+    /* font-lock-string-face */
+    color: #008b00;
+}
+pre.src span.type {
+    /* font-lock-type-face */
+    color: #228b22;
+}
+pre.src span.variable-name {
+    /* font-lock-variable-name-face */
+    color: #ff00ff;
+}
+pre.src span.warning {
+    /* font-lock-warning-face */
+    color: #ff0000;
+    font-weight: bold;
+}
+
+a {
+    color: green;
+    background-color: inherit;
+    font: inherit;
+    text-decoration: underline; /* fni 2008-11-24 */
+}
+a:hover {
+    text-decoration: underline;
+}

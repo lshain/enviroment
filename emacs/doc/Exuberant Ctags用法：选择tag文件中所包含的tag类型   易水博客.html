@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/ -->
+<html dir="ltr" lang="zh-CN"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Exuberant Ctags用法：选择tag文件中所包含的tag类型 | 易水博客</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="stylesheet" type="text/css" media="all" href="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/style.css">
+<link rel="pingback" href="http://easwy.com/blog/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://easwy.com/blog/wp-content/themes/twentyeleven/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+<link rel="alternate" type="application/rss+xml" title="易水博客 » Feed" href="http://easwy.com/blog/feed/">
+<link rel="alternate" type="application/rss+xml" title="易水博客 » 评论 Feed" href="http://easwy.com/blog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="易水博客 » Exuberant Ctags用法：选择tag文件中所包含的tag类型 评论 Feed" href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/feed/">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/pagenavi-css.css" type="text/css" media="all">
+<script type="text/javascript" async="" src="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/ga.js"></script><script type="text/javascript" src="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/jquery.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://easwy.com/blog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://easwy.com/blog/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="在Debian Lenny上安装Apache Tomcat" href="http://easwy.com/blog/archives/install-apache-tomcat-on-debian-lenny/">
+<link rel="next" title="杨美丫被录取啦~~" href="http://easwy.com/blog/archives/angela-get-offer-from-beilei/">
+<link rel="canonical" href="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客.html">
+<link rel="shortlink" href="http://easwy.com/blog/?p=874">
+	<script src="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/enhanced-categories.js" type="text/javascript"></script>
+	<link rel="shortlink" href="http://easwy.com/blog/874">
+<!-- wp thread comment 1.4.9.4.002 -->
+<style type="text/css" media="screen">
+.editComment, .editableComment, .textComment{
+	display: inline;
+}
+.comment-childs{
+	border: 1px solid #999;
+	margin: 5px 2px 2px 4px;
+	padding: 4px 2px 2px 4px;
+	background-color: white;
+}
+.chalt{
+	background-color: #E2E2E2;
+}
+#newcomment{
+	border:1px dashed #777;width:90%;
+}
+#newcommentsubmit{
+	color:red;
+}
+.adminreplycomment{
+	border:1px dashed #777;
+	width:99%;
+	margin:4px;
+	padding:4px;
+}
+.mvccls{
+	color: #999;
+}
+			
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7277676-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body class="single single-post postid-874 single-format-standard single-author singular two-column left-sidebar">
+<div id="page" class="hfeed">
+	<header id="branding" role="banner">
+			<hgroup>
+				<h1 id="site-title"><span><a href="http://easwy.com/blog/" title="易水博客" rel="home">易水博客</a></span></h1>
+				<h2 id="site-description">关注Linux, Scala, Android, Java, 开源软件和嵌入式系统</h2>
+			</hgroup>
+
+			
+								<form method="get" id="searchform" action="http://easwy.com/blog/">
+		<label for="s" class="assistive-text">Search</label>
+		<input type="text" class="field" name="s" id="s" placeholder="Search">
+		<input type="submit" class="submit" name="submit" id="searchsubmit" value="Search">
+	</form>
+			
+			<nav id="access" role="navigation">
+				<h3 class="assistive-text">Main menu</h3>
+								<div class="skip-link"><a class="assistive-text" href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#content" title="Skip to primary content">Skip to primary content</a></div>
+				<div class="skip-link"><a class="assistive-text" href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#secondary" title="Skip to secondary content">Skip to secondary content</a></div>
+								<div class="menu"><ul><li><a href="http://easwy.com/blog/" title="首页">首页</a></li><li class="page_item page-item-570"><a href="http://easwy.com/blog/wordpress/">WordPress</a><ul class="children"><li class="page_item page-item-1010"><a href="http://easwy.com/blog/wordpress/itheme-i18n/">iTheme-i18n</a></li><li class="page_item page-item-574"><a href="http://easwy.com/blog/wordpress/wp-posturl/">WP-PostURL</a></li></ul></li><li class="page_item page-item-7"><a href="http://easwy.com/blog/about/">关于</a></li></ul></div>
+			</nav><!-- #access -->
+	</header><!-- #branding -->
+
+
+	<div id="main">
+		<div id="primary">
+			<div id="content" role="main">
+
+				
+					<nav id="nav-single">
+						<h3 class="assistive-text">Post navigation</h3>
+						<span class="nav-previous"><a href="http://easwy.com/blog/archives/install-apache-tomcat-on-debian-lenny/" rel="prev"><span class="meta-nav">←</span> Previous</a></span>
+						<span class="nav-next"><a href="http://easwy.com/blog/archives/angela-get-offer-from-beilei/" rel="next">Next <span class="meta-nav">→</span></a></span>
+					</nav><!-- #nav-single -->
+
+					
+<article id="post-874" class="post-874 post type-post status-publish format-standard hentry category-development category-text tag-ctags tag-vim">
+	<header class="entry-header">
+		<h1 class="entry-title">Exuberant Ctags用法：选择tag文件中所包含的tag类型</h1>
+
+				<div class="entry-meta">
+			<span class="sep">Posted on </span><a href="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客.html" title="12:16 下午" rel="bookmark"><time class="entry-date" datetime="2009-05-02T12:16:07+00:00" pubdate="">2009年05月2日</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://easwy.com/blog/archives/author/easwy/" title="View all posts by Easwy" rel="author">Easwy</a></span></span>		</div><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p>
+    网友<a class="ulink" href="http://easwy.com/blog/archives/exuberant-ctags-chinese-manual/#comment-352" target="_top">SamPeng问</a>:
+  </p>
+<div class="blockquote">
+<blockquote class="blockquote">
+<p>请问哪个参数是不解析方法中变量的。</p>
+<p>方法中的变量纯粹是浪费tag标签。从来不用。因为一个文件里有多个同明变量</p>
+</blockquote>
+</div>
+<p>
+    这个问题比较普遍，因此写一篇文章来解释一下。
+  </p>
+<p>
+    大多数人在使用Exuberant Ctags时，一般都使用缺省的<span class="command"><strong>ctags -R</strong></span>。一般来讲，这条缺省命令已经可以满足大部分人的需求了。在某些情况下，可能对tag文件中标签的类型有特殊要求，这时就需要进行定制了。
+  </p>
+<p>
+    对SamPeng所提出的问题，解决方法如下：
+  </p>
+<div class="orderedlist">
+<ol type="1">
+<li>
+      首先用ctags –list-kinds=&lt;LANG&gt;列出这个语言所支持的标签类型
+    </li>
+<li>
+      然后在生成tag文件时，用ctags –&lt;LANG&gt;-kinds=[+|-]kinds来增加或去掉这种tag类型
+    </li>
+<li>
+      需要把&lt;LANG&gt;换成你所用的编程语言的名字，用ctags –list-languages查看ctags支持哪些语言。
+    </li>
+</ol>
+</div>
+<p>
+    其实我们在文章<a class="ulink" href="http://easwy.com/blog/archives/advanced-vim-skills-omin-complete/" target="_top">vim使用进阶: 智能补全</a>中已经用过Exuberant Ctags的定制功能了，在那篇文章里，我们使用命令
+  </p>
+<pre class="programlisting">ctags -R --c++-kinds=+p --fields=+iaS --extra=+q src </pre>
+<p>
+    来为OmniCppComplete插件生成定制的tag文件。仔细分析一下上面这条命令，相信你对Exuberant Ctags的了解会更加深一层的。
+  </p>
+<p>    从上面的介绍我们可以看到，Exuberant Ctags的功能非常强大(例如，甚至可以用它为任意文件提取tag，你只需要指定生成tag的规则就行了)，只是大多数人并不了解。如果你对tag文件的内容有特殊的需求，建议你仔细阅读一下Exuberant Ctags的手册。你可以在这里找到我翻译的<a class="ulink" href="http://easwy.com/blog/archives/exuberant-ctags-chinese-manual/" target="_top">Exuberant Ctags中文手册</a>。
+  </p>
+<div class="posturl">
+<p><span class="bold"><strong>原创文章，请阅读页脚的<a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#license">许可方式</a>，转载请注明：</strong></span>转载自<a class="link" href="http://easwy.com/blog/" target="_top">易水博客</a> [ <a class="link" href="http://easwy.com/blog/" target="_top">http://easwy.com/blog/</a> ]</p>
+<p><span class="bold"><strong>本文链接地址:</strong></span> <a class="link" href="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客.html" target="_top">http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/</a></p>
+</div>
+<p style="margin-top: 0; margin-bottom: 15px; color: #888888; font-size: 80%; font-style: italic">文章的脚注信息由WordPress的<a href="http://easwy.com/blog/wordpress/wp-posturl/" style="color: #8888FF; text-decoration: underline;">wp-posturl插件</a>自动生成</p>
+<div class="fixed"></div><div id="related_posts"><h3 class="related_post_title">相关文章</h3><ul class="related_post">
+<li><a href="http://easwy.com/blog/archives/exuberant-ctags-chinese-manual/" rel="bookmark" title="Exuberant Ctags中文手册">Exuberant Ctags中文手册</a></li>
+<li><a href="http://easwy.com/blog/archives/advanced-vim-skills-taglist-plugin/" rel="bookmark" title="vi/vim使用进阶: 使用taglist插件">vi/vim使用进阶: 使用taglist插件</a></li>
+<li><a href="http://easwy.com/blog/archives/advanced-vim-skills-use-ctags-tag-file/" rel="bookmark" title="vi/vim使用进阶: 使用标签(tag)文件">vi/vim使用进阶: 使用标签(tag)文件</a></li>
+<li><a href="http://easwy.com/blog/archives/advanced-vim-skills-omin-complete/" rel="bookmark" title="vi/vim使用进阶: 智能补全">vi/vim使用进阶: 智能补全</a></li>
+<li><a href="http://easwy.com/blog/archives/automatically_update_ctags_tag_cscope_database/" rel="bookmark" title="为vi/vim自动更新tag文件和cscope数据库">为vi/vim自动更新tag文件和cscope数据库</a></li>
+<li><a href="http://easwy.com/blog/archives/vim-cscope-ctags/" rel="bookmark" title="vi/Vim + Cscope/Ctags">vi/Vim + Cscope/Ctags</a></li>
+<li><a href="http://easwy.com/blog/archives/advanced-vim-skills-cscope/" rel="bookmark" title="vi/vim使用进阶: 程序员的利器 – cscope">vi/vim使用进阶: 程序员的利器 – cscope</a></li>
+<li><a href="http://easwy.com/blog/archives/vim-taglist-plugin-not-work-after-installing-eclim/" rel="bookmark" title="解决安装Eclim后Vim Taglist插件工作不正常的问题">解决安装Eclim后Vim Taglist插件工作不正常的问题</a></li>
+</ul></div><div class="fixed"></div>			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="http://easwy.com/blog/archives/category/development/" title="查看 开发编程 中的全部文章" rel="category tag">开发编程</a>, <a href="http://easwy.com/blog/archives/category/text/" title="查看 文本处理 中的全部文章" rel="category tag">文本处理</a> and tagged <a href="http://easwy.com/blog/archives/tag/ctags/" rel="tag">ctags</a>, <a href="http://easwy.com/blog/archives/tag/vim/" rel="tag">Vim</a> by <a href="http://easwy.com/blog/archives/author/easwy/">Easwy</a>. Bookmark the <a href="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客.html" title="Permalink to Exuberant Ctags用法：选择tag文件中所包含的tag类型" rel="bookmark">permalink</a>.		
+			</footer><!-- .entry-meta -->
+</article><!-- #post-874 -->
+
+						<div id="comments">
+	
+	
+			<h2 id="comments-title">
+			8 thoughts on “<span>Exuberant Ctags用法：选择tag文件中所包含的tag类型</span>”		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-355">
+		<article id="comment-355" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn"><a href="http://ivenvd.blogspot.com/" rel="external nofollow" class="url">Iven</a></span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-355"><time pubdate="" datetime="2009-05-02T14:04:48+00:00">2009年05月2日 at 2:04 下午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>我也有个问题，我习惯在 ( 前面加个空格，可是自动补全函数名的时候函数名和括号总是紧挨着的，有什么办法设置么？</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,355,1,&#39;Iven&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-359">
+		<article id="comment-359" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn"><a href="http://www.sampeng.cn/" rel="external nofollow" class="url">SamPeng</a></span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-359"><time pubdate="" datetime="2009-05-03T13:38:29+00:00">2009年05月3日 at 1:38 下午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>谢谢你的指导。。我发贴的时候已经根据你翻译的手册搞定了。。<br>
+但taglist好像还是用的常规ctags来获得tags的。<br>
+我也设置了 Tlist_Ctag_CMD属性指定到Exuberant Ctags目录。。没反应啊没反应</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,359,1,&#39;SamPeng&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment byuser comment-author-easwy bypostauthor even thread-even depth-1" id="li-comment-360">
+		<article id="comment-360" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn"><a href="http://easwy.com/blog/" rel="external nofollow" class="url">Easwy</a></span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-360"><time pubdate="" datetime="2009-05-04T10:25:35+00:00">2009年05月4日 at 10:25 上午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p><a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-359" rel="nofollow">@SamPeng</a><br>
+看看taglist插件的FAQ吧：<br>
+:help taglist-faq</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,360,1,&#39;Easwy&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment byuser comment-author-easwy bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-361">
+		<article id="comment-361" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn"><a href="http://easwy.com/blog/" rel="external nofollow" class="url">Easwy</a></span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-361"><time pubdate="" datetime="2009-05-04T10:26:51+00:00">2009年05月4日 at 10:26 上午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p><a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-355" rel="nofollow">@Iven</a><br>
+这个不清楚，也许要改omni插件吧..</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,361,1,&#39;Easwy&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment even thread-even depth-1" id="li-comment-443">
+		<article id="comment-443" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn">kaiix</span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-443"><time pubdate="" datetime="2009-05-28T10:39:55+00:00">2009年05月28日 at 10:39 上午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>Easywy您好，我有一个问题想请教您。<br>
+问题是这样的，我要移植一个gtk+项目到Windows下，gtk+环境配置好了，在linux下面我可以利用vim自动补全补全#include 中包含的难记忆的API名称，在Windows下我不知道如何设置vim使他可以自动补全include文件中的内容。<br>
+不知道linux下它是如何实现这一功能的。如果只是在环境变量中注册gtk的头文件位置，我在Windows环境变量中也加入了gtk的路径，没有反应。在vimrc中设置set path=…也不管用。</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,443,1,&#39;kaiix&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment byuser comment-author-easwy bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-457">
+		<article id="comment-457" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn"><a href="http://easwy.com/blog/" rel="external nofollow" class="url">Easwy</a></span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-457"><time pubdate="" datetime="2009-06-02T14:50:22+00:00">2009年06月2日 at 2:50 下午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p><a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-443" rel="nofollow">@kaiix</a><br>
+:help compl-keyword<br>
+:help ‘complete’</p>
+<p>主要是检查complete选项和path选项的设置</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,457,1,&#39;Easwy&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment even thread-even depth-1" id="li-comment-536">
+		<article id="comment-536" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn">伐木丁丁</span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-536"><time pubdate="" datetime="2009-06-11T19:32:04+00:00">2009年06月11日 at 7:32 下午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p>博主你好。又来请教您问题了。</p>
+<p>我平时在linux下用vim。现在在win下装了一个gvim。发现gvim好多地方使用和vim不一样。比如ctrl+v是粘贴，本来想进入列模式的。现在不知道如何进入列模式了。<br>
+请问，如何设置，才能使windows下的gvim的操作习惯和linux上的vim操作习惯完全一致，而不要windows下的那些ctrl+c / ctrl+v 那些键绑定？</p>
+<p>thanks。</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,536,1,&#39;伐木丁丁&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+	<li class="comment byuser comment-author-easwy bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-542">
+		<article id="comment-542" class="comment">
+			<footer class="comment-meta">
+				<div class="comment-author vcard">
+					<span class="fn"><a href="http://easwy.com/blog/" rel="external nofollow" class="url">Easwy</a></span> on <a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-542"><time pubdate="" datetime="2009-06-12T09:41:11+00:00">2009年06月12日 at 9:41 上午</time></a> <span class="says">said:</span>
+									</div><!-- .comment-author .vcard -->
+
+				
+			</footer>
+
+			<div class="comment-content"><p><a href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#comment-536" rel="nofollow">@伐木丁丁</a><br>
+这是因为windows上缺省的vimrc($VIM/_vimrc)引用了$VIM/mswin.vim，重新定义了很多映射。只需要更改一下缺省的vimrc就可以了。</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,542,1,&#39;Easwy&#39;);">回复</a>]</p></div>
+
+			<div class="reply">
+							</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li>
+		</ol>
+
+		
+	
+									<div id="respond">
+				<h3 id="reply-title">发表评论 <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://easwy.com/blog/archives/ctags-usage-select-tag-kinds/#respond" style="display:none;">取消回复</a></small></h3>
+									<form action="http://easwy.com/blog/wp-comments-post.php" method="post" id="commentform">
+																			<p class="comment-notes">电子邮件地址不会被公开。 必填项已用 <span class="required">*</span> 标注</p>							<p class="comment-form-author"><label for="author">姓名</label> <span class="required">*</span><input id="author" name="author" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-email"><label for="email">电子邮件</label> <span class="required">*</span><input id="email" name="email" type="text" value="" size="30" aria-required="true"></p>
+<p class="comment-form-url"><label for="url">站点</label><input id="url" name="url" type="text" value="" size="30"></p>
+												<p class="comment-form-comment"><label for="comment">评论</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>						<p class="form-allowed-tags">您可以使用这些 <abbr title="HyperText Markup Language">HTML</abbr> 标签和属性： <code>&lt;a href="" title=""&gt; &lt;abbr title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; </code></p>						<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="发表评论">
+							<input type="hidden" name="comment_post_ID" value="874" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="75516d06b2"></p><p><input type="hidden" id="comment_reply_ID" name="comment_reply_ID" value="0"><input type="hidden" id="comment_reply_dp" name="comment_reply_dp" value="0"></p><div id="cancel_reply" style="display:none;"><a href="javascript:void(0)" onclick="movecfm(null,0,1,null);" style="color:red;">点击取消回复</a></div><script type="text/javascript">
+/* <![CDATA[ */
+var commentformid = "commentform";
+var USERINFO = false;
+var atreply = "authorlink";
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/wp-thread-comment.js.php"></script>
+					</form>
+							</div><!-- #respond -->
+						
+</div><!-- #comments -->
+
+				
+			</div><!-- #content -->
+		</div><!-- #primary -->
+
+
+	</div><!-- #main -->
+
+	<footer id="colophon" role="contentinfo">
+
+			
+
+			<div id="site-generator">
+								<a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator">Proudly powered by WordPress</a>
+			</div>
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<script>
+/* <![CDATA[ */
+var rcGlobal = {
+	serverUrl		:'http://easwy.com/blog',
+	infoTemp		:'%REVIEWER% 在 %POST%',
+	loadingText		:'正在加载',
+	noCommentsText	:'没有任何评论',
+	newestText		:'&laquo; 最新的',
+	newerText		:'&laquo; 上一页',
+	olderText		:'下一页 &raquo;',
+	showContent		:'',
+	external		:'',
+	avatarSize		:'',
+	avatarPosition	:'',
+	anonymous		:'匿名'
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Exuberant Ctags用法：选择tag文件中所包含的tag类型   易水博客_files/wp-recentcomments-jquery.js"></script>
+
+
+</body></html>

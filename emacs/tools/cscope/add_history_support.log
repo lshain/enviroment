@@ -1,0 +1,18 @@
+add history support for xcscope.el   	 Private: (?)
+No
+I modified xcscope.el for browsing cscope result history. Attached file is
+'diff -cb' with xcscope.el come with cscope-15.6.
+
+I think the primary benefit of this feature is to give us a clue how we
+gotten into current position. I used to ask myself “how I get into
+function?” since the code I’m reading has really deep call stacks and
+I
+can’t keep them all in my mind. The other benefit is that, for large
+projects, cscope-ing sometimes could be time-consuming.
+
+USAGE:
+To view previous search result, call cscope-history-backward (‘C-c s
+v’
+or just ‘v’ in cscope buffer) or cscope-history-forward (‘V’).
+To discard cscope history, M-x cscope-history-clear
+To delete history entry currently visiting, M-x cscope-history-delete

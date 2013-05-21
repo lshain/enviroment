@@ -1,0 +1,1727 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0028)http://emacser.com/cedet.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+
+	<title>配置CEDET浏览和编辑C++代码 | Emacs中文网</title>
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - 所有文章" href="http://emacser.com/feed">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0 - 所有评论" href="http://emacser.com/comments/feed">
+	<link rel="pingback" href="http://emacser.com/xmlrpc.php">
+
+	<!-- style START -->
+	<!-- default style -->
+	<style type="text/css" media="screen">@import url( http://emacser.com/wp-content/themes/56771/style.css );</style>
+	<!-- for translations -->
+			<link rel="stylesheet" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/chinese.css" type="text/css" media="screen">
+		<!--[if IE]>
+		<link rel="stylesheet" href="http://emacser.com/wp-content/themes/56771/ie.css" type="text/css" media="screen" />
+	<![endif]-->
+	<!-- style END -->
+
+	<!-- script START -->
+	<script type="text/javascript" async="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/ga.js"></script><script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/base.js"></script>
+	<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/menu.js"></script>
+	<!-- script END -->
+
+	<script type="text/javascript">
+	window.google_analytics_uacct = "UA-11322068-3";
+</script>
+				
+	<script type="text/javascript">//<![CDATA[
+	// Google Analytics for WordPress by Yoast v4.0.10 | http://yoast.com/wordpress/google-analytics/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount','UA-11322068-3']);
+</script><script src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/custom_se_async.js" type="text/javascript"></script>
+<script type="text/javascript">	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]></script>
+<link rel="alternate" type="application/rss+xml" title="Emacs中文网 » 用CEDET浏览和编辑C++代码 评论 Feed" href="http://emacser.com/cedet.htm/feed">
+<link rel="stylesheet" id="gdsr_style_main-css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/gdsr.css.php" type="text/css" media="">
+<link rel="stylesheet" id="gdsr_style_xtra-css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/rating.css" type="text/css" media="">
+<link rel="stylesheet" id="codebox-css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/codebox.css" type="text/css" media="screen">
+<link rel="stylesheet" id="wp-pagenavi-css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/pagenavi-css.css" type="text/css" media="">
+<link rel="stylesheet" id="NextGEN-css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/nggallery.css" type="text/css" media="screen">
+<link rel="stylesheet" id="shutter-css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/shutter-reloaded.css" type="text/css" media="screen">
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/jquery.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/gdsr.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var AJAXCommentPreview = {
+	loading: "Loading&#8230;",
+	error: "Preview error",
+	emptyString: "",
+	url: "http://emacser.com/wp-admin/admin-ajax.php?action=ajax_comment_preview"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/ajax-comment-preview.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/jquery.dimensions.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/jquery.bgiframe.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/jquery.lightbox.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/jquery.tooltip.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/lightbox-gallery.js"></script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/codebox.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var shutterSettings = {
+	msgLoading: "L O A D I N G",
+	msgClose: "Click to Close",
+	imageCount: "1"
+};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/shutter-reloaded.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://emacser.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://emacser.com/wp-includes/wlwmanifest.xml"> 
+<link rel="index" title="Emacs中文网" href="http://emacser.com/">
+<link rel="start" title="Emacs是什么" href="http://emacser.com/emacs-what.htm">
+<link rel="prev" title="Emacs的Jabber客户端" href="http://emacser.com/jabber.htm">
+<link rel="next" title="ERC使用简介" href="http://emacser.com/erc.htm">
+<meta name="generator" content="WordPress 2.9.2">
+
+<!-- All in One SEO Pack 1.6.13.2 by Michael Torbert of Semper Fi Web Design[326,388] -->
+<meta name="description" content="1 前言 2 简介 2.1 EDE 2.2 Semantic 2.3 SRecode 2.4 Cogre 2.5 Speedbar 2.6 EIEIO 3 安装 4 semantic配置 4.1">
+<meta name="keywords" content="autoload,c/c++,calc,cedet,cogre,company-mode,eclipse,ede,editor,eieio,emacs,emacser,emacser.com,gdb,highlight,highlight-symbol,ide,imenu,lambda,meteor,meteor1113,mode-line,org,pulse,screenshot,semantic,senator,snippet,speedbar,srecode,text,windows,yasnippet,代码折叠,代码补全,光标,插件,淡入淡出,补全,配色,颜色,鼠标,中级,自动补全">
+<link rel="canonical" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/配置CEDET浏览和编辑C++代码   Emacs中文网.html">
+<!-- /all in one seo pack -->
+<script type="text/javascript">
+//<![CDATA[
+var gdsr_cnst_nonce = "1525155a33";
+var gdsr_cnst_ajax = "http://emacser.com/wp-content/plugins/gd-star-rating/ajax.php";
+var gdsr_cnst_button = 1;
+var gdsr_cnst_cache = 1;
+// ]]>
+</script>
+<!--[if IE]><style type="text/css">.ratemulti .starsbar .gdcurrent { -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)"; filter: alpha(opacity=70); }</style><![endif]-->
+<link rel="stylesheet" type="text/css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/lightbox-gallery.css">
+<link rel="shortcut icon" href="http://emacser.com/favicon.ico" type="image/x-icon"><!-- Favi -->
+			<link rel="stylesheet" type="text/css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/index.php">
+			<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/index(1).php"></script>
+		
+<!-- Start Of Script Generated By WP-PostViews 1.60 -->
+<script type="text/javascript">
+/* <![CDATA[ */
+jQuery.ajax({type:'GET',url:'http://emacser.com/wp-content/plugins/wp-postviews/wp-postviews.php',data:'postviews_id=40990',cache:false});/* ]]> */
+</script>
+<!-- End Of Script Generated By WP-PostViews 1.60 -->
+
+<!-- START of script generated by WP-RecentComments -->
+<link rel="stylesheet" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/wp-recentcomments.css" type="text/css" media="screen"><script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/wp-recentcomments.js"></script>
+<!-- END of script generated by WP-RecentComments -->
+<link id="MediaRSS" rel="alternate" type="application/rss+xml" title="NextGEN Gallery RSS Feed" href="http://emacser.com/wp-content/plugins/nextgen-gallery/xml/media-rss.php">
+
+<!-- NextGeEN Gallery CoolIris/PicLens support -->
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/piclens_optimized.js"></script>
+<!-- /NextGEN Gallery CoolIris/PicLens support -->
+<meta name="NextGEN" content="1.5.3">
+<!-- wp thread comment 1.4.9.4.002 -->
+<style type="text/css" media="screen">
+.editComment, .editableComment, .textComment{
+	display: inline;
+}
+.comment-childs{
+	border: 1px solid #999;
+	margin: 5px 2px 2px 4px;
+	padding: 4px 2px 2px 4px;
+	background-color: white;
+}
+.chalt{
+	background-color: #E2E2E2;
+}
+#newcomment{
+	border:1px dashed #777;width:90%;
+}
+#newcommentsubmit{
+	color:red;
+}
+.adminreplycomment{
+	border:1px dashed #777;
+	width:99%;
+	margin:4px;
+	padding:4px;
+}
+.mvccls{
+	color: #999;
+}
+			
+</style>
+<link rev="stylesheet" rel="stylesheet" type="text/css" href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/addthis.css" media="all"></head>
+
+
+<body>
+<!-- wrap START -->
+<div id="wrap">
+
+<!-- container START -->
+<div id="container">
+
+<!-- header START -->
+<div id="header">
+
+	<!-- banner START -->
+		<!-- banner END -->
+
+	<div id="caption">
+		<h1 id="title"><a href="http://emacser.com/">Emacs中文网</a></h1>
+		<div id="tagline">没有我做不到的，只有你想不到的</div>
+	</div>
+
+	<div class="fixed"></div>
+</div>
+<!-- header END -->
+
+<!-- navigation START -->
+<div id="navigation">
+	<!-- menus START -->
+	<ul id="menus">
+		<li class="page_item"><a class="home" title="首页" href="http://emacser.com/">首页</a></li>
+		<li class="page_item page-item-15631"><a href="http://emacser.com/about.htm" title="关于">关于</a></li>
+<li class="page_item page-item-41299"><a href="http://emacser.com/dea" title="DEA">DEA</a></li>
+<li class="page_item page-item-40841"><a href="http://emacser.com/logo.htm" title="征集logo">征集logo</a></li>
+<li class="page_item page-item-40795"><a href="http://emacser.com/license.htm" title="版权声明">版权声明</a></li>
+<li class="page_item page-item-40833"><a href="http://emacser.com/invitation.htm" title="加盟/投稿">加盟/投稿</a></li>
+<li class="page_item page-item-37644"><a href="http://emacser.com/emacs-screenshots.htm" title="Emacs截图">Emacs截图</a></li>
+<li class="page_item page-item-40978"><a href="http://emacser.com/emacs-resource.htm" title="Emacs资源">Emacs资源</a></li>
+<li class="page_item page-item-36683"><a href="http://emacser.com/map.htm" title="站点地图">站点地图</a></li>
+		<li><a class="lastmenu" href="javascript:void(0);"></a></li>
+	</ul>
+	<!-- menus END -->
+
+	<!-- searchbox START -->
+	<div id="searchbox">
+					<form action="http://emacser.com/" method="get">
+				<div class="content">
+					<input type="text" class="textfield searchtip" name="s" size="24" value="">
+					<input type="submit" class="button" value="">
+				</div>
+			</form>
+			</div>
+<script type="text/javascript">
+//<![CDATA[
+	var searchbox = MGJS.$("searchbox");
+	var searchtxt = MGJS.getElementsByClassName("textfield", "input", searchbox)[0];
+	var searchbtn = MGJS.getElementsByClassName("button", "input", searchbox)[0];
+	var tiptext = "请输入关键字...";
+	if(searchtxt.value == "" || searchtxt.value == tiptext) {
+		searchtxt.className += " searchtip";
+		searchtxt.value = tiptext;
+	}
+	searchtxt.onfocus = function(e) {
+		if(searchtxt.value == tiptext) {
+			searchtxt.value = "";
+			searchtxt.className = searchtxt.className.replace(" searchtip", "");
+		}
+	}
+	searchtxt.onblur = function(e) {
+		if(searchtxt.value == "") {
+			searchtxt.className += " searchtip";
+			searchtxt.value = tiptext;
+		}
+	}
+	searchbtn.onclick = function(e) {
+		if(searchtxt.value == "" || searchtxt.value == tiptext) {
+			return false;
+		}
+	}
+//]]>
+</script>
+	<!-- searchbox END -->
+
+	<div class="fixed"></div>
+</div>
+<!-- navigation END -->
+
+<!-- content START -->
+<div id="content">
+
+	<!-- main START -->
+	<div id="main">
+
+
+	<div id="postpath">
+		<a title="转到首页" href="http://emacser.com/">首页</a>
+		 &gt; <a href="http://emacser.com/c-cedet.htm" title="查看 CEDET 的全部文章" rel="category tag">CEDET</a>,  <a href="http://emacser.com/c-ide.htm" title="查看 IDE 的全部文章" rel="category tag">IDE</a>,  <a href="http://emacser.com/%e4%b8%ad%e7%ba%a7" title="查看 中级 的全部文章" rel="category tag">中级</a>,  <a href="http://emacser.com/c-auto-complete.htm" title="查看 自动补全 的全部文章" rel="category tag">自动补全</a>		 &gt; 用CEDET浏览和编辑C++代码	</div>
+
+	<div class="post" id="post-40990">
+		<h2>用CEDET浏览和编辑C++代码</h2>
+		<div class="info">
+			<span class="date">2010年3月18日</span>
+			<span class="author"><a href="http://emacser.com/author/meteor1113/" title="由 Meteor Liu 发表">Meteor Liu</a></span>										<span class="addcomment"><a href="http://emacser.com/cedet.htm#respond">发表评论</a></span>
+				<span class="comments"><a href="http://emacser.com/cedet.htm#comments">阅读评论</a></span>
+						<div class="fixed"></div>
+		</div>
+		<div class="content">
+			<p><img class="alignright" title="CEDET" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/cedet-logo.png" width="200" height="90"></p>
+<div id="table-of-contents">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="http://emacser.com/cedet.htm#sec-1">1 前言 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-2">2 简介 </a>
+<ul>
+<li><a href="http://emacser.com/cedet.htm#sec-2.1">2.1 EDE </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-2.2">2.2 Semantic </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-2.3">2.3 SRecode </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-2.4">2.4 Cogre </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-2.5">2.5 Speedbar </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-2.6">2.6 EIEIO </a></li>
+</ul>
+</li>
+<li><a href="http://emacser.com/cedet.htm#sec-3">3 安装 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4">4 semantic配置 </a>
+<ul>
+<li><a href="http://emacser.com/cedet.htm#sec-4.1">4.1 功能介绍 </a>
+<ul>
+<li><a href="http://emacser.com/cedet.htm#sec-4.1.1">4.1.1 semantic-load-enable-minimum-features </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.1.2">4.1.2 semantic-load-enable-code-helpers </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.1.3">4.1.3 semantic-load-enable-gaudy-code-helpers </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.1.4">4.1.4 semantic-load-enable-excessive-code-helpers </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.1.5">4.1.5 semantic-load-enable-semantic-debugging-helpers </a></li>
+</ul>
+</li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.2">4.2 基本配置 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.3">4.3 代码跳转 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-4.4">4.4 代码补全 </a></li>
+</ul>
+</li>
+<li><a href="http://emacser.com/cedet.htm#sec-5">5 EDE配置 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-6">6 其它 </a>
+<ul>
+<li><a href="http://emacser.com/cedet.htm#sec-6.1">6.1 可视化书签 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-6.2">6.2 pluse </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-6.3">6.3 h/cpp切换 </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-6.4">6.4 代码折叠 </a>
+<ul>
+<li><a href="http://emacser.com/cedet.htm#sec-6.4.1">6.4.1 semantic-tag-folding </a></li>
+<li><a href="http://emacser.com/cedet.htm#sec-6.4.2">6.4.2 senator-fold-tag </a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://emacser.com/cedet.htm#sec-7">7 Todo  </a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-1" class="outline-2">
+<h3 id="sec-1">1 前言 </h3>
+<div id="text-1">
+<p>
+网上关于如何用<a href="http://emacser.com/cedet.htm#www.gnu.org/software/emacs" target="_blank">emacs</a>+<a href="http://cedet.sourceforge.net/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;cedet.sourceforge.net&#39;]);" target="_blank">cedet</a>做C++ IDE的文章已经很多了，可是大都只列出了配置文件和效果，没有讲清楚具体的配置过程；一篇讲得比较具体的文章(<a href="http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;alexott.net&#39;]);" target="_blank">http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html</a> ,这篇文章是被cedet官方推荐的)还是英文的。刚接触cedet的用户经常照抄了别人的配置却发现不能补全，而且配置文件是别人的想改还无法下手。本文中我尽量详细解释各个语句的作用，希望能给初次接触的人提供点帮助。<span id="more-40990"></span>
+</p>
+<p>
+cedet于2010年2月26日发布了1.0pre7，强烈建议以前用过cedet觉得速度慢而放弃的同学试试1.0pre7，这个版本速度比以前有很大很大提高。
+</p>
+</div>
+</div>
+<div id="outline-container-2" class="outline-2">
+<h3 id="sec-2">2 简介 </h3>
+<div id="text-2">
+<p>
+cedet是一堆完全用elisp实现的emacs工具的集合，主要有：
+</p>
+</div>
+<div id="outline-container-2.1" class="outline-3">
+<h4 id="sec-2.1">2.1 EDE </h4>
+<div id="text-2.1">
+<p>
+用来管理项目，它可以把emacs模拟得像一个IDE那样，把一堆文件作为一个project来管理。
+</p>
+</div>
+</div>
+<div id="outline-container-2.2" class="outline-3">
+<h4 id="sec-2.2">2.2 Semantic </h4>
+<div id="text-2.2">
+<p>
+Semantic应该是cedet里用得最多的组件了，代码间跳转和自动补全这两大功能都是通过semantic来实现的。
+</p>
+</div>
+</div>
+<div id="outline-container-2.3" class="outline-3">
+<h4 id="sec-2.3">2.3 SRecode </h4>
+<div id="text-2.3">
+<p>
+SRecode是一个模板系统，通过一些预定义的模板，可以很快地插入一段代码。个人觉得这个功能跟msf-abbrev和yasnippet的功能有些类似。
+</p>
+</div>
+</div>
+<div id="outline-container-2.4" class="outline-3">
+<h4 id="sec-2.4">2.4 Cogre </h4>
+<div id="text-2.4">
+<p>
+全称叫”Connected Graph Editor”，主要和图形相关，比如可以用它来为C++类生成UML图。
+</p>
+</div>
+</div>
+<div id="outline-container-2.5" class="outline-3">
+<h4 id="sec-2.5">2.5 Speedbar </h4>
+<div id="text-2.5">
+<p>
+Speedbar可以单独创建一个frame，用于显示目录树，函数列表等等。这个组件已经包含在emacs官方发布包中。
+</p>
+</div>
+</div>
+<div id="outline-container-2.6" class="outline-3">
+<h4 id="sec-2.6">2.6 EIEIO </h4>
+<div id="text-2.6">
+<p>
+EIEIO是一个底层库，它为elisp加入了OO支持。cedet的其它组件都依赖于EIEIO。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-3" class="outline-2">
+<h3 id="sec-3">3 安装 </h3>
+<div id="text-3">
+<p>
+安装就不多说了，<a href="http://emacser.com/install-cedet.htm" target="_blank">这儿</a>详细说明了如何下载安装。
+</p>
+<p>
+要注意的是通过cvs下载必须要编译后才能用，而官方发布后的包可以直接解压不编译也是能用。
+</p>
+<p>
+安装完后首先当然要load它(确保安装的路径已经在load-path中了)：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code1&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409901"><td class="code" id="p40990code1"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>require 'cedet<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+</div>
+</div>
+<div id="outline-container-4" class="outline-2">
+<h3 id="sec-4">4 semantic配置 </h3>
+<div id="text-4">
+<p>
+先介绍一下最常用的semantic。
+</p>
+</div>
+<div id="outline-container-4.1" class="outline-3">
+<h4 id="sec-4.1">4.1 功能介绍 </h4>
+<div id="text-4.1">
+<p>
+一般装插件的思路，都是先load然后enable某个minor mode。cedet基本上也遵循这个规则，不过有点区别是semantic定义了很多个mode，要是挨个去enable，用户可能就要骂娘了，所以cedet的作者Eric定义了几个方便使用的函数，这些函数会自动帮你enable某些minor mode，大概有这么几个：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code2&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409902"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code" id="p40990code2"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>semantic-load-enable-minimum-features<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>semantic-load-enable-code-helpers<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>semantic-load-enable-guady-code-helpers<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>semantic-load-enable-excessive-code-helpers<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>semantic-load-enable-semantic-debugging-helpers<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+简单介绍一下各个函数的功能：
+</p>
+</div>
+<div id="outline-container-4.1.1" class="outline-4">
+<h5 id="sec-4.1.1">4.1.1 semantic-load-enable-minimum-features </h5>
+<div id="text-4.1.1">
+<p>
+这个函数开启了最基本的三个特性：
+</p>
+<ul>
+<li id="sec-4.1.1.1">semantic-idle-scheduler-mode <br>
+<p>
+enable这个mode让cedet在emacs空闲的时候自动分析buffer内容，比如正在编辑的buffer内容改变后。这个mode一般应该是需要enable的，如果没有enable这个mode，那只有手工触发才会让cedet重新分析。
+</p>
+</li>
+<li id="sec-4.1.1.2">semanticdb-minor-mode <br>
+<p>
+semanticdb是semantic用来保存分析后的内容的，所以也是应该enable的。
+</p>
+</li>
+<li id="sec-4.1.1.3">semanticdb-load-ebrowse-caches <br>
+<p>
+这个feature我不是很确定，大概的意思好像是semantic可以利用ebrowse的结果。这个feature大概就是把ebrowse生成的文件load给semantic使用。(要是谁了解这个feature具体意义请告诉我下)
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-4.1.2" class="outline-4">
+<h5 id="sec-4.1.2">4.1.2 semantic-load-enable-code-helpers </h5>
+<div id="text-4.1.2">
+<p>
+这个函数除enable semantic-load-enable-minimum-features外，还包括：
+</p>
+<ul>
+<li id="sec-4.1.2.1">imenu <br>
+<p>
+这个feature可以让imenu显示semantic分析出的类，函数等tags。如图：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-semantic-imenu.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="imenu显示semantic分析出的类" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-semantic-imenu.jpg" width="150" height="150"></a><p class="wp-caption-text">imenu显示semantic分析出的类</p></div>
+</li>
+<li id="sec-4.1.2.2">semantic-idle-summary-mode <br>
+<p>
+打开这个mode之后，光标停留在一个类/函数等tag上时，会在minibuffer显示出这个函数原型，如图：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-idle-summary.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="用ssemantic在minibuffer显示函数原型" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-idle-summary.jpg" width="600"></a><p class="wp-caption-text">用ssemantic在minibuffer显示函数原型</p></div>
+</li>
+<li id="sec-4.1.2.3">senator-minor-mode <br>
+<p>
+senator开启之后，会在emacs上增加一个senator的菜单，可以通过菜单在当前文件的各个tag之间前后移动，跳转；还可以在里面方便地打开/关闭某个feature；还有另外一些实用的功能，看看菜单大概就能明白：
+</p>
+<div class="wp-caption alignnone" style="width: 190px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-senator-menu.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="senator菜单" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-senator-menu.jpg"></a><p class="wp-caption-text">senator菜单</p></div>
+</li>
+<li id="sec-4.1.2.4">semantic-mru-bookmark-mode <br>
+<p>
+cedet有tag跳转的功能，但是经常跳转完后还需要跳回刚才的位置，这时候就需要mru-bookmark-mode了。打开这个mode之后，每次跳转semantic都会把位置当作书签一样记录下来，以后可以通过M-x semantic-mrub-switch-tags（绑定到按键C-x B上）来选择跳回以前的任意一个位置。
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-4.1.3" class="outline-4">
+<h5 id="sec-4.1.3">4.1.3 semantic-load-enable-gaudy-code-helpers </h5>
+<div id="text-4.1.3">
+<p>
+这个函数除enable semantic-load-enable-code-helpers之外，还包括：
+</p>
+<ul>
+<li id="sec-4.1.3.1">semantic-stickyfunc-mode <br>
+<p>
+这个mode会根据光标位置把当前函数名显示在buffer顶上，如图：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-stickyfunc.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="在head-line上显示函数名" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-stickyfunc.jpg" width="600"></a><p class="wp-caption-text">在head-line上显示函数名</p></div>
+<p>
+这个mode我觉得用处不大，因为基本上可以用which-func-mode代替。而且我习惯打开tabbar-mode，这个mode会覆盖tabbar-mode，所以我是不打开它的。
+</p>
+</li>
+<li id="sec-4.1.3.2">semantic-decoration-mode <br>
+<p>
+打开这个mode后，semantic会在类/函数等tag上方加一条蓝色的线，源文件很大的时候用它可以提示出哪些是类和函数的头。如图：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-decoration.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic标记函数头" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-decoration.jpg" width="600"></a><p class="wp-caption-text">semantic标记函数头</p></div>
+</li>
+<li id="sec-4.1.3.3">semantic-idle-completions-mode <br>
+<p>
+这个mode打开后，光标在某处停留一段时间后，semantic会自动提示此处可以补全的内容。比如下面这段代码：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-semantic-idle-complete-1.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic自动补全当前光标内容" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-semantic-idle-complete-1.jpg" width="150" height="150"></a><p class="wp-caption-text">semantic自动补全当前光标内容</p></div>
+<p>
+如果把光标停留在”this-&gt;”的后面，稍隔一会会提示：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-semantic-idle-complete-2.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic自动补全当前光标内容" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-semantic-idle-complete-2.jpg" width="150" height="150"></a><p class="wp-caption-text">semantic自动补全当前光标内容</p></div>
+<p>
+如果提示的函数不是需要的，按TAB键可以在各个可能的函数之间循环，按回车就可以确定了。
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-4.1.4" class="outline-4">
+<h5 id="sec-4.1.4">4.1.4 semantic-load-enable-excessive-code-helpers </h5>
+<div id="text-4.1.4">
+<p>
+这个函数除enable semantic-load-enable-gaudy-code-helpers之外，还包括：
+</p>
+<ul>
+<li id="sec-4.1.4.1">semantic-highlight-func-mode <br>
+<p>
+打开这个mode的话，semantic会用灰的底色把光标所在函数名高亮显示，如下图中，函数Delete被高亮了，而LexicalCast没被高亮：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-highlight-func.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic高亮当前函数" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-highlight-func.jpg" width="600"></a><p class="wp-caption-text">semantic高亮当前函数</p></div>
+</li>
+<li id="sec-4.1.4.2">semantic-idle-tag-highlight-mode <br>
+<p>
+用过XCode或eclipse的人应该会喜欢高亮光标处变量的功能：就是在函数内部，光标停留在一个变量上，整个函数内部用这个变量的地方都高亮了。在emacs里只要打开semantic-idle-tag-highlight-mode，光标在变量处停留一会，就会把相同的变量全都高亮，比如下图中的变量mAddr：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-idle-tag-highlight.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic智能高亮当前符号" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-idle-tag-highlight.jpg" width="600"></a><p class="wp-caption-text">semantic智能高亮当前符号</p></div>
+<p>
+semantic的这个tag-highlight虽然智能，可是我感觉它显示得太慢了，所以我是用另一个插件<a href="http://nschum.de/src/emacs/highlight-symbol/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;nschum.de&#39;]);" target="_blank">highlight-symbol</a>来高亮的，<a href="http://emacser.com/highlight-symbol.htm" target="_blank">这儿</a>有它的介绍。
+</p>
+</li>
+<li id="sec-4.1.4.3">semantic-decoration-on-*-members <br>
+<p>
+把private和protected的函数用颜色标识出来，如图：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-decoration-on-star.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic用颜色区分方法的访问权限" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-decoration-on-star.jpg" width="600"></a><p class="wp-caption-text">semantic用颜色区分方法的访问权限</p></div>
+</li>
+<li id="sec-4.1.4.4">which-func-mode <br>
+<p>
+这个其实就是emacs自带的which-function-mode，把光标当前所在的函数名显示在mode-line上。
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-4.1.5" class="outline-4">
+<h5 id="sec-4.1.5">4.1.5 semantic-load-enable-semantic-debugging-helpers </h5>
+<div id="text-4.1.5">
+<p>
+这个函数会enable几个和调试semantic相关的特性：
+</p>
+<ul>
+<li id="sec-4.1.5.1">semantic-highlight-edits-mode <br>
+<p>
+打开这个mode后，emacs会把最近修改过的内容高亮出来，如下图中begin就是刚输入的，所以用灰底色高亮了：
+</p>
+<div class="wp-caption alignnone" style="width: 600px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-highlight-edits.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic高亮最近修改" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-highlight-edits.jpg"></a><p class="wp-caption-text">semantic高亮最近修改</p></div>
+<p>
+隔一段时间后高亮会自动取消，不会一直高亮着让整个buffer看起来混乱。
+</p>
+<p>
+其实emacs自带也有高亮修改内容的mode：highlight-changes-mode，它会用红色的字体高亮所有修改的内容，但是不会自动取消，所以修改多了整个buffer就会乱七八糟糕。用semantic这个就好多了。
+</p>
+</li>
+<li id="sec-4.1.5.2">semantic-show-unmatched-syntax-mode <br>
+<p>
+这个mode会把semantic解析不了的内容用红色下划线标识出来，比如下面这个文件是从emacs源代码中来的：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-highlight-unmatched-syntax.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic用红色下划线标记不匹配的语法" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-highlight-unmatched-syntax.jpg" width="600"></a><p class="wp-caption-text">semantic用红色下划线标记不匹配的语法</p></div>
+</li>
+<li id="sec-4.1.5.3">semantic-show-parser-state-mode <br>
+<p>
+打开这个mode，semantic会在modeline上显示出当前解析状态，这是关闭mode的样子：
+</p>
+<p><img title="semantic在mode-line上显示解析状态" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-show-parse-1.jpg"></p>
+<p>
+这是打开mode的样子：
+</p>
+<p><img title="semantic在mode-line上显示解析状态" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-show-parse-2.jpg"></p>
+<p>
+能看出modeline上文件名前的横线多了一条，其实倒数第二条就是用来显示当前semantic解析状态的：未解析时显示为”!”，正在解析时显示”@”，解析完后显示”-”，如果buffer修改后未重新解析显示为”^”。
+</p>
+<p>
+semantic会在空闲时自动解析，另外可以打开senator-minor-mode，按[C-c , ,]或者在senator菜单中选[Force Tag Refresh]强制它马上解析。
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-4.2" class="outline-3">
+<h4 id="sec-4.2">4.2 基本配置 </h4>
+<div id="text-4.2">
+<p>
+了解了上面这些feature，就可以根据需要配置了，为了使用semantic，至少需要开启semantic-load-enable-minimum-features定义的三个基础feature，其余的feature就可以根据自己的需要开启了。比如我的配置是：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code3&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409903"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code" id="p40990code3"><pre class="lisp" style="font-family:monospace;"><span style="color: #808080; font-style: italic;">;; (semantic-load-enable-minimum-features)</span>
+<span style="color: #66cc66;">(</span>semantic-load-enable-code-helpers<span style="color: #66cc66;">)</span>
+<span style="color: #808080; font-style: italic;">;; (semantic-load-enable-guady-code-helpers)</span>
+<span style="color: #808080; font-style: italic;">;; (semantic-load-enable-excessive-code-helpers)</span>
+<span style="color: #66cc66;">(</span>semantic-load-enable-semantic-debugging-helpers<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+因为imenu,idle-summary-mode,senator-mode,mru-bookmark-mode都是我需要的。特别是senator，有时候我会碰到semantic等很久也不自动解析文件的问题，这时候就需要在senator菜单里[Force Tag Refresh]一下了，并且senator还可以通过菜单方便地打开和关闭某些mode，用起来还是很方便的。
+</p>
+<p>
+(semantic-load-enable-guady-code-helpers)和(semantic-load-enable-excessive-code-helpers)定义的那些feature，对我来说用处不大，而且我感觉打开的话还会让emacs反应变慢，所以我就不启用了。
+</p>
+<p>
+(semantic-load-enable-semantic-debugging-helpers)的几个feature我都比较喜欢，所以我也启用了。
+</p>
+<p>
+有了这些基本配置，在emacs打开C和C++文件的时候，semantic就会自动解析文件。不过有个问题，一个cpp文件中肯定会include很多头文件，要想解析这个cpp的内容，头文件的信息是必要的；但是头文件可能和cpp放在一起，也可能放在系统某个目录下，semantic怎么才能找到这个头文件一起解析呢？
+</p>
+<p>
+semantic是这样处理的：1、如果当前目录中能找到，就直接在当前文件中读取头文件。2、如果当前目录下没有，就上系统INCLUDE目录中去找（在Linux下，我们一般使用gcc编译器，semantic会自动调用gcc，取得gcc的INCLUDE目录，比如/usr/include,/usr/local/include等，但是Windows下就不行了）。
+</p>
+<p>
+BTW：很多文档中提到需要load semantic-gcc，不过我没有load它，在Linux下semantic仍然能自动把gcc的INCLUDE目录加进来。
+</p>
+<p>
+semantic这种找法肯定会造成大量的头文件找不到的(找不到头文件还怎么解析啊)，有两个问题需要解决：1、很多工程中都会把头文件和实现文件分开放置，比如头文件放在include(或者inc,public,common等)目录中，实现文件放在src目录中，这些目录semantic是不能自己找的；2、在Windows下怎么能让semantic去找编译器的INCLUDE目录。
+</p>
+<p>
+既然semantic不能自动查找找，那就只能我们告诉semantic了，办法是调用semantic-add-system-include函数，这个函数会根据mode把路径加入到semantic-dependency-system-include-path里去。下面是我的配置：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code4&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409904"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code" id="p40990code4"><pre class="lisp" style="font-family:monospace;"><span style="color: #808080; font-style: italic;">;; (setq semanticdb-project-roots (list (expand-file-name "/")))</span>
+<span style="color: #66cc66;">(</span>defconst cedet-user-include-dirs
+  <span style="color: #66cc66;">(</span><span style="color: #b1b100;">list</span> <span style="color: #ff0000;">".."</span> <span style="color: #ff0000;">"../include"</span> <span style="color: #ff0000;">"../inc"</span> <span style="color: #ff0000;">"../common"</span> <span style="color: #ff0000;">"../public"</span>
+        <span style="color: #ff0000;">"../.."</span> <span style="color: #ff0000;">"../../include"</span> <span style="color: #ff0000;">"../../inc"</span> <span style="color: #ff0000;">"../../common"</span> <span style="color: #ff0000;">"../../public"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>defconst cedet-win32-include-dirs
+  <span style="color: #66cc66;">(</span><span style="color: #b1b100;">list</span> <span style="color: #ff0000;">"C:/MinGW/include"</span>
+        <span style="color: #ff0000;">"C:/MinGW/include/c++/3.4.5"</span>
+        <span style="color: #ff0000;">"C:/MinGW/include/c++/3.4.5/mingw32"</span>
+        <span style="color: #ff0000;">"C:/MinGW/include/c++/3.4.5/backward"</span>
+        <span style="color: #ff0000;">"C:/MinGW/lib/gcc/mingw32/3.4.5/include"</span>
+        <span style="color: #ff0000;">"C:/Program Files/Microsoft Visual Studio/VC98/MFC/Include"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>require 'semantic-c <span style="color: #b1b100;">nil</span> 'noerror<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span><span style="color: #b1b100;">let</span> <span style="color: #66cc66;">(</span><span style="color: #66cc66;">(</span>include-dirs cedet-user-include-dirs<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span><span style="color: #b1b100;">when</span> <span style="color: #66cc66;">(</span><span style="color: #b1b100;">eq</span> system-type 'windows-nt<span style="color: #66cc66;">)</span>
+    <span style="color: #66cc66;">(</span><span style="color: #b1b100;">setq</span> include-dirs <span style="color: #66cc66;">(</span><span style="color: #b1b100;">append</span> include-dirs cedet-win32-include-dirs<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span><span style="color: #b1b100;">mapc</span> <span style="color: #66cc66;">(</span><span style="color: #b1b100;">lambda</span> <span style="color: #66cc66;">(</span>dir<span style="color: #66cc66;">)</span>
+          <span style="color: #66cc66;">(</span>semantic-add-system-include dir 'c++-mode<span style="color: #66cc66;">)</span>
+          <span style="color: #66cc66;">(</span>semantic-add-system-include dir 'c-mode<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        include-dirs<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+因为我在Windows下可能用MinGW和VC6，所以我把它们的include目录都加进来了，要是你用别的编译器，就改成自己的目录好了。
+</p>
+<p>
+另外，我找了一些一般项目中经常用到的头文件目录名(include,inc,common,public)，把它们也加进来了，这样对于一般的项目来说基本上都能解析正确（比如我们在项目中见到头文件放在include目录实现文件放在src目录的方式，对src目录下一个cpp文件，通过“../include”这个路径就能找到对应的头文件）。如果你的项目中还用了其它一些目录名，也可以配置在这儿。
+</p>
+<p>
+上面配置中那一行(require ’semantic-c nil ‘noerror)是必须的，因为semantic的大部分功能是autoload的，如果不在这儿load semantic-c，那打开一个c文件时会自动load semantic-c，它会把semantic-dependency-system-include-path重设为/usr/include，结果就造成前面自定义的include路径丢失了。
+</p>
+<p>
+顺便说一下semanticdb-project-roots的配置，很多地方都说要把它配置成”/”，但是我在Linux/Mac/Windows都试验过，不配这一行并没什么影响。
+</p>
+<p>
+解析文件是semantic基本高级功能的基础，正确地解析了文件我们才能实现：代码跳转和代码补全。
+</p>
+</div>
+</div>
+<div id="outline-container-4.3" class="outline-3">
+<h4 id="sec-4.3">4.3 代码跳转 </h4>
+<div id="text-4.3">
+<p>
+有了前面的配置，semantic自动就解析c/c++文件，解析完后跳转就容易了：光标放在函数上，执行M-x semantic-ia-fast-jump，马上就跳转到函数的定义上了。如果跳不过去，那就检查一下前面配置的INCLUDE路径，是不是当前文件include的所有头文件都能在INCLUDE中找到。如果检查了很多遍都不好用，那就换个项目或者别的文件试试，确实存在semantic对某些文件支持不太好的情况，比如boost。
+</p>
+<p>
+semantic-ia-fast-jump这个功能如此常用，我就把它绑定到f12上去了。
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code5&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409905"><td class="code" id="p40990code5"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>global-set-key <span style="color: #66cc66;">[</span>f12<span style="color: #66cc66;">]</span> 'semantic-ia-fast-jump<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+另外，前面我们说过跳转过去了我们还需要跳回来，在打开mru-bookmark-mode的情况下，按[C-x B]，emacs会提示你跳回到哪个地方，一般默认的就是上一次semantic-ia-fast-jump的位置，所以回车就可以回去了。
+</p>
+<p>
+不过看代码时候我经常需要跳转后马上就跳回来，要按[C-x B] [RET]这么多键实在有点麻烦，所以我写了个函数不提示直接就跳回上次的位置，并把它绑定到shift+f12上了：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code6&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409906"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code" id="p40990code6"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>global-set-key <span style="color: #66cc66;">[</span>S-f12<span style="color: #66cc66;">]</span>
+                <span style="color: #66cc66;">(</span><span style="color: #b1b100;">lambda</span> <span style="color: #66cc66;">(</span><span style="color: #66cc66;">)</span>
+                  <span style="color: #66cc66;">(</span>interactive<span style="color: #66cc66;">)</span>
+                  <span style="color: #66cc66;">(</span><span style="color: #b1b100;">if</span> <span style="color: #66cc66;">(</span>ring-empty-p <span style="color: #66cc66;">(</span>oref semantic-mru-bookmark-ring ring<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                      <span style="color: #66cc66;">(</span><span style="color: #b1b100;">error</span> <span style="color: #ff0000;">"Semantic Bookmark ring is currently empty"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                  <span style="color: #66cc66;">(</span><span style="color: #b1b100;">let</span>* <span style="color: #66cc66;">(</span><span style="color: #66cc66;">(</span>ring <span style="color: #66cc66;">(</span>oref semantic-mru-bookmark-ring ring<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                         <span style="color: #66cc66;">(</span>alist <span style="color: #66cc66;">(</span>semantic-mrub-ring-to-assoc-<span style="color: #b1b100;">list</span> ring<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                         <span style="color: #66cc66;">(</span>first <span style="color: #66cc66;">(</span><span style="color: #b1b100;">cdr</span> <span style="color: #66cc66;">(</span><span style="color: #b1b100;">car</span> alist<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                    <span style="color: #66cc66;">(</span><span style="color: #b1b100;">if</span> <span style="color: #66cc66;">(</span>semantic-equivalent-tag-p <span style="color: #66cc66;">(</span>oref first tag<span style="color: #66cc66;">)</span>
+                                                   <span style="color: #66cc66;">(</span>semantic-current-tag<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                        <span style="color: #66cc66;">(</span><span style="color: #b1b100;">setq</span> first <span style="color: #66cc66;">(</span><span style="color: #b1b100;">cdr</span> <span style="color: #66cc66;">(</span><span style="color: #b1b100;">car</span> <span style="color: #66cc66;">(</span><span style="color: #b1b100;">cdr</span> alist<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+                    <span style="color: #66cc66;">(</span>semantic-mrub-switch-tags first<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+除了semantic-ia-fast-jump可以跳转之外，其实semantic中还有两个函数也有类似的功能：
+</p>
+<ul>
+<li>
+semantic-complete-jump-local
+</li>
+<li>
+semantic-complete-jump<p></p>
+</li>
+</ul>
+<p>看名字很容易看出来，前一个只能在当前buffer内跳转，后一个可以跳转到其它文件。不过这两个命令都需要用户手工输入要跳转的Tag名，不能像semantic-ia-fast-jump那样自动识别当前光标处单词，所以浏览代码时还是semantic-ia-fast-jump舒服。
+</p>
+<p>
+cedet还有个功能在函数和声明和实现间跳转，一般的，函数声明放在h文件中，函数的实现放在cpp文件中，光标在函数体的时候通过M-x semantic-analyze-proto-impl-toggle可以跳到函数声明去，在声明处再执行的话就会再跳回函数体，我把它绑定到M-S-F12上了：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code7&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409907"><td class="code" id="p40990code7"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>define-key c-mode-base-map <span style="color: #66cc66;">[</span>M-S-f12<span style="color: #66cc66;">]</span> 'semantic-analyze-proto-impl-toggle<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+不是这个功能不是十分准确，一般在cpp中函数实现处想跳到函数声明处正常，但是从声明处跳到实现处的话cedet不一定能找到cpp文件的位置。
+</p>
+</div>
+</div>
+<div id="outline-container-4.4" class="outline-3">
+<h4 id="sec-4.4">4.4 代码补全 </h4>
+<div id="text-4.4">
+<p>
+semantic中有4个用来代码补全的命令：
+</p>
+<ul>
+<li>
+senator-complete-symbol
+</li>
+<li>
+senator-completion-menu-popup
+</li>
+<li>
+semantic-ia-complete-symbol
+</li>
+<li>
+semantic-ia-complete-symbol-menu<p></p>
+</li>
+</ul>
+<p>senator-complete-symbol和semantic-ia-complete-symbol这两个函数是新开一个buffer提示可能的补全内容；而senator-completion-menu-popup和semantic-ia-complete-symbol-menu会弹出一个补全菜单。
+</p>
+<p>
+至于功能，以senator开头的两个函数是调用senator补全，另外两个是调用semantic-ia补全。至于senator和semantic-ia的区别，<a href="http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html#sec9" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;alexott.net&#39;]);" target="_blank">http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html#sec9</a>是这样解释的：
+</p>
+<p>
+“semantic-ia调用semantic-analyze-possible-completions函数来取得可能的补全内容，它能为用户提供精确的补全列表；而senator用了一个更简单的的函数来获取补全内容，所以有可能会提供错误的结果。”
+</p>
+<p>
+也就是说semantic-ia的补全更智能一些。
+</p>
+<p>
+至于semantic-ia这两个补全选哪一样就看各人喜好了，我喜欢用semantic-ia-complete-symbol-menu，因为看起来更直观一些，像这样：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-semantic.png" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="semantic的补全菜单" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-semantic.png" width="150" height="150"></a><p class="wp-caption-text">semantic的补全菜单</p></div>
+<p>
+我喜欢把它绑定到[Alt+n]上：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code8&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409908"><td class="code" id="p40990code8"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>define-key c-mode-base-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"M-n"</span><span style="color: #66cc66;">)</span> 'semantic-ia-complete-symbol-menu<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+不过semantic-ia-complete-symbol-menu只能用于GUI下，要是在终端下，就只能用semantic-ia-complete-symbol了。(终端下想要semantic-ia-complete-symbol一样的结果可以用别的插件，比如auto-complete或者company-mode)
+</p>
+<p>
+如果启用了semantic-idle-completions-mode，不用按键只需要光标在.或者-&gt;后面停一会semantic就会自动开始补全了。
+</p>
+<p>
+如果你用cedet不能补全，检查一下semantic是不是已经启用了，我的emacs上经常出现第一次打开c++-mode时semantic没自动启用的情况。看semantic是否正常有个直观的方法就是senator，如果启用了senator-minor-mode，打开c++文件时emacs会出现Senator菜单，如果没有Senator菜单你可以关掉再重新打开试试，要是仍然不出现菜单那就得检查配置是不是有问题。
+</p>
+<p>
+如果确认semantic启用了仍然不能补全，就需要检查INCLUDE路径的配置，通过C-h v semantic-dependency-system-include-path RET检查INCLUDE路径，确保当前cpp中直接或间接include的头文件都能在INCLUDE路径中找到。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-5" class="outline-2">
+<h3 id="sec-5">5 EDE配置 </h3>
+<div id="text-5">
+<p>
+EDE是用来管理project的工具，用下面的代码启用它：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code9&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p409909"><td class="code" id="p40990code9"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>global-ede-mode t<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+EDE会在emacs中加一个叫做“Project”的菜单：
+</p>
+<div class="wp-caption alignnone" style="width: 195px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-ede-menu.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="EDE的Project菜单" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-ede-menu.jpg"></a><p class="wp-caption-text">EDE的Project菜单</p></div>
+<p>
+通过菜单可以创建project，往project里添加/移除文件；还可以编译project，不过好像只能通过已有的Makefile编译。
+</p>
+<p>
+另外EDE还可以通过Speedbar显示整个project的目录树(见右边的Speedbar)：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-ede-tree.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="用Speedbar显示project的目录树" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-ede-tree.jpg" width="150" height="150"></a><p class="wp-caption-text">用Speedbar显示project的目录树</p></div>
+<p>
+EDE可以支持四种类型的project：
+</p>
+<ul>
+<li>
+Automake
+</li>
+<li>
+手工写的Makefile
+</li>
+<li>
+C++ Root project
+</li>
+<li>
+Simple project<p></p>
+</li>
+</ul>
+<p>并且EDE能解析Autoconf/Automake，如果打开一个文件时在当前或者上级目录中能找到Makefile.am文件，EDE会自动解析文件(认为这是一个Automake的project)，识别出Makefile.am中定义的target和编译需用到的文件；打开目录树的话EDE能由Makefile.am中涉及到的文件生成目录树（上图的目录树就是EDE通过Makefile.am自动生成的）。
+</p>
+<p>
+为了让semantic找到C/C++的头文件，前面是通过调用semantic-add-system-include把系统中可能出现的INCLUDE目录都告诉semantic的来实现的。其实semantic还可以通过EDE识别project中特定的INCLUDE目录，方法是在.emacs文件中定义C++ Root project，比如：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code10&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099010"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code" id="p40990code10"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span><span style="color: #b1b100;">setq</span> libutil-project
+      <span style="color: #66cc66;">(</span>ede-cpp-root-project <span style="color: #ff0000;">"libutil"</span>
+                            <span style="color: #66cc66;">:</span><span style="color: #555;">file</span> <span style="color: #ff0000;">"~/projects/libutil/configure.in"</span>
+                            <span style="color: #66cc66;">:</span><span style="color: #555;">system-include-path</span> '<span style="color: #66cc66;">(</span><span style="color: #ff0000;">"/home/meteor1113/projects/include"</span>
+                                                   <span style="color: #ff0000;">"/home/meteor1113/projects/common"</span>
+                                                   <span style="color: #ff0000;">"/home/meteor1113/projects/libutil/pub"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span><span style="color: #b1b100;">setq</span> test-project
+      <span style="color: #66cc66;">(</span>ede-cpp-root-project <span style="color: #ff0000;">"test"</span>
+                            <span style="color: #66cc66;">:</span><span style="color: #555;">file</span> <span style="color: #ff0000;">"~/test/Makefile"</span>
+                            <span style="color: #66cc66;">:</span><span style="color: #555;">system-include-path</span> '<span style="color: #66cc66;">(</span><span style="color: #ff0000;">"/test/include"</span>
+                                                   <span style="color: #ff0000;">"/usr/include/boost-1.42"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+上面定义了两个project，并且设定了各个project各自的INCLUDE目录。
+</p>
+<p>
+不过这种方式有两个缺点：
+</p>
+<ul>
+<li>
+不能支持常见的Makefile/Makefile.am型project。
+</li>
+<li>
+我不愿意为每个project都定义这样一个project，对于每天都要自己写代码的项目生成个C++ Root project还可以接受，有时候只是临时阅读一下其它项目，要是还要为它写个EDE的project配置就太麻烦了。<p></p>
+</li>
+</ul>
+<p>所以这个功能我也一直没用过，有问题的请参考官方文档。我觉得把所有可能的目录都加进system-include里更方便。
+</p>
+</div>
+</div>
+<div id="outline-container-6" class="outline-2">
+<h3 id="sec-6">6 其它 </h3>
+<div id="text-6">
+</div>
+<div id="outline-container-6.1" class="outline-3">
+<h4 id="sec-6.1">6.1 可视化书签 </h4>
+<div id="text-6.1">
+<p>
+emacs有自带的书签功能(c-x r m, c-x r b, c-x r l)，不过对于用了多年VC6的我来说还是更习惯让一个书签能高亮显示出来。cedet里就带了一个可视化的书签，通过下面的语句可以启用它：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code11&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099011"><td class="code" id="p40990code11"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>enable-visual-studio-bookmarks<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+之后就可以通过下面几个按键操作书签了：
+</p>
+<ul>
+<li>
+F2     在当前行设置或取消书签
+</li>
+<li>
+C-F2   查找下一个书签
+</li>
+<li>
+S-F2   查找上一个书签
+</li>
+<li>
+C-S-F2 清空当前文件的所有书签<p></p>
+</li>
+</ul>
+<p>看这个效果：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-eieio-visual-bookmarks.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="cedet的可视化标签" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-eieio-visual-bookmarks.jpg" width="150" height="150"></a><p class="wp-caption-text">cedet的可视化标签</p></div>
+<p>
+有点遗憾的是这个书签功能只能在当前buffer的书签间跳转。
+</p>
+</div>
+</div>
+<div id="outline-container-6.2" class="outline-3">
+<h4 id="sec-6.2">6.2 pluse </h4>
+<div id="text-6.2">
+<p>
+使用semantic-ia-fast-jump跳转时，cedet有个很酷的效果：在跳转到的行上实现一个淡入淡出的效果。具体的分析和使用看<a href="http://emacser.com/pulse.htm" target="_blank">这儿</a>。
+</p>
+</div>
+</div>
+<div id="outline-container-6.3" class="outline-3">
+<h4 id="sec-6.3">6.3 h/cpp切换 </h4>
+<div id="text-6.3">
+<p>
+cedet的contrib目录下有一些实用的小功能，比如eassist.el就提供了一个在C++的头文件和实现文件间跳转的小功能。
+</p>
+<p>
+要使用这个功能首先要load它：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code12&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099012"><td class="code" id="p40990code12"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>require 'eassist <span style="color: #b1b100;">nil</span> 'noerror<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+之后就可以通过命令M-x eassist-switch-h-cpp来切换了，我喜欢把它绑定到M-F12上：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code13&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099013"><td class="code" id="p40990code13"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>define-key c-mode-base-map <span style="color: #66cc66;">[</span>M-f12<span style="color: #66cc66;">]</span> 'eassist-switch-h-cpp<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+这个功能是依赖semantic的，也就是说通过cpp找头文件时它也会上配置好的INCLUDE路径中去查找，不过如果通过头文件找cpp文件，好像只能找和头文件所在的同一目录了。
+</p>
+<p>
+eassist-switch-h-cpp有个BUG：它是通过文件扩展名来匹配的(通过eassist-header-switches可配置)，默认它能识别h/hpp/cpp/c/C/H/cc这几个扩展名的文件；但是C++的扩展名还可能会有别的，比如c++,cxx等，对一个扩展名为cxx的文件调用eassist-switch-h-cpp的话，它会创建一个新buffer显示错误信息。所以我把eassist-header-switches配置为：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code14&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099014"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code" id="p40990code14"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span><span style="color: #b1b100;">setq</span> eassist-header-switches
+      '<span style="color: #66cc66;">(</span><span style="color: #66cc66;">(</span><span style="color: #ff0000;">"h"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"c++"</span> <span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"C"</span> <span style="color: #ff0000;">"c"</span> <span style="color: #ff0000;">"mm"</span> <span style="color: #ff0000;">"m"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hh"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"c++"</span> <span style="color: #ff0000;">"C"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hpp"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"c++"</span> <span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"C"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hxx"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"c++"</span> <span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"C"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"h++"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"c++"</span> <span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"C"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"H"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"C"</span> <span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"c++"</span> <span style="color: #ff0000;">"mm"</span> <span style="color: #ff0000;">"m"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"HH"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"CC"</span> <span style="color: #ff0000;">"cc"</span> <span style="color: #ff0000;">"C"</span> <span style="color: #ff0000;">"cpp"</span> <span style="color: #ff0000;">"cxx"</span> <span style="color: #ff0000;">"c++"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cpp"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hpp"</span> <span style="color: #ff0000;">"hxx"</span> <span style="color: #ff0000;">"h++"</span> <span style="color: #ff0000;">"HH"</span> <span style="color: #ff0000;">"hh"</span> <span style="color: #ff0000;">"H"</span> <span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cxx"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hxx"</span> <span style="color: #ff0000;">"hpp"</span> <span style="color: #ff0000;">"h++"</span> <span style="color: #ff0000;">"HH"</span> <span style="color: #ff0000;">"hh"</span> <span style="color: #ff0000;">"H"</span> <span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"c++"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"h++"</span> <span style="color: #ff0000;">"hpp"</span> <span style="color: #ff0000;">"hxx"</span> <span style="color: #ff0000;">"HH"</span> <span style="color: #ff0000;">"hh"</span> <span style="color: #ff0000;">"H"</span> <span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"CC"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"HH"</span> <span style="color: #ff0000;">"hh"</span> <span style="color: #ff0000;">"hpp"</span> <span style="color: #ff0000;">"hxx"</span> <span style="color: #ff0000;">"h++"</span> <span style="color: #ff0000;">"H"</span> <span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"cc"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hh"</span> <span style="color: #ff0000;">"HH"</span> <span style="color: #ff0000;">"hpp"</span> <span style="color: #ff0000;">"hxx"</span> <span style="color: #ff0000;">"h++"</span> <span style="color: #ff0000;">"H"</span> <span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"C"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"hpp"</span> <span style="color: #ff0000;">"hxx"</span> <span style="color: #ff0000;">"h++"</span> <span style="color: #ff0000;">"HH"</span> <span style="color: #ff0000;">"hh"</span> <span style="color: #ff0000;">"H"</span> <span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"c"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"m"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+        <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"mm"</span> <span style="color: #66cc66;">.</span> <span style="color: #66cc66;">(</span><span style="color: #ff0000;">"h"</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+基本上所有C/C++的扩展名都包含了，同时ObjectiveC也可以用了。
+</p>
+</div>
+</div>
+<div id="outline-container-6.4" class="outline-3">
+<h4 id="sec-6.4">6.4 代码折叠 </h4>
+<div id="text-6.4">
+</div>
+<div id="outline-container-6.4.1" class="outline-4">
+<h4 id="sec-6.4.1">6.4.1 semantic-tag-folding </h4>
+<div id="text-6.4.1">
+<p>
+从我开始用emacs开始就听大虾们说hs-minor-mode可以实现代码折叠，所以我的.emacs里一直把hs-minor-mode打开的，可是用了5年之后我发现还是不习惯它的按键，另外也不是很喜欢它显示的样子，5年来Hide/Show这个菜单对我来说基本上是个摆设。
+</p>
+<p>
+我期待像eclipse那样可以通过鼠标在直接点击就可以打开和折叠代码，这个功能在cedet也实现了(可惜这么长时间一直没发现它)，就是semantic-tag-folding.el(也在cedet的contrib目录下)。
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code15&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099015"><td class="line_numbers"><pre>1
+2
+</pre></td><td class="code" id="p40990code15"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>require 'semantic-tag-folding <span style="color: #b1b100;">nil</span> 'noerror<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>global-semantic-tag-folding-mode <span style="color: #cc66cc;">1</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+看这个图：
+</p>
+<div class="wp-caption alignnone" style="width: 160px"><a href="https://dea.googlecode.com/svn/trunk/screenshots/cedet/emacs-semantic-tag-folding.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="cedet的代码折叠" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/thumbs_emacs-semantic-tag-folding.jpg" width="150" height="150"></a><p class="wp-caption-text">cedet的代码折叠</p></div>
+<p>
+只要用鼠标点击左侧的小三角图标就可以打开或折叠代码了。箭头向下的空心三角表示这段代码可以被折叠，箭头向右的实心三角表示这段代码被打折过了。
+</p>
+<p>
+为了方便键盘操作，我把按键绑定到了[C-c , -]和[C-c , +]上(绑定这么复杂的<br>
+按键主要是为了和senator兼容，后面会讲到senator实现代码折叠)：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code16&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099016"><td class="line_numbers"><pre>1
+2
+</pre></td><td class="code" id="p40990code16"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-c , -"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-fold-block<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-c , +"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-show-block<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+同时它还提供了两个函数可以同时打开和折叠整个buffer的所有代码，分别是<br>
+semantic-tag-folding-fold-all和semantic-tag-folding-show-all，我把它们<br>
+绑定到了[C-_]和[C-+]上：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code17&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099017"><td class="line_numbers"><pre>1
+2
+</pre></td><td class="code" id="p40990code17"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-_"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-fold-all<span style="color: #66cc66;">)</span>
+<span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-+"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-show-all<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+打开semantic-tag-folding-mode后，用gdb调试时不能点左侧的fringe切换断点了，所以我把C-?定义为semantic-tag-folding-mode的切换键，在gdb调试时临时把semantic-tag-folding关掉：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code18&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099018"><td class="code" id="p40990code18"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span>global-set-key <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-?"</span><span style="color: #66cc66;">)</span> 'global-semantic-tag-folding-mode<span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+不过，semantic-tag-folding在终端下会有一点点小问题：终端下semantic-tag-folding在函数前面加了个“+”或“-”号，看下面这个图：
+</p>
+<div class="wp-caption alignnone" style="width: 610px"><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-tag-folding-console.jpg" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;dea.googlecode.com&#39;]);" rel="lightbox"><img title="终端下的semantic-tag-folding" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/emacs-semantic-tag-folding-console.jpg" width="600"></a><p class="wp-caption-text">终端下的semantic-tag-folding</p></div>
+<p>
+虽然功能不受影响(除了不能用鼠标操作外，快捷键和GUI下是一样的)，不过代码不能对齐了还是令我有些不爽，所以终端下我是禁用semantic-tag-folding的，最终我的配置如下：
+</p>
+
+<div class="wp_codebox_msgheader"><span class="right"><sup><a href="http://www.ericbess.com/ericblog/2008/03/03/wp-codebox/#examples" target="_blank" title="WP-CodeBox HowTo?"><span style="color: #99cc00">?</span></a></sup></span><span class="left"><a href="javascript:;" onclick="javascript:showCodeTxt(&#39;p40990code19&#39;); return false;">View Code</a> LISP</span><div class="codebox_clear"></div></div><div class="wp_codebox"><table><tbody><tr id="p4099019"><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code" id="p40990code19"><pre class="lisp" style="font-family:monospace;"><span style="color: #66cc66;">(</span><span style="color: #b1b100;">when</span> <span style="color: #66cc66;">(</span><span style="color: #b1b100;">and</span> window-system <span style="color: #66cc66;">(</span>require 'semantic-tag-folding <span style="color: #b1b100;">nil</span> 'noerror<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span>global-semantic-tag-folding-mode <span style="color: #cc66cc;">1</span><span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span>global-set-key <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-?"</span><span style="color: #66cc66;">)</span> 'global-semantic-tag-folding-mode<span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-c , -"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-fold-block<span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-c , +"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-show-block<span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-_"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-fold-all<span style="color: #66cc66;">)</span>
+  <span style="color: #66cc66;">(</span>define-key semantic-tag-folding-mode-map <span style="color: #66cc66;">(</span>kbd <span style="color: #ff0000;">"C-+"</span><span style="color: #66cc66;">)</span> 'semantic-tag-folding-show-all<span style="color: #66cc66;">)</span><span style="color: #66cc66;">)</span></pre></td></tr></tbody></table></div>
+
+<p>
+需要注意的是，semantic-tag-folding依赖于语法解析，也就是说必须等semantic解析完文件之后才能使用。如果找开文件在fringe处找不到空心三角，可以[Force Tag Refresh]下，或者检查下semantic是否配置正确。
+</p>
+</div>
+</div>
+<div id="outline-container-6.4.2" class="outline-4">
+<h4 id="sec-6.4.2">6.4.2 senator-fold-tag </h4>
+<div id="text-6.4.2">
+<p>
+终端下不用semantic-tag-folding了，最好能有替代方案吧：首先可以用回hs-minor-mode，此外cedet的senator也提供了一种代码折叠方案。
+</p>
+<p>
+只要启用了senator-minor-mode(emacs中会出现Senator菜单)，就可以通过M-x senator-fold-tag和M-x senator-unfold-tag来折叠和打开代码了，GUI和终端下都可以使用。
+</p>
+<p>
+默认地，senator-fold-tag绑定到[C-c , -]，senator-unfold-tag绑定到[C-c , +]上(所以前面我把semantic折叠的快捷键也绑定到这两个键上，这样GUI和终端下快捷键就一致了)。不过senator里好像没有对应的fold-all和show-all方法。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-7" class="outline-2">
+<h3 id="sec-7">7 Todo  </h3>
+<div id="text-7">
+<p>
+以上只是cedet里我用到的一些功能，其实cedet还有很多优秀的功能，比如通过模板自动生成代码(SRecode)；通过代码画UML图以及通过UML图生成代码(Cogre)等；另外semantic除了可以自己解析代码外还可以借助ctags,global,ebrowse来解析。更多的功能需要进一步发掘。
+</p>
+<p>
+最后，欢迎参观我的cedet配置: <a href="http://github.com/meteor1113/dotemacs/blob/master/init-site.el" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;github.com&#39;]);" target="_blank">http://github.com/meteor1113/dotemacs/blob/master/init-site.el</a>
+</p>
+</div>
+</div>
+
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/addthis.js" charset="utf-8"></script><span class="addthis_org_cn"><a u="http://emacser.com/cedet.htm" t="用CEDET浏览和编辑C++代码" d="" tag="autoload,C/C++,calc,CEDET,cogre,company-mode,eclipse,ede,editor,eieio,Emacs,emacser,emacser.com,gdb,highlight,highlight-symbol,IDE,imenu,lambda,meteor,meteor1113,mode-line,org,pulse,screenshot,semantic,senator,snippet,speedbar,srecode,text,windows,yasnippet,代码折叠,代码补全,光标,插件,淡入淡出,补全,配色,颜色,鼠标" href="http://addthis.org.cn/share/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-article&#39;,&#39;addthis.org.cn&#39;]);" title="收藏-分享"><img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/a1.gif" alt="分享家:Addthis中国" align="absmiddle"></a></span><div style="display: none">VN:F [1.9.0_1079]</div><div class="ratingblock "><div class="ratingheader "></div><div class="ratingstars "><div id="article_rater_40990" class="ratepost gdsr-oxygen gdsr-size-24"><div class="starsbar gdsr-size-24"><div class="gdouter gdheight"><div id="gdr_vote_a40990" style="width: 232.363636364px;" class="gdinner gdheight"></div><div id="gdr_stars_a40990" class="gdsr_rating_as"><a id="gdsrX40990X10X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="10 / 10" class="s10" rel="nofollow"></a><a id="gdsrX40990X9X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="9 / 10" class="s9" rel="nofollow"></a><a id="gdsrX40990X8X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="8 / 10" class="s8" rel="nofollow"></a><a id="gdsrX40990X7X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="7 / 10" class="s7" rel="nofollow"></a><a id="gdsrX40990X6X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="6 / 10" class="s6" rel="nofollow"></a><a id="gdsrX40990X5X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="5 / 10" class="s5" rel="nofollow"></a><a id="gdsrX40990X4X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="4 / 10" class="s4" rel="nofollow"></a><a id="gdsrX40990X3X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="3 / 10" class="s3" rel="nofollow"></a><a id="gdsrX40990X2X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="2 / 10" class="s2" rel="nofollow"></a><a id="gdsrX40990X1X0XaXarticle_rater_40990Xarticle_loader_40990X10X24" title="1 / 10" class="s1" rel="nofollow"></a></div></div></div></div><div id="article_loader_40990" style="display: none; width: 240px " class="ratingloaderarticle"><div class="loader circle width " style="height: 24px"></div></div></div><div class="ratingtext "><div id="gdr_text_a40990">评分: 9.7 (44次投票)</div></div></div><span class="hreview-aggregate" style="display: none !important;"><span class="item"><span class="fn">用CEDET浏览和编辑C++代码</span></span>, <span class="rating"><span class="average">9.7</span> out of <span class="best">10</span> based on <span class="count">44</span> ratings <span class="summary"></span></span></span>
+	标签：<a href="http://emacser.com/t/autoload" title="autoload" rel="tag nofollow">autoload</a>, <a href="http://emacser.com/c-c.htm" title="C/C++" rel="tag nofollow">C/C++</a>, <a href="http://emacser.com/t/calc" title="calc" rel="tag nofollow">calc</a>, <a href="http://emacser.com/c-cedet.htm" title="CEDET" rel="tag nofollow">CEDET</a>, <a href="http://emacser.com/t/cogre" title="cogre" rel="tag nofollow">cogre</a>, <a href="http://emacser.com/t/company-mode" title="company-mode" rel="tag nofollow">company-mode</a>, <a href="http://emacser.com/t/eclipse" title="eclipse" rel="tag nofollow">eclipse</a>, <a href="http://emacser.com/t/ede" title="ede" rel="tag nofollow">ede</a>, <a href="http://emacser.com/t/editor" title="editor" rel="tag nofollow">editor</a>, <a href="http://emacser.com/t/eieio" title="eieio" rel="tag nofollow">eieio</a>, <a href="http://emacser.com/t-emacs.htm" title="Emacs" rel="tag nofollow">Emacs</a>, <a href="http://emacser.com/t/emacser" title="emacser" rel="tag nofollow">emacser</a>, <a href="http://emacser.com/t/emacser-com" title="emacser.com" rel="tag nofollow">emacser.com</a>, <a href="http://emacser.com/t/gdb" title="gdb" rel="tag nofollow">gdb</a>, <a href="http://emacser.com/t/highlight" title="highlight" rel="tag nofollow">highlight</a>, <a href="http://emacser.com/t/highlight-symbol" title="highlight-symbol" rel="tag nofollow">highlight-symbol</a>, <a href="http://emacser.com/c-ide.htm" title="IDE" rel="tag nofollow">IDE</a>, <a href="http://emacser.com/t/imenu" title="imenu" rel="tag nofollow">imenu</a>, <a href="http://emacser.com/t/lambda" title="lambda" rel="tag nofollow">lambda</a>, <a href="http://emacser.com/t/meteor" title="meteor" rel="tag nofollow">meteor</a>, <a href="http://emacser.com/t/meteor1113" title="meteor1113" rel="tag nofollow">meteor1113</a>, <a href="http://emacser.com/c-mode-line.htm" title="mode-line" rel="tag nofollow">mode-line</a>, <a href="http://emacser.com/t/org" title="org" rel="tag nofollow">org</a>, <a href="http://emacser.com/t/pulse" title="pulse" rel="tag nofollow">pulse</a>, <a href="http://emacser.com/t/screenshot" title="screenshot" rel="tag nofollow">screenshot</a>, <a href="http://emacser.com/t/semantic" title="semantic" rel="tag nofollow">semantic</a>, <a href="http://emacser.com/t/senator" title="senator" rel="tag nofollow">senator</a>, <a href="http://emacser.com/t/snippet" title="snippet" rel="tag nofollow">snippet</a>, <a href="http://emacser.com/t/speedbar" title="speedbar" rel="tag nofollow">speedbar</a>, <a href="http://emacser.com/t/srecode" title="srecode" rel="tag nofollow">srecode</a>, <a href="http://emacser.com/t/text" title="text" rel="tag nofollow">text</a>, <a href="http://emacser.com/c-windows.htm" title="windows" rel="tag nofollow">windows</a>, <a href="http://emacser.com/t/yasnippet" title="yasnippet" rel="tag nofollow">yasnippet</a>, <a href="http://emacser.com/t/%e4%bb%a3%e7%a0%81%e6%8a%98%e5%8f%a0" title="代码折叠" rel="tag nofollow">代码折叠</a>, <a href="http://emacser.com/t/%e4%bb%a3%e7%a0%81%e8%a1%a5%e5%85%a8" title="代码补全" rel="tag nofollow">代码补全</a>, <a href="http://emacser.com/t/%e5%85%89%e6%a0%87" title="光标" rel="tag nofollow">光标</a>, <a href="http://emacser.com/t/%e6%8f%92%e4%bb%b6" title="插件" rel="tag nofollow">插件</a>, <a href="http://emacser.com/t/%e6%b7%a1%e5%85%a5%e6%b7%a1%e5%87%ba" title="淡入淡出" rel="tag nofollow">淡入淡出</a>, <a href="http://emacser.com/t/%e8%a1%a5%e5%85%a8" title="补全" rel="tag nofollow">补全</a>, <a href="http://emacser.com/t/%e9%85%8d%e8%89%b2" title="配色" rel="tag nofollow">配色</a>, <a href="http://emacser.com/t/%e9%a2%9c%e8%89%b2" title="颜色" rel="tag nofollow">颜色</a>, <a href="http://emacser.com/t/%e9%bc%a0%e6%a0%87" title="鼠标" rel="tag nofollow">鼠标</a><br>
+
+	<h4>相关日志</h4>
+	<ul class="st-related-posts">
+	<li><a href="http://emacser.com/emacs.htm" title="Emacs长啥样 (2009年11月5日)">Emacs长啥样</a> (16)</li>
+	<li><a href="http://emacser.com/built-in-cedet.htm" title="用CEDET浏览和编辑C++代码(续) – 使用Emacs 23.2内置的CEDET (2010年05月10日)">用CEDET浏览和编辑C++代码(续) – 使用Emacs 23.2内置的CEDET</a> (101)</li>
+	<li><a href="http://emacser.com/dea.htm" title="我的Emacs配置文件 － DEA (2009年11月11日)">我的Emacs配置文件 － DEA</a> (362)</li>
+	<li><a href="http://emacser.com/emacs-cpp-dev.htm" title="在Emacs下用C/C++编程 (2010年10月25日)">在Emacs下用C/C++编程</a> (39)</li>
+	<li><a href="http://emacser.com/highlight-symbol.htm" title="Emacs才是世界上最强的IDE － 高亮光标处单词 (2009年11月27日)">Emacs才是世界上最强的IDE － 高亮光标处单词</a> (26)</li>
+</ul>
+
+			<div class="fixed"></div>
+		</div>
+		<div class="under">
+			<span class="categories">分类: </span><span><a href="http://emacser.com/c-cedet.htm" title="查看 CEDET 的全部文章" rel="category tag">CEDET</a>,  <a href="http://emacser.com/c-ide.htm" title="查看 IDE 的全部文章" rel="category tag">IDE</a>,  <a href="http://emacser.com/%e4%b8%ad%e7%ba%a7" title="查看 中级 的全部文章" rel="category tag">中级</a>,  <a href="http://emacser.com/c-auto-complete.htm" title="查看 自动补全 的全部文章" rel="category tag">自动补全</a></span>					</div>
+	</div>
+
+	<!-- related posts START -->
+		<!-- related posts END -->
+
+	<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/comment.js"></script>
+
+
+
+<div id="comments">
+
+<div id="cmtswitcher">
+			<a id="commenttab" class="curtab" href="javascript:void(0);" onclick="MGJS.switchTab(&#39;thecomments,commentnavi&#39;, &#39;thetrackbacks&#39;, &#39;commenttab&#39;, &#39;curtab&#39;, &#39;trackbacktab&#39;, &#39;tab&#39;);">评论 (64)</a>
+		<a id="trackbacktab" class="tab" href="javascript:void(0);" onclick="MGJS.switchTab(&#39;thetrackbacks&#39;, &#39;thecomments,commentnavi&#39;, &#39;trackbacktab&#39;, &#39;curtab&#39;, &#39;commenttab&#39;, &#39;tab&#39;);">Trackbacks (5)</a>
+				<span class="addcomment"><a href="http://emacser.com/cedet.htm#respond">发表评论</a></span>
+				<span class="addtrackback"><a href="http://emacser.com/cedet.htm/trackback">Trackback</a></span>
+		<div class="fixed"></div>
+</div>
+
+<div id="commentlist">
+	<!-- comments START -->
+	<ol id="thecomments">
+		<li class="comment regularcomment" id="comment-30980">
+		<div class="author">
+			<div class="pic">
+				<img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/137ec4ef665ff30c88514de30157c244" class="avatar avatar-32 photo" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-30980">
+				
+				fenghelong
+									</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				2012年5月24日19:35					 | <a href="http://emacser.com/cedet.htm#comment-30980">#1</a>
+			</div>
+			<div class="act">
+				<a href="javascript:void(0);" onclick="MGJS_CMT.reply(&#39;commentauthor-30980&#39;, &#39;comment-30980&#39;, &#39;comment&#39;);">回复</a> | 
+				<a href="javascript:void(0);" onclick="MGJS_CMT.quote(&#39;commentauthor-30980&#39;, &#39;comment-30980&#39;, &#39;commentbody-30980&#39;, &#39;comment&#39;);">引用</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-30980">
+					<p>第五项关于ede的配置，原来的那行是，(global-ede-mode 1)对吧，然后你说的是把它改成(global-ede-mode t)对吧，但是改完以后在标签栏里面没有出现project的标签哈。</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,30980,1,&#39;fenghelong&#39;);">回复</a>]</p><div class="comment-childs chalt" id="comment-35951"><img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/3d6d4159a6ef45f7cafd08f2bfd18add" class="avatar avatar-32 photo" height="32" width="32"><p><cite>samuel</cite> 回复:<br><small class="commentmetadata">八月 7th, 2012 at 5:40 下午</small></p><p><a href="http://emacser.com/cedet.htm#comment-30980" rel="nofollow">@fenghelong</a>,  你用ede-new 创建一个工程后 你就会看到了</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,35951,2,&#39;samuel&#39;);">回复</a>]</p></div>				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+
+</li>
+	<li class="comment regularcomment" id="comment-34680">
+		<div class="author">
+			<div class="pic">
+				<img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/a69faf65bfe0ff04ce6fb1668470f41d" class="avatar avatar-32 photo" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-34680">
+				
+				leeward
+									</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				2012年7月15日11:03					 | <a href="http://emacser.com/cedet.htm#comment-34680">#2</a>
+			</div>
+			<div class="act">
+				<a href="javascript:void(0);" onclick="MGJS_CMT.reply(&#39;commentauthor-34680&#39;, &#39;comment-34680&#39;, &#39;comment&#39;);">回复</a> | 
+				<a href="javascript:void(0);" onclick="MGJS_CMT.quote(&#39;commentauthor-34680&#39;, &#39;comment-34680&#39;, &#39;commentbody-34680&#39;, &#39;comment&#39;);">引用</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-34680">
+					<p>&gt;顺便说一下semanticdb-project-roots的配置，很多地方都说要把它配置成”/”，但是我在Linux/Mac/Windows都试验过，不配这一行并没什么影响</p>
+<p>我发现这句话是必须的，至少我目前发现只有这个变量可以解决下面的问题：</p>
+<p>比如我有两个项目，app和OpenCV, 这两个项目分别放在~/dir1和~/dir2下面，我加上这句话<br>
+(setq semanticdb-project-roots (list (expand-file-name “~/”)))<br>
+就可以从app里跳到OpenCV的实现代码里（不仅仅是声明），如果没有这句话，就只能看到声明。</p>
+<p>我才开始配置cedet，不知到你怎么处理这个问题，谢谢。</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,34680,1,&#39;leeward&#39;);">回复</a>]</p><div class="comment-childs chalt" id="comment-34699"><img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/2feee5f85e470a9c9f1a93346367313d" class="avatar avatar-32 photo" height="32" width="32"><p><cite>Meteor Liu</cite> 回复:<br><small class="commentmetadata">七月 15th, 2012 at 9:44 下午</small></p><p><a href="http://emacser.com/cedet.htm#comment-34680" rel="nofollow">@leeward</a>,<br>
+谢谢你的提示，我要去试试。<br>
+碰到这样两个项目我还需要跳转到实现的话，我以前都是在两个项目的上一层配置一个cpp-project-root，没想过配成两个还能用，所以一直以为那句代码没用呢。</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,34699,2,&#39;Meteor Liu&#39;);">回复</a>]</p></div>				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+
+</li>
+	<li class="comment regularcomment" id="comment-34721">
+		<div class="author">
+			<div class="pic">
+				<img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/saved_resource" class="avatar avatar-32 photo avatar-default" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-34721">
+				
+				匿名
+									</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				2012年7月16日14:00					 | <a href="http://emacser.com/cedet.htm#comment-34721">#3</a>
+			</div>
+			<div class="act">
+				<a href="javascript:void(0);" onclick="MGJS_CMT.reply(&#39;commentauthor-34721&#39;, &#39;comment-34721&#39;, &#39;comment&#39;);">回复</a> | 
+				<a href="javascript:void(0);" onclick="MGJS_CMT.quote(&#39;commentauthor-34721&#39;, &#39;comment-34721&#39;, &#39;commentbody-34721&#39;, &#39;comment&#39;);">引用</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-34721">
+					<p> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_wink.gif" alt=":wink:" class="wp-smiley">   <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_wink.gif" alt=":wink:" class="wp-smiley"> </p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,34721,1,&#39;&#39;);">回复</a>]</p>				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+
+</li>
+	<li class="comment regularcomment" id="comment-35367">
+		<div class="author">
+			<div class="pic">
+				<img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/fa9b48d409f32806a9baaee3be314b40" class="avatar avatar-32 photo" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-35367">
+				
+				kuun
+									</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				2012年7月28日12:49					 | <a href="http://emacser.com/cedet.htm#comment-35367">#4</a>
+			</div>
+			<div class="act">
+				<a href="javascript:void(0);" onclick="MGJS_CMT.reply(&#39;commentauthor-35367&#39;, &#39;comment-35367&#39;, &#39;comment&#39;);">回复</a> | 
+				<a href="javascript:void(0);" onclick="MGJS_CMT.quote(&#39;commentauthor-35367&#39;, &#39;comment-35367&#39;, &#39;commentbody-35367&#39;, &#39;comment&#39;);">引用</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-35367">
+					<p>我的emacs中semantic弄了好久都没配置成功， 大家帮我看下<br>
+semantic在lisp中可以工作，但在c/c++中无法工作， 手工启用semantic-mode会报下面的错误：<br>
+Autoloading failed to define function semantic-mode<br>
+我的cedet-version输出信息如下：<br>
+CEDET Version:	1.0.1<br>
+  			Requested	File		Loaded<br>
+  Package		Version		Version		Version<br>
+  ———————————————————-<br>
+  cedet:		1.0.1		ok		ok<br>
+  eieio:		1.3		ok		ok<br>
+  semantic:		2.0		ok		ok<br>
+  srecode:		1.0		ok		ok<br>
+  ede:			1.0.1		ok		ok<br>
+  speedbar:		1.0.3		ok		1.0<br>
+  cogre:		1.0		ok		Not Loaded<br>
+  cedet-contrib:	1.0		ok		Not Loaded</p>
+<p>后面两个无法加载成功， 不知道是否跟他们有关？</p>
+<p class="thdrpy">[<a href="javascript:void(0)" onclick="movecfm(event,35367,1,&#39;kuun&#39;);">回复</a>]</p>				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+
+</li>
+	</ol>
+	<!-- comments END -->
+
+		<div id="commentnavi">
+			<span class="pages">评论分页</span>
+			<div id="commentpager">
+				<a class="prev page-numbers" href="http://emacser.com/cedet.htm/comment-page-6#comments">« 上一页</a>
+<a class="page-numbers" href="http://emacser.com/cedet.htm/comment-page-1#comments">1</a>
+<span class="page-numbers dots">...</span>
+<a class="page-numbers" href="http://emacser.com/cedet.htm/comment-page-5#comments">5</a>
+<a class="page-numbers" href="http://emacser.com/cedet.htm/comment-page-6#comments">6</a>
+<span class="page-numbers current">7</span>				<span id="cp_post_id">40990</span>
+			</div>
+			<div class="fixed"></div>
+		</div>
+
+	<!-- trackbacks START -->
+			<ol id="thetrackbacks">
+												<li class="trackback">
+						<div class="date">
+							2010年3月19日05:34							 | <a href="http://emacser.com/cedet.htm#comment-1867">#1</a>
+						</div>
+						<div class="act">
+													</div>
+						<div class="fixed"></div>
+						<div class="title">
+							<a href="http://emacser.com/highlight-symbol.htm">
+								Emacs才是世界上最强大的IDE － 高亮光标处单词 | Emacs中文网							</a>
+						</div>
+					</li>
+									<li class="trackback">
+						<div class="date">
+							2010年9月19日22:26							 | <a href="http://emacser.com/cedet.htm#comment-3889">#2</a>
+						</div>
+						<div class="act">
+													</div>
+						<div class="fixed"></div>
+						<div class="title">
+							<a href="http://www.janzen-s.com/blog/archives/1129">
+								Emacs开发VC程序							</a>
+						</div>
+					</li>
+									<li class="trackback">
+						<div class="date">
+							2011年10月4日03:28							 | <a href="http://emacser.com/cedet.htm#comment-12023">#3</a>
+						</div>
+						<div class="act">
+													</div>
+						<div class="fixed"></div>
+						<div class="title">
+							<a href="http://logicbaby.wordpress.com/2011/10/04/%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0emacs-cedet-cc%e8%87%aa%e5%8a%a8%e8%a1%a5%e5%85%a8/">
+								手把手教你emacs cedet C/C++自动补全 « logicbaby							</a>
+						</div>
+					</li>
+									<li class="trackback">
+						<div class="date">
+							2011年12月9日12:05							 | <a href="http://emacser.com/cedet.htm#comment-15944">#4</a>
+						</div>
+						<div class="act">
+													</div>
+						<div class="fixed"></div>
+						<div class="title">
+							<a href="http://flychen.com/?p=379">
+								在Emacs中使用gdb调试程序 | 搜索引擎技术博客							</a>
+						</div>
+					</li>
+									<li class="trackback">
+						<div class="date">
+							2011年12月9日12:05							 | <a href="http://emacser.com/cedet.htm#comment-15945">#5</a>
+						</div>
+						<div class="act">
+													</div>
+						<div class="fixed"></div>
+						<div class="title">
+							<a href="http://flychen.com/?p=380">
+								在Emacs下用C/C++编程 | 搜索引擎技术博客							</a>
+						</div>
+					</li>
+				
+					</ol>
+		<div class="fixed"></div>
+	<!-- trackbacks END -->
+</div>
+
+</div>
+
+	<form action="http://emacser.com/wp-comments-post.php" method="post" id="commentform">
+	<div id="respond">
+
+					
+			<div id="author_info">
+				<div class="row">
+					<input type="text" name="author" id="author" class="textfield" value="" size="24" tabindex="1">
+					<label for="author" class="small">昵称 </label>
+				</div>
+				<div class="row">
+					<input type="text" name="email" id="email" class="textfield" value="" size="24" tabindex="2">
+					<label for="email" class="small">电子邮箱 (我们会为您保密) </label>
+				</div>
+				<div class="row">
+					<input type="text" name="url" id="url" class="textfield" value="" size="24" tabindex="3">
+					<label for="url" class="small">网址</label>
+				</div>
+			</div>
+
+			
+		
+		<!-- comment input -->
+		<div class="row">
+			<textarea name="comment" id="comment" tabindex="4" rows="8" cols="50"></textarea>
+		</div>
+
+		<!-- comment submit and rss -->
+		<div id="submitbox">
+			<a class="feed" href="http://emacser.com/comments/feed">订阅评论</a>
+			<div class="submitbutton">
+				<input name="submit" type="submit" id="submit" class="button" tabindex="5" value="提交评论 (Ctrl+Enter)">
+			</div>
+						<input type="hidden" name="comment_post_ID" value="40990">
+			<div class="fixed"></div>
+		</div>
+
+	</div>
+	<input name="acp-preview" type="button" id="acp-preview" tabindex="6" value="预览评论"><div id="ajax-comment-preview" style="display: none; "></div>
+	<!-- Custom Smilies - Version 2.9.1 -->
+	<style type="text/css">
+	img.wp-smiley-select {cursor: pointer;}
+	</style>
+    <script type="text/javascript">
+    function grin(tag) {
+    	if (typeof tinyMCE != 'undefined') {
+    		grin_tinymcecomments(tag);
+    	} else {
+    		grin_plain(tag);
+    	}
+    }
+    function grin_tinymcecomments(tag) {
+    	tinyMCE.execCommand('mceInsertContent', false, ' ' + tag + ' ');
+    }
+    
+    function grin_plain(tag) {
+    	var myField;
+    	var myCommentTextarea = "comment";
+    	tag = ' ' + tag + ' ';
+        if (document.getElementById(myCommentTextarea) && document.getElementById(myCommentTextarea).type == 'textarea') {
+    		myField = document.getElementById(myCommentTextarea);
+    	} else {
+    		return false;
+    	}
+    	if (document.selection) {
+    		myField.focus();
+    		sel = document.selection.createRange();
+    		sel.text = tag;
+    		myField.focus();
+    	}
+    	else if (myField.selectionStart || myField.selectionStart == '0') {
+    		var startPos = myField.selectionStart;
+    		var endPos = myField.selectionEnd;
+    		var cursorPos = endPos;
+    		myField.value = myField.value.substring(0, startPos)
+    					  + tag
+    					  + myField.value.substring(endPos, myField.value.length);
+    		cursorPos += tag.length;
+    		myField.focus();
+    		myField.selectionStart = cursorPos;
+    		myField.selectionEnd = cursorPos;
+    	}
+    	else {
+    		myField.value += tag;
+    		myField.focus();
+    	}
+    }
+    
+    function moreSmilies() {
+    	document.getElementById('wp-smiley-more').style.display = 'inline';
+    	document.getElementById('wp-smiley-toggle').innerHTML = '<a href="javascript:lessSmilies()">&laquo;&nbsp;less</a></span>';
+    }
+    
+    function lessSmilies() {
+    	document.getElementById('wp-smiley-more').style.display = 'none';
+    	document.getElementById('wp-smiley-toggle').innerHTML = '<a href="javascript:moreSmilies()">more&nbsp;&raquo;</a>';
+    }
+    </script>
+<img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_wink.gif" alt=":wink:" onclick="grin(&quot;:wink:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_neutral.gif" alt=":-|" onclick="grin(&quot;:-|&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_mad.gif" alt=":-x" onclick="grin(&quot;:-x&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_twisted.gif" alt=":twisted:" onclick="grin(&quot;:twisted:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_smile.gif" alt=":)" onclick="grin(&quot;:)&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_eek.gif" alt="8-O" onclick="grin(&quot;8-O&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_sad.gif" alt=":(" onclick="grin(&quot;:(&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_rolleyes.gif" alt=":roll:" onclick="grin(&quot;:roll:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_razz.gif" alt=":-P" onclick="grin(&quot;:-P&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_redface.gif" alt=":oops:" onclick="grin(&quot;:oops:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_surprised.gif" alt=":-o" onclick="grin(&quot;:-o&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_mrgreen.gif" alt=":mrgreen:" onclick="grin(&quot;:mrgreen:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_lol.gif" alt=":lol:" onclick="grin(&quot;:lol:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_idea.gif" alt=":idea:" onclick="grin(&quot;:idea:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_biggrin.gif" alt=":-D" onclick="grin(&quot;:-D&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_evil.gif" alt=":evil:" onclick="grin(&quot;:evil:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_cry.gif" alt=":cry:" onclick="grin(&quot;:cry:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_cool.gif" alt="8)" onclick="grin(&quot;8)&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_arrow.gif" alt=":arrow:" onclick="grin(&quot;:arrow:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_confused.gif" alt=":-?" onclick="grin(&quot;:-?&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_question.gif" alt=":?:" onclick="grin(&quot;:?:&quot;)" class="wp-smiley-select"> <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_exclaim.gif" alt=":!:" onclick="grin(&quot;:!:&quot;)" class="wp-smiley-select"> <p><input type="hidden" id="comment_reply_ID" name="comment_reply_ID" value="0"><input type="hidden" id="comment_reply_dp" name="comment_reply_dp" value="0"></p><div id="cancel_reply" style="display:none;"><a href="javascript:void(0)" onclick="movecfm(null,0,1,null);" style="color:red;">点击取消回复</a></div><p><input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked" style="width: auto;"><label for="comment_mail_notify" style="display: inline;">有人回复时邮件通知我</label></p><script type="text/javascript">
+/* <![CDATA[ */
+var commentformid = "commentform";
+var USERINFO = false;
+var atreply = "authorlink";
+/* ]]> */
+</script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/wp-thread-comment.js.php"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var lstcommentid=35367;
+var needauthoremail=false;
+var sortflag="ASC";
+/* ]]> */
+</script>
+<script type="text/javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/wp-thread-comment.js(1).php"></script>
+	</form>
+
+			<script type="text/javascript">MGJS.loadCommentShortcut();</script>
+	
+
+	<div id="postnavi">
+		<span class="prev"><a href="http://emacser.com/erc.htm" rel="next">ERC使用简介</a></span>
+		<span class="next"><a href="http://emacser.com/jabber.htm" rel="prev">Emacs的Jabber客户端</a></span>
+		<div class="fixed"></div>
+	</div>
+
+
+	</div>
+	<!-- main END -->
+
+	
+<!-- sidebar START -->
+<div id="sidebar">
+
+<!-- sidebar north START -->
+<div id="northsidebar" class="sidebar">
+
+	<!-- feeds -->
+	<div class="widget widget_feeds">
+		<div class="content">
+			<div id="subscribe"><a rel="external nofollow" id="feedrss" title="订阅这个博客的文章" href="http://emacser.com/feed" class="       ">订阅</a><ul id="feed_readers" style="visibility: hidden; display: block; left: 1136px; top: 191px; "><li id="google_reader"><a rel="external nofollow" class="reader" title="订阅到 Google" href="http://fusion.google.com/add?feedurl=http://emacser.com/feed"><span> Google</span></a></li><li id="youdao_reader"><a rel="external nofollow" class="reader" title="订阅到有道" href="http://reader.youdao.com/#url=http://emacser.com/feed"><span>有道</span></a></li><li id="xianguo_reader"><a rel="external nofollow" class="reader" title="订阅到鲜果" href="http://www.xianguo.com/subscribe.php?url=http://emacser.com/feed"><span>鲜果</span></a></li><li id="zhuaxia_reader"><a rel="external nofollow" class="reader" title="订阅到抓虾" href="http://www.zhuaxia.com/add_channel.php?url=http://emacser.com/feed"><span>抓虾</span></a></li><li id="yahoo_reader"><a rel="external nofollow" class="reader" title="订阅到 My Yahoo!" href="http://add.my.yahoo.com/rss?url=http://emacser.com/feed"><span> My Yahoo!</span></a></li><li id="newsgator_reader"><a rel="external nofollow" class="reader" title="订阅到 newsgator" href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=http://emacser.com/feed"><span> newsgator</span></a></li><li id="bloglines_reader"><a rel="external nofollow" class="reader" title="订阅到 Bloglines" href="http://www.bloglines.com/sub/http://emacser.com/feed"><span> Bloglines</span></a></li><li id="inezha_reader"><a rel="external nofollow" class="reader last" title="订阅到哪吒" href="http://inezha.com/add?url=http://emacser.com/feed"><span>哪吒</span></a></li></ul></div>
+							<a id="followme" title="Follow me!" href="http://twitter.com/aheiii/">Twitter</a>
+						<div class="fixed"></div>
+		</div>
+	</div>
+
+	<!-- showcase -->
+	
+
+<div id="linkcat-2" class="widget widget_mylinkorder"><h3>Emacs资源</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://www.emacswiki.org/" title="Emacs的维基百科, 内容最丰富的emacs网站" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://www.emacswiki.org&#39;]);">EmacsWiki</a></li>
+<li><a href="http://www.newsmth.net/bbsdoc.php?board=Emacs" title="水木Emacs版, 国内Emacser主要在此讨论" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://www.newsmth.net/bbsdoc.php?board=Emacs&#39;]);">水木Emacs</a></li>
+<li><a href="http://emacser.com/dea.htm" title="Dot emacs of ahei, ahei的Emacs配置文件大全" target="_blank">DEA</a></li>
+<li><a href="http://lifegoo.pluskid.org/wiki/Emacs.html" title="浙大牛人，yasnippet的作者pluskid的Emacs的文章" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://lifegoo.pluskid.org/wiki/Emacs.html&#39;]);">pluskid的Emacs</a></li>
+<li><a href="http://docs.huihoo.com/homepage/shredderyin/emacs.html" title="相信很多刚学习Emacs的人都是看王垠的Emacs文章的" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://docs.huihoo.com/homepage/shredderyin/emacs.html&#39;]);">王垠的Emacs</a></li>
+<li><a href="http://ann77.emacser.com/Emacs/EmacsIndex.html" title="王纯业的Emacs, 好多有用的Emacs技巧" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://ann77.emacser.com/Emacs/EmacsIndex.html&#39;]);">王纯业的Emacs</a></li>
+<li><a href="http://www.gnu.org/software/emacs/" title="Emacs的官方网站" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://www.gnu.org/software/emacs/&#39;]);">Emacs官网</a></li>
+<li><a href="http://www.dotemacs.de/" title="专门收集dotemacs的网站" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://www.dotemacs.de/&#39;]);">dotemacs</a></li>
+<li><a href="http://planet.emacsen.org/" title="专门收集各个emacs博客上的文章, 内容非常不错" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://planet.emacsen.org/&#39;]);">Emacsen's planet</a></li>
+
+	</ul>
+</div>
+<div id="linkcat-133" class="widget widget_mylinkorder"><h3>友情链接</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://linuxtoy.org/" title="LinuxTOY是一个致力于提供Linux相关资讯的专题站点" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://linuxtoy.org&#39;]);">LinuxTOY</a></li>
+<li><a href="http://xbeta.info/" title="善用佳软=(善意+善于)应用优秀软件。目标是分享“替代盗版，提升效率”的经验。" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://xbeta.info/&#39;]);">善用佳软</a></li>
+<li><a href="http://www.appinn.com/" title="分享免费、小巧、实用、有趣、绿色的软件" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://www.appinn.com/&#39;]);">小众软件</a></li>
+<li><a href="http://www.oseye.net/" title="开源软件_开源资讯_开源视窗_OSEye做最棒的开源交流社区" target="_blank" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-blogroll&#39;,&#39;http://www.oseye.net/&#39;]);">开源视窗</a></li>
+
+	</ul>
+</div>
+<div id="recentcomments" class="widget widget_recentcomments"><h3>最新评论</h3><ul><li id="rc_item_1" class="rc_item"><div class="rc_avatar rc_left"><img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/f6076cc6cb9db355df5a936b1f1ec587" class="avatar avatar-32 photo" height="32" width="32"></div><div class="rc_info"><span class="author_name">zhaokai</span> 发表于 <span class="post_title"><a href="http://emacser.com/logo.htm#comment-38287">征集logo</a></span></div><div class="rc_excerpt">非常感兴趣！！！！！ <span class="rc_expand"><a href="javascript:void(0);" onclick="RCJS.detail(38287,&#39;http://emacser.com&#39;,&#39;limit--5|length--50|post--true|pingback--true|trackback--true|avatar--true|avatar_size--32|avatar_position--left|avatar_default--|navigator--true|administrator--true|smilies--true&#39;,0,&#39;正在加载&#39;);">»</a></span></div></li><li id="rc_item_2" class="rc_item"><div class="rc_avatar rc_left"><img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/saved_resource" class="avatar avatar-32 photo avatar-default" height="32" width="32"></div><div class="rc_info"><span class="author_name">匿名</span> 发表于 <span class="post_title"><a href="http://emacser.com/weibo.htm#comment-38231">使用 Emacs 微博</a></span></div><div class="rc_excerpt">装载图片的时候会有很慢，其他的都ok！ <img src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/icon_mrgreen.gif" alt=":mrgreen:" class="wp-smiley">  <span class="rc_expand"><a href="javascript:void(0);" onclick="RCJS.detail(38231,&#39;http://emacser.com&#39;,&#39;limit--5|length--50|post--true|pingback--true|trackback--true|avatar--true|avatar_size--32|avatar_position--left|avatar_default--|navigator--true|administrator--true|smilies--true&#39;,0,&#39;正在加载&#39;);">»</a></span></div></li><li id="rc_item_3" class="rc_item"><div class="rc_avatar rc_left"><img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/saved_resource" class="avatar avatar-32 photo avatar-default" height="32" width="32"></div><div class="rc_info"><span class="author_name">匿名</span> 发表于 <span class="post_title"><a href="http://emacser.com/weibo.htm#comment-38141">使用 Emacs 微博</a></span></div><div class="rc_excerpt">我的也不能用  耍不出微博 <span class="rc_expand"><a href="javascript:void(0);" onclick="RCJS.detail(38141,&#39;http://emacser.com&#39;,&#39;limit--5|length--50|post--true|pingback--true|trackback--true|avatar--true|avatar_size--32|avatar_position--left|avatar_default--|navigator--true|administrator--true|smilies--true&#39;,0,&#39;正在加载&#39;);">»</a></span></div></li><li id="rc_item_4" class="rc_item"><div class="rc_avatar rc_left"><img alt="" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/e18d5d9b5cd1774c2b2ec61a158c88de" class="avatar avatar-32 photo" height="32" width="32"></div><div class="rc_info"><span class="author_name"><a href="http://hicrack.com/" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;http://hicrack.com&#39;]);" rel="external nofollow" class="url">zarzen</a></span> 发表于 <span class="post_title"><a href="http://emacser.com/capslock.htm#comment-38064">交换你的Caps-Lock和右Control键</a></span></div><div class="rc_excerpt">嗯，ubuntu12.0464位的似乎装不来这个软件（至少我apt-get 失败了）然后系统工具里面... <span class="rc_expand"><a href="javascript:void(0);" onclick="RCJS.detail(38064,&#39;http://emacser.com&#39;,&#39;limit--5|length--50|post--true|pingback--true|trackback--true|avatar--true|avatar_size--32|avatar_position--left|avatar_default--|navigator--true|administrator--true|smilies--true&#39;,0,&#39;正在加载&#39;);">»</a></span></div></li><li id="rc_item_5" class="rc_item rc_pingback"><div class="rc_info"><span class="rc_label">Pingback:</span> <a href="http://yawenbai.tk/?p=1674" onclick="javascript:_gaq.push([&#39;_trackEvent&#39;,&#39;outbound-commentauthor&#39;,&#39;http://yawenbai.tk/?p=1674&#39;]);" rel="external nofollow" class="url">Yawen Bai » Blog Archive » 钗黛双收：若你也同Vim难割舍，却又看Emacs情切切</a></div></li><li id="rc_nav"><div><div id="rc_older"><a href="javascript:void(0);" onclick="RCJS.page(&#39;http://emacser.com&#39;,&#39;limit--5|length--50|post--true|pingback--true|trackback--true|avatar--true|avatar_size--32|avatar_position--left|avatar_default--|navigator--true|administrator--true|smilies--true&#39;,5,&#39;正在加载&#39;);">下一页 »</a></div><div class="rc_fixed"></div></div></li></ul></div><div id="most_commented_widget-3" class="widget widget_most_commented_widget"><h3>最多评论</h3><ul><li><a href="http://emacser.com/dea.htm" title="我的Emacs配置文件 － DEA">我的Emacs配置文件 － DEA</a> (362)</li><li><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/配置CEDET浏览和编辑C++代码   Emacs中文网.html" title="用CEDET浏览和编辑C++代码">用CEDET浏览和编辑C++代码</a> (211)</li><li><a href="http://emacser.com/to-emacs-beginner.htm" title="致Emacs初学者">致Emacs初学者</a> (123)</li><li><a href="http://emacser.com/auto-complete.htm" title="Emacs才是世界上最强大的IDE － 用auto-complete实现自动补全">Emacs才是世界上最强大的IDE － 用auto-complete实现自动补全</a> (118)</li><li><a href="http://emacser.com/torture-emacs.htm" title="折腾Emacs">折腾Emacs</a> (112)</li><li><a href="http://emacser.com/weblogger.htm" title="用weblogger写WordPress博客">用weblogger写WordPress博客</a> (102)</li><li><a href="http://emacser.com/built-in-cedet.htm" title="用CEDET浏览和编辑C++代码(续) – 使用Emacs 23.2内置的CEDET">用CEDET浏览和编辑C++代码(续) – 使用Emacs 23.2内置的CEDET</a> (101)</li><li><a href="http://emacser.com/vimvsemacs.htm" title="钗黛双收：若你也同Vim难割舍，却又看Emacs情切切">钗黛双收：若你也同Vim难割舍，却又看Emacs情切切</a> (100)</li><li><a href="http://emacser.com/mew.htm" title="用Mew收发邮件">用Mew收发邮件</a> (94)</li><li><a href="http://emacser.com/twittering-mode.htm" title="在Emacs中使用twitter/新浪微博">在Emacs中使用twitter/新浪微博</a> (90)</li></ul></div><div id="gdstarrmulti-3" class="widget widget_gdstarrating_star"><h3>最高评分</h3><ul><li><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/配置CEDET浏览和编辑C++代码   Emacs中文网.html">用CEDET浏览和编辑C++代码</a> (9.7 44次投票)</li><li><a href="http://emacser.com/pulse.htm">用pulse实现Emacs的淡入淡出效果</a> (9.6 8次投票)</li><li><a href="http://emacser.com/to-emacs-beginner.htm">致Emacs初学者</a> (9.5 80次投票)</li><li><a href="http://emacser.com/mouse.htm">Emacs中鼠标的运用</a> (9.5 13次投票)</li><li><a href="http://emacser.com/emaci.htm">Emacs才是世界上最强大的IDE － 用Emaci阅读文件</a> (9.5 11次投票)</li><li><a href="http://emacser.com/emms.htm">Emacs下的多媒体系统 - EMMS</a> (9.4 9次投票)</li><li><a href="http://emacser.com/vimvsemacs.htm">钗黛双收：若你也同Vim难割舍，却又看Emacs情切切</a> (9.3 168次投票)</li><li><a href="http://emacser.com/erc.htm">ERC使用简介</a> (9.3 8次投票)</li><li><a href="http://emacser.com/emacs-beginner-must-know.htm">Emacs初学者必知必会</a> (9.2 30次投票)</li><li><a href="http://emacser.com/emacs-gdb.htm">在Emacs中使用gdb调试程序</a> (9.2 11次投票)</li></ul></div><div id="categories-3" class="widget widget_categories"><h3>分类目录</h3>		<ul>
+	<li class="cat-item cat-item-9"><a href="http://emacser.com/c-junior.htm" title="查看 初级 下的所有文章">初级</a> (36)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://emacser.com/%e4%b8%ad%e7%ba%a7" title="查看 中级 下的所有文章">中级</a> (41)
+</li>
+	<li class="cat-item cat-item-13"><a href="http://emacser.com/%e9%ab%98%e7%ba%a7" title="查看 高级 下的所有文章">高级</a> (1)
+</li>
+	<li class="cat-item cat-item-183"><a href="http://emacser.com/c-c.htm" title="C语言相关的配置">C/C++</a> (4)
+</li>
+	<li class="cat-item cat-item-14"><a href="http://emacser.com/c-elisp.htm" title="emacs lisp programming">Elisp</a> (10)
+</li>
+	<li class="cat-item cat-item-217"><a href="http://emacser.com/c-email.htm" title="在Emacs中处理邮件">Email</a> (1)
+</li>
+	<li class="cat-item cat-item-52"><a href="http://emacser.com/c-ide.htm" title="Emacs做为ide">IDE</a> (18)
+<ul class="children">
+	<li class="cat-item cat-item-23"><a href="http://emacser.com/c-cedet.htm" title="cedet">CEDET</a> (3)
+</li>
+	<li class="cat-item cat-item-18"><a href="http://emacser.com/c-auto-complete.htm" title="Emacs的自动补全">自动补全</a> (6)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-196"><a href="http://emacser.com/c-org-mode.htm" title="Emacs的Org Mode">Org Mode</a> (4)
+</li>
+	<li class="cat-item cat-item-58"><a href="http://emacser.com/c-mode-line.htm" title="Emacs mode line">mode-line</a> (2)
+</li>
+	<li class="cat-item cat-item-80"><a href="http://emacser.com/c-w3m.htm" title="w3m in Emacs">w3m</a> (2)
+</li>
+	<li class="cat-item cat-item-81"><a href="http://emacser.com/c-windows.htm" title="Emacs关于windows方面的配置">windows</a> (1)
+</li>
+	<li class="cat-item cat-item-172"><a href="http://emacser.com/c-other.htm" title="其他">其他</a> (22)
+</li>
+	<li class="cat-item cat-item-232"><a href="http://emacser.com/c-funny.htm" title="Emacs下有意思的东西">好玩的</a> (12)
+</li>
+	<li class="cat-item cat-item-173"><a href="http://emacser.com/c-learning-emacs.htm" title="怎样学习Emacs">学习Emacs</a> (5)
+</li>
+	<li class="cat-item cat-item-56"><a href="http://emacser.com/c-macro.htm" title="Emacs的宏">宏</a> (1)
+</li>
+	<li class="cat-item cat-item-210"><a href="http://emacser.com/c-tip.htm" title="Emacs的小技巧">小技巧</a> (3)
+</li>
+	<li class="cat-item cat-item-211"><a href="http://emacser.com/c-fast-start.htm" title="快速启动Emacs">快速启动</a> (2)
+</li>
+	<li class="cat-item cat-item-214"><a href="http://emacser.com/c-news.htm" title="Emacs资讯">资讯</a> (2)
+</li>
+	<li class="cat-item cat-item-174"><a href="http://emacser.com/c-conf.htm" title="Emacs的配置">配置</a> (10)
+<ul class="children">
+	<li class="cat-item cat-item-213"><a href="http://emacser.com/c-dea.htm" title="DEA">DEA</a> (2)
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-24"><a href="http://emacser.com/c-color.htm" title="Emacs的配色">配色</a> (2)
+</li>
+		</ul>
+</div><div id="views-3" class="widget widget_views"><h3>最热文章</h3><ul>
+<li><a href="http://emacser.com/dea.htm" title="我的Emacs配置文件 － DEA">我的Emacs配置文件 － DEA</a>(46,709)</li><li><a href="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/配置CEDET浏览和编辑C++代码   Emacs中文网.html" title="用CEDET浏览和编辑C++代码">用CEDET浏览和编辑C++代码</a>(38,550)</li><li><a href="http://emacser.com/to-emacs-beginner.htm" title="致Emacs初学者">致Emacs初学者</a>(36,684)</li><li><a href="http://emacser.com/emacs.htm" title="Emacs长啥样">Emacs长啥样</a>(30,151)</li><li><a href="http://emacser.com/vimvsemacs.htm" title="钗黛双收：若你也同Vim难割舍，却又看Emacs情切切">钗黛双收：若你也同Vim难割舍，却又看Emacs情切切</a>(29,937)</li><li><a href="http://emacser.com/auto-complete.htm" title="Emacs才是世界上最强大的IDE － 用auto-complete实现自动补全">Emacs才是世界上最强大的IDE － 用auto-complete实现自动补全</a>(28,692)</li><li><a href="http://emacser.com/org-mode.htm" title="Emacs org mode学习笔记">Emacs org mode学习笔记</a>(25,182)</li><li><a href="http://emacser.com/built-in-cedet.htm" title="用CEDET浏览和编辑C++代码(续) – 使用Emacs 23.2内置的CEDET">用CEDET浏览和编辑C++代码(续) – 使用Emacs 23.2内置的CEDET</a>(23,215)</li><li><a href="http://emacser.com/emacs-cpp-dev.htm" title="在Emacs下用C/C++编程">在Emacs下用C/C++编程</a>(22,627)</li><li><a href="http://emacser.com/emacs-simple-use.htm" title="Emacs － 普通人的编辑利器">Emacs － 普通人的编辑利器</a>(21,924)</li></ul>
+</div><div id="simpletags-3" class="widget widget-simpletags"><h3>标签云</h3>
+<!-- Generated by Simple Tags 1.7.4.4 - http://wordpress.org/extend/plugins/simple-tags -->
+	<div class="st-tag-cloud">
+	<a href="http://emacser.com/t-emacs.htm" id="tag-link-4" class="st-tags t10" title="74 个主题" rel="tag nofollow" style="font-size:22pt; color:#df0174;">Emacs</a>
+<a href="http://emacser.com/t/org" id="tag-link-197" class="st-tags t6" title="46 个主题" rel="tag nofollow" style="font-size:15.78pt; color:#7b00b1;">org</a>
+<a href="http://emacser.com/t/screenshot" id="tag-link-63" class="st-tags t5" title="44 个主题" rel="tag nofollow" style="font-size:14.22pt; color:#6300c1;">screenshot</a>
+<a href="http://emacser.com/c-color.htm" id="tag-link-24" class="st-tags t4" title="33 个主题" rel="tag nofollow" style="font-size:12.67pt; color:#4a00d0;">配色</a>
+<a href="http://emacser.com/c-windows.htm" id="tag-link-81" class="st-tags t4" title="31 个主题" rel="tag nofollow" style="font-size:12.67pt; color:#4a00d0;">windows</a>
+<a href="http://emacser.com/t/%e5%85%89%e6%a0%87" id="tag-link-88" class="st-tags t3" title="29 个主题" rel="tag nofollow" style="font-size:11.11pt; color:#3100e0;">光标</a>
+<a href="http://emacser.com/c-ide.htm" id="tag-link-52" class="st-tags t3" title="29 个主题" rel="tag nofollow" style="font-size:11.11pt; color:#3100e0;">IDE</a>
+<a href="http://emacser.com/t/emacser" id="tag-link-42" class="st-tags t3" title="28 个主题" rel="tag nofollow" style="font-size:11.11pt; color:#3100e0;">emacser</a>
+<a href="http://emacser.com/t/ahei" id="tag-link-17" class="st-tags t3" title="26 个主题" rel="tag nofollow" style="font-size:11.11pt; color:#3100e0;">ahei</a>
+<a href="http://emacser.com/t/emacser-com" id="tag-link-132" class="st-tags t3" title="24 个主题" rel="tag nofollow" style="font-size:11.11pt; color:#3100e0;">emacser.com</a>
+<a href="http://emacser.com/c-c.htm" id="tag-link-183" class="st-tags t3" title="24 个主题" rel="tag nofollow" style="font-size:11.11pt; color:#3100e0;">C/C++</a>
+<a href="http://emacser.com/t/ede" id="tag-link-38" class="st-tags t2" title="22 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">ede</a>
+<a href="http://emacser.com/t/%e6%8f%92%e4%bb%b6" id="tag-link-100" class="st-tags t2" title="22 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">插件</a>
+<a href="http://emacser.com/t/lisp" id="tag-link-55" class="st-tags t2" title="21 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">lisp</a>
+<a href="http://emacser.com/t/face" id="tag-link-44" class="st-tags t2" title="21 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">face</a>
+<a href="http://emacser.com/t/%e9%a2%9c%e8%89%b2" id="tag-link-124" class="st-tags t2" title="19 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">颜色</a>
+<a href="http://emacser.com/t/%e8%a1%a5%e5%85%a8" id="tag-link-115" class="st-tags t2" title="19 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">补全</a>
+<a href="http://emacser.com/t/mode" id="tag-link-57" class="st-tags t2" title="19 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">mode</a>
+<a href="http://emacser.com/t/%e9%bc%a0%e6%a0%87" id="tag-link-201" class="st-tags t2" title="18 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">鼠标</a>
+<a href="http://emacser.com/t/%e9%85%8d%e7%bd%ae" id="tag-link-119" class="st-tags t2" title="18 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">配置</a>
+<a href="http://emacser.com/t/buffer" id="tag-link-21" class="st-tags t2" title="18 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">buffer</a>
+<a href="http://emacser.com/c-cedet.htm" id="tag-link-23" class="st-tags t2" title="17 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">CEDET</a>
+<a href="http://emacser.com/t/se" id="tag-link-64" class="st-tags t2" title="17 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">se</a>
+<a href="http://emacser.com/t/lambda" id="tag-link-136" class="st-tags t2" title="16 个主题" rel="tag nofollow" style="font-size:9.56pt; color:#1800ef;">lambda</a>
+<a href="http://emacser.com/t-screenshots.htm" id="tag-link-96" class="st-tags t1" title="15 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">截图</a>
+<a href="http://emacser.com/c-elisp.htm" id="tag-link-14" class="st-tags t1" title="14 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">Elisp</a>
+<a href="http://emacser.com/t/highlight" id="tag-link-47" class="st-tags t1" title="14 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">highlight</a>
+<a href="http://emacser.com/t/vi" id="tag-link-79" class="st-tags t1" title="13 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">vi</a>
+<a href="http://emacser.com/t/semantic" id="tag-link-66" class="st-tags t1" title="13 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">semantic</a>
+<a href="http://emacser.com/t/cursor" id="tag-link-31" class="st-tags t1" title="13 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">cursor</a>
+<a href="http://emacser.com/t/python" id="tag-link-209" class="st-tags t1" title="12 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">python</a>
+<a href="http://emacser.com/t/ann" id="tag-link-203" class="st-tags t1" title="11 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">ann</a>
+<a href="http://emacser.com/t/lightbox" id="tag-link-147" class="st-tags t1" title="11 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">lightbox</a>
+<a href="http://emacser.com/t/text" id="tag-link-74" class="st-tags t1" title="11 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">text</a>
+<a href="http://emacser.com/t/theme" id="tag-link-75" class="st-tags t1" title="10 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">theme</a>
+<a href="http://emacser.com/t/autoload" id="tag-link-206" class="st-tags t1" title="10 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">autoload</a>
+<a href="http://emacser.com/t/%e5%ae%9a%e5%88%b6" id="tag-link-94" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">定制</a>
+<a href="http://emacser.com/t/irc" id="tag-link-191" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">irc</a>
+<a href="http://emacser.com/t/%e5%ae%89%e8%a3%85" id="tag-link-92" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">安装</a>
+<a href="http://emacser.com/t/yasnippet" id="tag-link-82" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">yasnippet</a>
+<a href="http://emacser.com/t/dea" id="tag-link-34" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">DEA</a>
+<a href="http://emacser.com/t/snippet" id="tag-link-68" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">snippet</a>
+<a href="http://emacser.com/t/term" id="tag-link-73" class="st-tags t1" title="9 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">term</a>
+<a href="http://emacser.com/t/control" id="tag-link-27" class="st-tags t1" title="8 个主题" rel="tag nofollow" style="font-size:8pt; color:#0000ff;">control</a></div>
+
+</div><div id="meta-4" class="widget widget_meta"><h3>功能</h3>			<ul>
+						<li><a href="http://emacser.com/wp-login.php">登录</a></li>
+			<li><a href="http://emacser.com/feed" title="使用 RSS 2.0 同步此内容">文章 <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://emacser.com/comments/feed" title="RSS 上的最近评论"><abbr title="Really Simple Syndication">RSS</abbr> 评论</a></li>
+			<li><a href="http://wordpress.org/" title="基于 WordPress，优美的个人信息发布平台。">WordPress.org</a></li>
+						</ul>
+</div></div>
+<!-- sidebar north END -->
+
+
+<!-- sidebar south START -->
+<div id="southsidebar" class="sidebar">
+
+	
+
+</div>
+<!-- sidebar south END -->
+
+
+</div>
+<!-- sidebar END -->
+	<div class="fixed"></div>
+</div>
+<!-- content END -->
+
+<!-- footer START -->
+<div id="footer">
+	<a id="gotop" href="http://emacser.com/cedet.htm#" onclick="MGJS.goTop();return false;">回到顶部</a>
+	<a id="powered" href="http://wordpress.org/">WordPress</a>
+
+	<div id="copyright">
+		版权所有 © 2009-2012 Emacs中文网	</div>
+	<div id="themeinfo">
+		主题由 <a href="http://www.neoease.com/">NeoEase</a> 提供, 通过 <a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a> 和 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a> 验证.	</div>
+
+<br>
+<center>
+Copyright (C) 2009 <a href="http://ahei.info/" target="_blank">ahei</a><br>
+msn/gtalk/qq/email: <a href="mailto:ahei0802@126.com">ahei0802@gmail.com</a><br>
+<a href="http://www.google.com/analytics/" target="_blank">Google analytics</a><br>
+<script language="javascript" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/click.aspx" charset="gb2312"></script><a href="http://countt.51yes.com/index.aspx?id=238764785" target="_blank"><img width="20" height="20" border="0" hspace="0" vspace="0" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/count1.gif" alt="51YES网站统计系统"></a><iframe marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" scrolling="no" src="./配置CEDET浏览和编辑C++代码   Emacs中文网_files/sa.html" height="0" width="0"></iframe>
+</center>
+
+</div>
+<!-- footer END -->
+
+</div>
+<!-- container END -->
+</div>
+<!-- wrap END -->
+
+
+
+
+<!-- Dynamic page generated in 0.825 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2012-09-16 13:28:50 -->
+<!-- Compression = gzip --><div id="tooltip" style="display: none; "><h3></h3><div class="body"></div><div class="url"></div></div></body></html>

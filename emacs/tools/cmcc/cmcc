@@ -1,0 +1,37 @@
+#!/bin/bash
+
+case $1 in
+	start) 
+		sudo route del default
+		sudo wvdial CMCC >~/tools/cmcc/wvdial.log 2>&1 & 
+		#tail -f ~/tools/cmcc/wvdial.log
+		;;
+	stop)
+		#ps -ef | grep 'wvdial CMCC' | grep -v 'grep' | awk '{print $2}' | xargs sudo kill -2 &
+		wvdial_process=`ps -ef | grep '[w]vdial CMCC'`
+		if [ $? -eq 0 ]; then
+			echo "sending Ctrl + C to wvdial process......"
+			wid=`echo $wvdial_process | awk '{print $2}'`
+			sudo kill -2 $wid
+		else
+			echo "wvdial process not exist."
+			exit 1
+		fi
+		tail -f ~/tools/cmcc/wvdial.log &
+		bid=$!
+		while :; do
+			if ps -ef | grep '[w]vdial CMCC'; then
+				sleep 1
+				continue
+			else
+				kill -9 $bid
+				echo
+				echo "wvdial exited."
+				break
+			fi 
+		done
+		;;
+	*)
+		echo "Usage: cmcc {start|stop}"
+		;;
+esac
