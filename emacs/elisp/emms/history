@@ -1,0 +1,8 @@
+(
+;; active playlist
+"*Music*"
+;; playlists: ((BUFFER_NAME SELECT_POSITION TRACKS) ...)
+(("*Music*" 1 ((*track* (type . file) (name . "/home/gyh/github/music/姜振-土蜂.mp3") (metadata) (info-playing-time . 191) (info-mtime 20846 31967) (last-played 20892 9735 983184) (play-count . 2)) (*track* (type . file) (name . "/home/gyh/github/music/陈奕迅-红玫瑰.mp3") (metadata) (info-playing-time . 240) (info-mtime 20846 32590)))))
+;; play method
+((emms-repeat-track) (emms-repeat-playlist . t))
+)

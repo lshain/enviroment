@@ -1,0 +1,3 @@
+;;; .emms-cache -*- mode: emacs-lisp; coding: utf-8; -*-
+(puthash "/home/gyh/github/music/姜振-土蜂.mp3" '(*track* (type . file) (name . "/home/gyh/github/music/姜振-土蜂.mp3") (metadata) (info-playing-time . 191) (info-mtime 20846 31967) (last-played 20892 9735 983184) (play-count . 2)) emms-cache-db)
+(puthash "/home/gyh/github/music/陈奕迅-红玫瑰.mp3" '(*track* (type . file) (name . "/home/gyh/github/music/陈奕迅-红玫瑰.mp3") (metadata) (info-playing-time . 240) (info-mtime 20846 32590)) emms-cache-db)
