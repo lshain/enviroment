@@ -2,7 +2,7 @@
 ;; sudo apt-get install timidity
 ;; sudo apt-get install mpg321
 
-(add-to-list 'load-path "~/github/enviroment/emacs/elisp/emms/lisp/")
+(add-to-list 'load-path "~/github/enviroment/emacs/elisp/emms/")
 
 ;;;mplayer目录
 (add-to-list 'exec-path "/usr/bin/mplayer/")
