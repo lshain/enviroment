@@ -2,7 +2,7 @@
 ;; sudo apt-get install timidity
 ;; sudo apt-get install mpg321
 
-(add-to-list 'load-path "~/emacs/elisp/emms/lisp/")
+(add-to-list 'load-path "~/github/enviroment/emacs/elisp/emms/")
 
 ;;;mplayer目录
 (add-to-list 'exec-path "/usr/bin/mplayer/")
@@ -11,11 +11,11 @@
 (emms-devel)                                                              	;选择开发者模式
 
 ;; 目录
-(setq emms-history-file "~/emacs/elisp/emms/history")         			 	;播放列表历史记录
-(setq emms-cache-file "~/emacs/elisp/emms/cache")              				;缓存文件
-(setq emms-stream-bookmarks-file "~/emacs/elisp/emms/streams") 				;网络电台保存文件
-(setq emms-score-file "~/emacs/elisp/emms/scores")             				;分数文件
-(setq emms-source-file-default-directory "~/音乐/")                  		;设定默认的播放目录
+(setq emms-history-file "~/github/enviroment/emacs/elisp/emms/history")         			 	;播放列表历史记录
+(setq emms-cache-file "~/github/enviroment/emacs/elisp/emms/cache")              				;缓存文件
+(setq emms-stream-bookmarks-file "~/github/enviroment/emacs/elisp/emms/streams") 				;网络电台保存文件
+(setq emms-score-file "~/github/enviroment/emacs/elisp/emms/scores")             				;分数文件
+(setq emms-source-file-default-directory "~/github/music/")                 ;设定默认的播放目录
 
 ;; 播放设置
 (add-hook 'emms-player-finished-hook 'emms-random)          				;当播放完当前的歌曲时随机选择下一首歌曲
@@ -44,7 +44,7 @@
 (emms-lyrics 1)
 ;; 自动下载歌词
 ( when ( require ' emms-lyrics-download nil t) ( ad-activate ' emms-lyrics-find-lyric ) ) 
-(setq emms-lyrics-dir "~/emacs/elisp/emms/lyrics")   						;EMMS的歌词目录
+(setq emms-lyrics-dir "~/github/enviroment/emacs/elisp/emms/lyrics")   						;EMMS的歌词目录
 (setq emms-lyrics-display-format "%s")       								;设置歌词显示格式
 (setq emms-lyrics-scroll-timer-interval 1.0) 								;歌词滚动延迟
 (setq emms-lyrics-display-on-minibuffer nil) 								;在minibuffer中显示歌词

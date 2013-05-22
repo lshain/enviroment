@@ -1,8 +1,8 @@
 ;; setting environment-variables
-(load "~/emacs/rc/emacs-rc-environment-variables.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-environment-variables.el")
 
 ;; custom-set-variables
-(load "~/emacs/rc/emacs-rc-custom-set-variables.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-custom-set-variables.el")
 
 ;;;;;;;;;;;;;;;; standard emacs setting that do not depend on third party addons ;;;;;;;;;;;;;;;;
 ;;; so we can use emacsclient to start a buffer
@@ -182,11 +182,11 @@ Equivalent to beginning-of-line, open-line."
 
 ; Customize packages settings
 ;; first, add package paths to `load-path'
-(add-to-list 'load-path "~/emacs/elisp")
-(add-to-list 'load-path "~/emacs/elisp/bookmarkplus")
+(add-to-list 'load-path "~/github/enviroment/emacs/elisp")
+(add-to-list 'load-path "~/github/enviroment/emacs/elisp/bookmarkplus")
 
 ; color set
-(load "~/emacs/rc/emacs-rc-color-theme.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-color-theme.el")
 
 ;;tabbar
 (require 'tabbar)
@@ -289,30 +289,30 @@ Equivalent to beginning-of-line, open-line."
       (cons '("\\.mkd" . markdown-mode) auto-mode-alist))
 
 ;;  latex set ;;;;;;;;
-(load "~/emacs/rc/emacs-rc-latex.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-latex.el")
 
 ;; smooth scrolling
 (require 'smooth-scrolling)
-(load "~/emacs/rc/emacs-rc-lutts.el")
-(load "~/emacs/rc/emacs-rc-eshell.el")
-(load "~/emacs/rc/emacs-rc-buffer-switching.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-lutts.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-eshell.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-buffer-switching.el")
 
-(load "~/emacs/rc/emacs-rc-cedet.el")
-(load "~/emacs/rc/emacs-rc-ecb.el")
-(load "~/emacs/rc/emacs-rc-c-c++.el")
-(load "~/emacs/rc/emacs-rc-java.el")
-(load "~/emacs/rc/emacs-rc-auto-complete.el")
-(load "~/emacs/rc/emacs-rc-desktop.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-cedet.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-ecb.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-c-c++.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-java.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-auto-complete.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-desktop.el")
 
-(load "~/emacs/rc/emacs-rc-gdb-many-window.el")
-(load "~/emacs/rc/emacs-rc-linum.el")
-(load "~/emacs/rc/emacs-rc-yasnippet.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-linum.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
 
 ;;  lshain set ;;;;;;;;
-(load "~/emacs/rc/emacs-rc-lshain.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-lshain.el")
 
 ;; emms
-(load "~/emacs/rc/emacs-rc-emms.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-emms.el")
 
 ;;(split-window-tile-3)
 
