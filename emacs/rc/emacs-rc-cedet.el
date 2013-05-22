@@ -1,7 +1,7 @@
 ;;; cedet
 
-(add-to-list 'load-path "~/emacs/elisp/cedet-1.1/common")
-(load-file "~/emacs/elisp/cedet-1.1/common/cedet.el")
+(add-to-list 'load-path "~/github/enviroment/emacs/elisp/cedet-1.1/common")
+(load-file "~/github/enviroment/emacs/elisp/cedet-1.1/common/cedet.el")
 
 ;; cedet升到1.1后，报Symbol's function definition is void: "eieio-build-class-alist"。 加入配置(require 'eieio-opt) 后恢复正常
 (require 'eieio-opt)

@@ -10,10 +10,10 @@
 (require 'ppindent)
 
 ;; gtags
-(load "~/emacs/rc/emacs-rc-gtags.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-gtags.el")
 
 ;; xgtags
-(load "~/emacs/rc/emacs-rc-xgtags.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-xgtags.el")
 
 ;;;; cc-mode configuration http://cc-mode.soureforge.net/
 (c-set-offset 'inline-open 0)

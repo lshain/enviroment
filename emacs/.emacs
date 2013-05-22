@@ -1,5 +1,5 @@
 ;; setting environment-variables
-(load "~/emacs/rc/emacs-rc-environment-variables.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-environment-variables.el")
 
 ;; custom-set-variables
 (load "~/github/enviroment/emacs/rc/emacs-rc-custom-set-variables.el")
