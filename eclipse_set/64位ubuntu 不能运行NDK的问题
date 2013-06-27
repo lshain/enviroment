@@ -1,0 +1,11 @@
+Ubuntu 64 位版本不能运行NDK的问题
+2011-11-30 09:25 151人阅读 评论(0) 收藏 举报
+NDK-BUILD失败，错误提示： 
+make: ～/dev/android/ndk/toolchains/arm-linux-androideabi-4.4.3/prebuilt/linux-x86/bin/arm-linux-androideabi-gcc: Command not found 
+
+当然。。其实文件是存在地。。。大体原因是因为我装的是X64的无帮突，而linux版的ndk貌似是32位地。。 
+找了半天，找到一个解决办法 
+step1: 
+sudo apt-get install libc6-dev-i386 
+step2: 
+sudo apt-get install ia32-libs
