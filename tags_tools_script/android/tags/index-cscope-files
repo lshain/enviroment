@@ -1,0 +1,8 @@
+#!/bin/bash
+
+MY_SRC_ROOT=$PWD
+
+find -L ${MY_SRC_ROOT}/${dir}  -name .repo -prune -o -name .git -prune -o \
+                -type f \( -name '*.c' -o -name '*.h' \) -print >>${MY_SRC_ROOT}/cscope.files
+
+cscope -b -q -k
