@@ -12,7 +12,7 @@
 (setq inhibit-startup-message t)
 
 (setq user-full-name "lshain")
-(setq user-mail-address "lshain.gyho@gmail.com")
+(setq user-mail-address "lshain.gyh@gmail.com")
 
 ;;; Emacs title bar to reflect file name
 (defun frame-title-string ()
