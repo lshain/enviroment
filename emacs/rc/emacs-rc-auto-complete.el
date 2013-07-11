@@ -9,6 +9,6 @@
 ;; show 1 seconds later
 (setq ac-auto-show-menu 1)
 
-;;(define-key ac-mode-map (kbd "M-/") 'auto-complete)
+;(define-key ac-mode-map (kbd "M-/") 'auto-complete)
 
 

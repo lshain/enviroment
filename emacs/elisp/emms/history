@@ -1,6 +1,6 @@
 (
 ;; active playlist
-"*Music*"
+" *temp*"
 ;; playlists: ((BUFFER_NAME SELECT_POSITION TRACKS) ...)
 nil
 ;; play method

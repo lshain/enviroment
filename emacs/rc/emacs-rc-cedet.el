@@ -200,14 +200,6 @@
 ;; 同，只有几个字不一样，但是我懒得去拷贝粘贴以下。那么我就输入这行文字的前面几个字。然后
 ;; 多按几下 M-/ 就能得到那一行。
 
-(defun my-cedet-hook ()
-	(local-set-key [(control return)] 'semantic-ia-complete-symbol)
-	(local-set-key "/C-c?" 'semantic-ia-complete-symbol-menu)
-	(local-set-key "/C-cd" 'semantic-ia-fast-jump)
-	(local-set-key "/C-cr" 'semantic-symref-symbol)
-	(local-set-key "/C-cR" 'semantic-symref))
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
-
 ;;;;自动补齐策略
 (defun my-indent-or-complete ()
    (interactive)
