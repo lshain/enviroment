@@ -33,4 +33,4 @@
 (shell-pop-set-window-height 60)
 ;; shell-pop-up position. You can choose "top" or "bottom".
 (shell-pop-set-window-position "bottom")
-(global-set-key [f2] 'shell-pop)
+(global-set-key [f5] 'shell-pop)

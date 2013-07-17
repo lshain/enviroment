@@ -279,9 +279,9 @@ Equivalent to beginning-of-line, open-line."
 
 ;; bookmark manager
 (require 'bm)
-(global-set-key (kbd "<C-f5>") 'bm-toggle)
-(global-set-key (kbd "<f5>")   'bm-next)
-(global-set-key (kbd "<S-f5>") 'bm-previous)
+(global-set-key (kbd "<C-f2>") 'bm-toggle)
+(global-set-key (kbd "<f2>")   'bm-next)
+(global-set-key (kbd "<S-f2>") 'bm-previous)
 
 ; markdown support
 (autoload 'markdown-mode "markdown-mode.el" "Major mode for editing Markdown files" t)

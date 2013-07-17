@@ -442,8 +442,8 @@ unless return was pressed outside the comment"
 ;;**********************        常用编程配置        **********************
 ;; 热键设置
 (global-set-key [f4] 'kill-this-buffer)
-(global-set-key [f5] 'compile)
-(setq-default compile-command "make -k")
+;;(global-set-key [f5] 'compile)
+;;(setq-default compile-command "make -k")
 
 ;; 启动窗口gdb    
 (global-set-key [f10] 'gdb-many-windows)
