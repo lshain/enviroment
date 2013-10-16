@@ -20,3 +20,8 @@ function ScrollLock_off( )
 	xset -led named 'Scroll Lock'
 }
 
+function 4SpaceToTab( )
+{
+	sed 's/    /\t/g' $1 > $2
+}
+

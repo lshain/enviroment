@@ -23,3 +23,4 @@ public class ThreadTest extends Activity
 		return true;
 	}
 }
+
