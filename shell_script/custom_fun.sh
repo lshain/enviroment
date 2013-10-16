@@ -22,6 +22,12 @@ function ScrollLock_off( )
 
 function 4SpaceToTab( )
 {
-	sed 's/    /\t/g' $1 > $2
+	if [ "$1" != "$2" ]
+	then
+		sed 's/    /\t/g' $1 > $2
+	else
+		sed 's/    /\t/g' $1 > $1.bak
+		mv $1.bak $1
+	fi
 }
 
