@@ -141,7 +141,7 @@
     )
   )
 
-(global-set-key (kbd "<C-f9>")   'split-window-tile-3)
+(global-set-key (kbd "<C-f11>")   'split-window-tile-3)
 
 (defun lutts-switch-ab ()
   "Rolling 3 window buffers clockwise"
@@ -170,7 +170,7 @@
     )
   )
 
-(global-set-key (kbd "<f9>") 'lutts-switch-ab)
+(global-set-key (kbd "<f11>") 'lutts-switch-ab)
 
 (defun lutts-goto-largest-window ()
   "goto the largest window"

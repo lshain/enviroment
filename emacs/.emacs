@@ -304,7 +304,7 @@ Equivalent to beginning-of-line, open-line."
 (load "~/github/enviroment/emacs/rc/emacs-rc-auto-complete.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-desktop.el")
 
-;;(load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
+(load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-linum.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
 

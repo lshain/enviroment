@@ -88,7 +88,7 @@
   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
   (local-set-key (kbd "C-c -") 'semantic-tag-folding-fold-block)
   (local-set-key (kbd "C-c +") 'semantic-tag-folding-show-block)
-  (local-set-key [f11]  'semantic-mrub-switch-tags)
+; (local-set-key [f11]  'semantic-mrub-switch-tags)
   )
 
 ;; for gdb debug fringe switch, it will not work when folding mode is on

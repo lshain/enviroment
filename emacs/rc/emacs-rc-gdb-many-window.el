@@ -5,7 +5,17 @@
 ;;http://www.inet.net.nz/~nickrob/multi-gud.el
 ;;http://www.inet.net.nz/~nickrob/multi-gdb-ui.el
 
-(setq gdb-many-windows t)
-(load-library "multi-gud.el")
-(load-library "multi-gdb-ui.el")
+;;24以后版本不用
+;;(setq gdb-many-windows t)
+;;(load-library "multi-gud.el")
+;;(load-library "multi-gdb-ui.el")
+
+(add-hook 'gdb-mode-hook '(lambda ()
+	(define-key c-mode-base-map [(f6)] 'gud-go)
+	(define-key c-mode-base-map [(f7)] 'gdb-many-windows)
+	(define-key gud-mode-map [(f7)] 'gdb-many-windows)
+	(define-key c-mode-base-map [(f8)] 'gdb-restore-windows)
+	(define-key gud-mode-map [(f8)] 'gdb-restore-windows)
+	(define-key c-mode-base-map [(f9)] 'gud-next)
+	(define-key c-mode-base-map [(f10)] 'gud-step)))
 

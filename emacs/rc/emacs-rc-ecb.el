@@ -27,7 +27,6 @@ version that it is aware of.  So simply bypass the version check."
 
 (global-set-key [f12] 'ecb-activate)
 (global-set-key [C-f12] 'ecb-deactivate)
-;(global-set-key [f11] 'delete-other-windows)
 (global-set-key (kbd "C-c 0") 'ecb-goto-window-directories)
 (global-set-key (kbd "C-c 1") 'ecb-goto-window-sources)
 (global-set-key (kbd "C-c 2") 'ecb-goto-window-methods)
