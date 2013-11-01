@@ -304,7 +304,7 @@ Equivalent to beginning-of-line, open-line."
 (load "~/github/enviroment/emacs/rc/emacs-rc-auto-complete.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-desktop.el")
 
-(load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
+;;(load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-linum.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
 
@@ -323,7 +323,7 @@ Equivalent to beginning-of-line, open-line."
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/home/lshain/develop/android-code/source")))
+ '(ecb-source-path (quote ("/home/lshain/develop/android_source_analysis/android-4.3_r3" "/home/lshain/develop/android_source_analysis/kernel/goldfish" "/home/lshain/develop/android-code/kernel/goldfish" "/home/lshain/develop/android-code/source")))
  '(global-semantic-tag-folding-mode t nil (semantic-util-modes))
  '(jde-global-classpath (quote ("~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar" "~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar" "~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/services_intermediates/classes.jar" "~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/android.policy_intermediates/classes.jar")))
  '(jde-jdk (quote ("1.6")))

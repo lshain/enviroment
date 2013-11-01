@@ -545,7 +545,7 @@ required by the caller."
 ;; History of argument lists passed to gdb.
 (defvar gud-gdb-history nil)
 
-(defcustom gud-gdb-command-name "gdb --annotate=3"
+(defcustom gud-gdb-command-name "gdb -i=mi"
   "Default command to execute an executable under the GDB debugger."
    :type 'string
    :group 'gud)

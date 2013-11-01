@@ -1250,7 +1250,7 @@ This filter may simply queue input for a later time."
 ;; any newlines.
 ;;
 
-(defcustom gud-gdba-command-name "gdb -annotate=3"
+(defcustom gud-gdba-command-name "gdb -i=mi"
   "Default command to execute an executable under the GDB-UI debugger."
   :type 'string
   :group 'gud
