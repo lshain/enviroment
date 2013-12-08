@@ -1,4 +1,4 @@
-;;**********************    lshain add       ************************
+;;**********************    l add       ************************
 ;; 设置字体
 ;; 方法为: emacs->options->Set Default Font->"M-x describe-font"查看当前使用的字体名称、字体大小
 ;(set-default-font " -bitstream-Courier 10 Pitch-normal-normal-normal-*-19-*-*-*-m-0-iso10646-1")
