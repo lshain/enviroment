@@ -306,7 +306,7 @@ Equivalent to beginning-of-line, open-line."
 
 (load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-linum.el")
-(load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
+;;(load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
 
 ;;  l set ;;;;;;;;
 (load "~/github/enviroment/emacs/rc/emacs-rc-l.el")
@@ -323,12 +323,8 @@ Equivalent to beginning-of-line, open-line."
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/home/l/develop/android_source_analysis/android-4.3_r3" "/home/l/develop/android_source_analysis/kernel/goldfish" "/home/l/develop/android-code/kernel/goldfish" "/home/l/develop/android-code/source")))
+ '(ecb-source-path (quote ("/home/oem/develop/android_source_analysis/android-4.3_r3" "/home/oem/develop/android_source_analysis/kernel/goldfish" "/home/oem/develop/android-code/kernel/goldfish" "/home/oem/develop/android-code/source")))
  '(global-semantic-tag-folding-mode t nil (semantic-util-modes))
- '(jde-global-classpath (quote ("~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/framework_intermediates/classes.jar" "~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar" "~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/services_intermediates/classes.jar" "~/develop/android-code/source/out/target/common/obj/JAVA_LIBRARIES/android.policy_intermediates/classes.jar")))
- '(jde-jdk (quote ("1.6")))
- '(jde-jdk-registry (quote (("1.6" . "/home/l/develop/Java/jdk1.6.0_37") ("1.7" . "/home/l/develop/Ja    va/jdk1.7.0_07"))))
- '(jde-sourcepath (quote ("~/develop/android-code/source/frameworks/base/services" "~/develop/android-code/source/frameworks/base/core/java" "~/develop/android-code/source/dalvik/libcore/luni/src/main/java")))
  '(menu-bar-mode t)
  '(mode-line-format (quote ("%e" #("-" 0 1 (help-echo "mouse-1: Select (drag to resize)
 mouse-2: Make current window occupy the whole frame
