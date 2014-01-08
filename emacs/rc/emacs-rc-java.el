@@ -29,16 +29,16 @@
 (setq auto-mode-alistwww.2cto.com
       (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
 
-(setenv "JAVA_HOME" "/home/oem/develop/Java/jdk1.6.0_37")
+(setenv "JAVA_HOME" "$HOME/develop/Java/jdk1.6.0_37")
 (custom-set-variables
  '(jde-global-classpath (quote (
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-11/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-12/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-13/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-14/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-15/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-16/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-17/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-18/android.jar"
-                                "/home/oem/develop/android/android-sdk-linux/platforms/android-19/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-11/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-12/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-13/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-14/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-15/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-16/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-17/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-18/android.jar"
+                                "$HOME/develop/android/android-sdk-linux/platforms/android-19/android.jar"
                                 ))))

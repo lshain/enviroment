@@ -314,6 +314,9 @@ Equivalent to beginning-of-line, open-line."
 ;; emms
 (load "~/github/enviroment/emacs/rc/emacs-rc-emms.el")
 
+;; bgColor
+(load "~/github/enviroment/emacs/rc/emacs-rc-bgcolor.el")
+
 ;;(split-window-tile-3)
 
 (custom-set-variables
@@ -323,7 +326,7 @@ Equivalent to beginning-of-line, open-line."
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("/home/oem/develop/android_source_analysis/android-4.3_r3" "/home/oem/develop/android_source_analysis/kernel/goldfish" "/home/oem/develop/android-code/kernel/goldfish" "/home/oem/develop/android-code/source")))
+ '(ecb-source-path (quote ("$HOME/develop/android_source_analysis/android-4.3_r3" "$HOME/develop/android_source_analysis/kernel/goldfish" "$HOME/develop/android-code/kernel/goldfish" "$HOME/develop/android-code/source")))
  '(global-semantic-tag-folding-mode t nil (semantic-util-modes))
  '(menu-bar-mode t)
  '(mode-line-format (quote ("%e" #("-" 0 1 (help-echo "mouse-1: Select (drag to resize)
