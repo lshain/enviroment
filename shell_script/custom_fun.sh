@@ -31,3 +31,19 @@ function 4SpaceToTab( )
 	fi
 }
 
+function ssh_2lshain( )
+{
+    mv ~/.ssh/id_rsa ~/.ssh/id_rsa.lshain_android_source
+    mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.lshain_android_source
+    mv ~/.ssh/id_rsa.lshain ~/.ssh/id_rsa
+    mv ~/.ssh/id_rsa.pub.lshain ~/.ssh/id_rsa.pub
+}
+
+function ssh_2lshain_android_source( )
+{
+    mv ~/.ssh/id_rsa ~/.ssh/id_rsa.lshain
+    mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.lshain
+    mv ~/.ssh/id_rsa.lshain_android_source ~/.ssh/id_rsa
+    mv ~/.ssh/id_rsa.pub.lshain_android_source ~/.ssh/id_rsa.pub
+}
+
