@@ -31,32 +31,3 @@ function 4SpaceToTab( )
 	fi
 }
 
-function ssh_2lshain( )
-{
-	local url="$HOME/.ssh/id_rsa.lshain_android_source"
-
-	if [ -e "$url" ]
-	then
-		echo "already 2lshain"
-    else
- 		mv ~/.ssh/id_rsa ~/.ssh/id_rsa.lshain_android_source
-  		mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.lshain_android_source
-   		mv ~/.ssh/id_rsa.lshain ~/.ssh/id_rsa
-    	mv ~/.ssh/id_rsa.pub.lshain ~/.ssh/id_rsa.pub
-	fi
-}
-
-function ssh_2lshain_android_source( )
-{
-	local url="$HOME/.ssh/id_rsa.lshain"
-	if [ -e "$url" ]
-	then
-	    echo "already 2lshain_android_source"
-	else
-        mv ~/.ssh/id_rsa ~/.ssh/id_rsa.lshain
-        mv ~/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub.lshain
-        mv ~/.ssh/id_rsa.lshain_android_source ~/.ssh/id_rsa
-        mv ~/.ssh/id_rsa.pub.lshain_android_source ~/.ssh/id_rsa.pub
-	fi
-}
-
