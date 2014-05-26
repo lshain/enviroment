@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2008 Eric M. Ludlam
 
-;; Author: lutts <lutts@lutts-laptop>
-;; Created: 2012-09-16 13:52:29+0800
+;; Author: OEM Configuration (temporary user) <oem@oem-tina>
+;; Created: 2014-05-26 20:29:02+0800
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

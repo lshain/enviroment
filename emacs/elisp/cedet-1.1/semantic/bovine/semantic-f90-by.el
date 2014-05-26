@@ -2,8 +2,8 @@
 
 ;; Copyright (C) 2010 Free Software Foundation
 
-;; Author: lutts <lutts@lutts-laptop>
-;; Created: 2012-09-16 13:52:30+0800
+;; Author: OEM Configuration (temporary user) <oem@oem-tina>
+;; Created: 2014-05-26 20:29:03+0800
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

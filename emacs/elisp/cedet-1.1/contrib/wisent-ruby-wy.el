@@ -2,8 +2,8 @@
 
 ;;; Copyright (C) 2007 Daniel Debertin (debertin@gmail.com)
 
-;; Author: lutts <lutts@lutts-laptop>
-;; Created: 2012-09-16 13:52:42+0800
+;; Author: OEM Configuration (temporary user) <oem@oem-tina>
+;; Created: 2014-05-26 20:29:05+0800
 ;; Keywords: syntax
 ;; X-RCS: $Id$
 

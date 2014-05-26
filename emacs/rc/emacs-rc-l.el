@@ -1,3 +1,22 @@
+;;
+;; get file extension
+;;
+(defun get-ext (file-name)
+	   (file-name-extension file-name))
+
+ 
+;; get the base name of the file
+;;
+(defun base-name (file-name)
+	   (file-name-sans-extension file-name))
+  
+(defun curr-file ()
+	   "Return the filename (without directory) of the current buffer"
+	   (file-name-nondirectory (buffer-file-name (current-buffer)))
+)
+
+
+
 ;;**********************    l add       ************************
 ;; 设置字体
 ;; 方法为: emacs->options->Set Default Font->"M-x describe-font"查看当前使用的字体名称、字体大小
@@ -45,7 +64,7 @@
 (setq visiable-bell t) 
 
 ;; 设置tab为4个空格的宽度
-;;(setq default-tab-width 4)
+(setq default-tab-width 4)
 
 ;; 设置一下备份时的版本控制，这样更加安全。
 (setq version-control t)
