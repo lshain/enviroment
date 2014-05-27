@@ -33,18 +33,6 @@
 	     (tab-indents-region)
              ;;bind newline-and-indent to RET
 	     (local-set-key (kbd "RET") 'newline-and-indent)
-	     (local-set-key (kbd "C-c ;") 'comment-line)
-	     (local-set-key (kbd "<C-tab>") 'tempo-forward-mark)
-	     (c-toggle-hungry-state 1)
-	     (delete-selection-mode t)
-	     (setq show-trailing-whitespace t) ; can use M-x delete-trailing-whitespace <RET> to delete all trailing whitespace within cur buf
-	     ;cscope configuration
-	     (require 'xcscope)
-	     (setq cscope-do-not-update-database t)
-	     (gtags-mode 1)
-	     (paren-toggle-open-paren-context 1)
-	     (require 'ifdef)
-	     (local-set-key (kbd "C-c I") 'ifdef-mark)
 	     )
 	  )
 
