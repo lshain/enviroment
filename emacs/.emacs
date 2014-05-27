@@ -131,7 +131,6 @@
 
 (load "~/github/enviroment/emacs/rc/emacs-rc-cedet.el")
 
-(setq stack-trace-on-error t)
 (load "~/github/enviroment/emacs/rc/emacs-rc-ecb.el")
 
 (load "~/github/enviroment/emacs/rc/emacs-rc-c-c++.el")
@@ -140,7 +139,7 @@
 
 (load "~/github/enviroment/emacs/rc/emacs-rc-gdb-many-window.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-linum.el")
-(load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
+;;(load "~/github/enviroment/emacs/rc/emacs-rc-yasnippet.el")
 
 ;;  l set ;;;;;;;;
 (load "~/github/enviroment/emacs/rc/emacs-rc-l.el")
