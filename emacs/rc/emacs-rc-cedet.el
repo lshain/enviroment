@@ -25,6 +25,9 @@
 (define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-all)
 (define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-all)
 
+;; for gdb debug fringe switch, it will not work when folding mode is on
+(global-set-key (kbd "C-?") 'global-semantic-tag-folding-mode)
+
 ;; 使能代码补全等功能
 (semantic-load-enable-code-helpers)
 (semantic-load-enable-semantic-debugging-helpers)
