@@ -21,7 +21,7 @@ function android_gen_tags( )
 	MY_OUT_DIRS=""
 	DONT_CARE_DIRS=""
 	if [ $MY_ANDROID_VERSION -eq 4 ]; then
-		MY_SUBDIRS="abi frameworks system bionic dalvik libcore development/samples/ApiDemos external/skia  hardware packages/apps/Settings"
+		MY_SUBDIRS="abi frameworks system bionic dalvik libcore development/samples/ApiDemos external/skia hardware packages device"
 		MY_OUT_DIRS="out/target/common/obj/JAVA_LIBRARIES"
 		DONT_CARE_DIRS="libnativehelper"
 	else

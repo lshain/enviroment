@@ -124,15 +124,15 @@
 (global-set-key (kbd "<f2>")   'bm-next)
 (global-set-key (kbd "<S-f2>") 'bm-previous)
 
+;; cscope
+(require 'xcscope)
+
 ;; smooth scrolling
 (require 'smooth-scrolling)
 (load "~/github/enviroment/emacs/rc/emacs-rc-eshell.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-buffer-switching.el")
-
 (load "~/github/enviroment/emacs/rc/emacs-rc-cedet.el")
-
 (load "~/github/enviroment/emacs/rc/emacs-rc-ecb.el")
-
 (load "~/github/enviroment/emacs/rc/emacs-rc-c-c++.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-java.el")
 (load "~/github/enviroment/emacs/rc/emacs-rc-auto-complete.el")
@@ -168,7 +168,9 @@
  '(column-number-mode t)
  '(display-time-mode t)
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("$HOME/android-code/source")))
+ '(ecb-source-path (quote ("$HOME/android-code/source/device/asus/flo-kernel/android-msm-flo-3.4-kitkat-mr1" "$HOME/android-code/source")))
+ '(jde-global-classpath (quote ("$HOME/develop/android/android-sdk-linux/platforms/android-11/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-12/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-13/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-14/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-15/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-16/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-17/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-18/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-19/android.jar")))
+ '(menu-bar-mode t)
  '(mode-line-format (quote ("%e" #("-" 0 1 (help-echo "mouse-1: Select (drag to resize)
 mouse-2: Make current window occupy the whole frame
 mouse-3: Remove current window from display")) mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification #("   " 0 3 (help-echo "mouse-1: Select (drag to resize)
@@ -183,7 +185,8 @@ mouse-3: Remove current window from display")) global-mode-string)) #("-%-" 0 3 
 mouse-2: Make current window occupy the whole frame
 mouse-3: Remove current window from display")))))
  '(scroll-bar-mode nil)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(transient-mark-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -192,4 +195,12 @@ mouse-3: Remove current window from display")))))
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Droid Sans Mono" :foundry "unknown" :slant normal :weight normal :height 143 :width normal))))
  '(tabbar-selected-face ((t (:inherit tabbar-default-face :foreground "blue" :box (:line-width 2 :color "white" :style pressed-button)))))
- '(tabbar-unselected-face ((t (:inherit tabbar-default-face :foreground "DarkGreen" :box (:line-width 2 :color "white" :style released-button))))))
+ '(tabbar-unselected-face ((t (:inherit tabbar-default-face :foreground "DarkGreen" :box (:line-width 2 :color "white" :style released-button)))))
+ '(xgtags-file-face ((t (:foreground "salmon3" :weight bold))))
+ '(xgtags-file-selected-face ((t (:foreground "salmon3" :weight bold))))
+ '(xgtags-line-face ((((class color) (background dark)) (:foreground "yellow3"))))
+ '(xgtags-line-number-face ((((class color) (background dark)) (:foreground "maroon3"))))
+ '(xgtags-line-number-selected-face ((t (:foreground "maroon2" :weight bold))))
+ '(xgtags-line-selected-face ((t (:foreground "yellow2" :weight bold))))
+ '(xgtags-match-face ((((class color) (background dark)) (:foreground "green3"))))
+ '(xgtags-match-selected-face ((t (:foreground "green2" :weight bold)))))
