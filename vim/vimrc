@@ -95,23 +95,487 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-"set number
-colorscheme desert
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 显示相关  
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"粘贴不缩进
+set paste
+set number              " 显示行号  
+set guifont=Courier_New:h10:cANSI   " 设置字体  
+set showcmd         " 输入的命令显示出来，看的清楚些  
+set novisualbell    " 不要闪烁(不明白)  
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
+set laststatus=1    " 启动显示状态行(1),总是显示状态行(2)  
+set foldenable      " 允许折叠  
+set foldmethod=manual   " 手动折叠  
+set nocompatible  "去掉讨厌的有关vi一致性模式，避免以前版本的一些bug和局限  
+
+" 显示中文帮助
+if version >= 603
+    set helplang=cn
+    set encoding=utf-8
+endif
+
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,cp936
+set fileencoding=utf-8
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""新文件标题""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"新建.h文件，自动插入文件头
+autocmd BufNewFile *.h exec ":call SetHead()"
+
+func SetHead()
+
+call setline(1, "/*************************************************************************") 
+call append(line("."), "\* File Name: ".expand("%")) 
+call append(line(".")+1, "\* Author: lshain") 
+call append(line(".")+2, "\* Mail: 284779230@qq.com ") 
+call append(line(".")+3, "\* Created Time: ".strftime("%c")) 
+call append(line(".")+4, "**************************************************************************/") 
+call append(line(".")+5, "")
+call append(line(".")+6, "\#ifndef __H__")
+call append(line(".")+7, "\#define __H__")
+call append(line(".")+8, "") 
+call append(line(".")+9, "\#ifdef __cplusplus")
+call append(line(".")+10, "extern \"C\" {")
+call append(line(".")+11, "\#endif")
+call append(line(".")+12, "")    
+call append(line(".")+13, "\#ifdef __cplusplus")
+call append(line(".")+14, "}")
+call append(line(".")+15, "\#endif")
+call append(line(".")+16, "")
+call append(line(".")+17, "\#endif")
+call append(line(".")+18, "")
+call append(line(".")+19, "")
+
+"新建文件后，自动定位到文件末尾
+normal G
+
+endfunc
+
+"新建.c,.h,.sh,.java文件，自动插入文件头 
+autocmd BufNewFile *.cpp,*.c,*.sh exec ":call SetTitle()" 
+
+""定义函数SetTitle，自动插入文件头 
+func SetTitle() 
+    "如果文件类型为.sh文件 
+    if &filetype == 'sh' 
+        call setline(1,"\#########################################################################") 
+        call append(line("."), "\# File Name: ".expand("%")) 
+        call append(line(".")+1, "\# Author: lshain") 
+        call append(line(".")+2, "\# mail: 284779230@qq.com") 
+        call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
+        call append(line(".")+4, "\#########################################################################") 
+        call append(line(".")+5, "\#!/bin/bash") 
+        call append(line(".")+6, "") 
+    else 
+        call setline(1, "/*************************************************************************") 
+        call append(line("."), "\* File Name: ".expand("%")) 
+        call append(line(".")+1, "\* Author: lshain") 
+        call append(line(".")+2, "\* Mail: 284779230@qq.com ") 
+        call append(line(".")+3, "\* Created Time: ".strftime("%c")) 
+        call append(line(".")+4, "**************************************************************************/") 
+        call append(line(".")+5, "")
+    endif
+
+    if &filetype == 'cpp'
+        call append(line(".")+6, "#include<iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
+    endif
+
+    if &filetype == 'c'
+        call append(line(".")+6, "#include<stdio.h>")
+		call append(line(".")+7, "#include<stdlib.h>")
+		call append(line(".")+8, "#include<string.h>")
+        call append(line(".")+9, "")
+    endif
+
+    "新建文件后，自动定位到文件末尾
+    normal G
+endfunc 
+
+"Makefile模板
+autocmd BufNewFile Makefile exec ":call InitMakefile()"
+
+func InitMakefile()
+
+call setline(1,"\#############################################################################################") 
+call append(line("."), "\# File Name: ".expand("%")."                                                                       #") 
+call append(line(".")+1, "\# Author: lshain"."                                                                            #") 
+call append(line(".")+2, "\# mail: 284779230@qq.com"."                                                                    #") 
+call append(line(".")+3, "\# Created Time: ".strftime("%c")."                                          #") 
+call append(line(".")+4, "\#                                                                                           #")
+call append(line(".")+5, "\#静态连接库（扩展名为 .a）是.o文件的简单集合。在 linux/unix下，使用 ar 命令生成静态连接库。 #")
+call append(line(".")+6, "\#动态连接库（扩展名为.so） 是将.o文件集合，并增加了导出表。								    #")
+call append(line(".")+7, "\#    导出表是一个函数名、函数索引、函数地址的数组。									        #")
+call append(line(".")+8, "\#    因此，应用程序可以装载(使用 ldopen函数)后，根据函数名，导出函数的索引位置来调用函数。  #")
+call append(line(".")+9, "\#动态连接库的优点在于：程序可以独立于连接库，即不需要包含头文件。					        #")
+call append(line(".")+10, "\#两种连接库都可以减少模块间的依赖。                                                         #")
+call append(line(".")+11, "\#两种连接库的文件名都必须有 lib前缀。                                                       #")
+call append(line(".")+12, "\#可以使用 nm 命令查看连接库有哪些导出选项。									    		    #")
+call append(line(".")+13, "\#可以使用 ldd 命令查看应用程序需要哪些连接库。										        #")
+call append(line(".")+14, "\#############################################################################################")
+call append(line(".")+15, "")
+call append(line(".")+16, "\#编译连接打包工具路径")
+call append(line(".")+17, "TOOLS_CC_PATH = /usr/bin")
+call append(line(".")+18, "TOOLS_CXX_PATH = /usr/bin")
+call append(line(".")+19, "TOOLS_AS_PATH = /usr/bin")
+call append(line(".")+20, "TOOLS_AR_PATH = /usr/bin")
+call append(line(".")+21, "TOOLS_LD_PATH = /usr/bin")
+call append(line(".")+22, "")
+call append(line(".")+23, "\#C文件编译 gcc命令")
+call append(line(".")+24, "CC = $(TOOLS_CC_PATH)/gcc")
+call append(line(".")+25, "\#C++文件编译 g++命令")
+call append(line(".")+26, "CXX = $(TOOLS_CXX_PATH)/g++")
+call append(line(".")+27, "\#汇编文件编译 as命令")
+call append(line(".")+28, "AS = $(TOOLS_AS_PATH)/as")
+call append(line(".")+29, "\#静态库打包 ar命令")
+call append(line(".")+30, "AR = $(TOOLS_AR_PATH)/ar")
+call append(line(".")+31, "\#连接 ld命令")
+call append(line(".")+32, "LD = $(TOOLS_LD_PATH)/ld")
+call append(line(".")+33, "")
+call append(line(".")+34, "\#gcc命令 -D参数")
+call append(line(".")+35, "CC_DEFINE =")
+call append(line(".")+36, "\#g++命令 -D参数")
+call append(line(".")+37, "CXX_DEFINE =")
+call append(line(".")+38, "\#as命令 -D参数")
+call append(line(".")+39, "AS_DEFINE =")
+call append(line(".")+40, "")
+call append(line(".")+41, "\#头文件 -I参数")
+call append(line(".")+42, "INCLUDE_DIR = -I./")
+call append(line(".")+43, "")
+call append(line(".")+44, "")
+call append(line(".")+45, "SRC = $(shell find -name *.cpp)")
+call append(line(".")+46, "\#源文件路径")
+call append(line(".")+47, "SRC_DIR = $(dir $(SRC))")
+call append(line(".")+48, "")
+call append(line(".")+49, "\#编译后的.o 文件路径")
+call append(line(".")+50, "OBJ_DIR = $(patsubst %.cpp, %.o, ${SRC})")
+call append(line(".")+51, "")
+call append(line(".")+52, "\#C文件编译 gcc命令参数")
+call append(line(".")+53, "CC_FLAGS = -c -O3 -Wall $(CC_DEFINE) $(INCLUDE_DIR)")
+call append(line(".")+54, "\#C++文件编译 g++命令参数")
+call append(line(".")+55, "CXX_FLAGS = -c -fPIC -O3 -Wall $(CXX_DEFINE) $(INCLUDE_DIR)")
+call append(line(".")+56, "\#asm文件编译 as命令参数")
+call append(line(".")+57, "AS_FLAGS = -c -O3 -Wall $(AS_DEFINE) $(INCLUDE_DIR)")
+call append(line(".")+58, "\#文件连接 ld命令参数")
+call append(line(".")+59, "LD_FLAGS = -shared")
+call append(line(".")+60, "\#文件打包 ar命令参数")
+call append(line(".")+61, "AR_FLAGS = -r")
+call append(line(".")+62, "")
+call append(line(".")+63, "\#目标静态库 文件名必须以lib开头, 后缀为.a")
+call append(line(".")+64, "#TARGET = libA.a")
+call append(line(".")+65, "\#目标动态库 文件名必须以lib开头, 后缀为.so")
+call append(line(".")+66, "#TARGET = libA.so")
+call append(line(".")+67, "\#目标可执行程序")
+call append(line(".")+68, "TARGET = test")
+call append(line(".")+69, "")
+call append(line(".")+70, "all : $(TARGET)")
+call append(line(".")+71, "")
+call append(line(".")+72, "\#$(TARGET) : $(OBJ_DIR)")
+call append(line(".")+73, "\#注意：命令是Tab键开头")
+call append(line(".")+74, "\#	$(AR) $(AR_FLAGS) $(TARGET) $(OBJ_DIR)")
+call append(line(".")+75, "")
+call append(line(".")+76, "\#$(TARGET) : $(OBJ_DIR)")
+call append(line(".")+77, "\#注意：命令是Tab键开头")
+call append(line(".")+78, "\#	$(LD) $(LD_FLAGS) $(OBJ_DIR) -o $(TARGET)")
+call append(line(".")+79, "")
+call append(line(".")+80, "$(TARGET) : $(OBJ_DIR)")
+call append(line(".")+81, "\#注意：命令是Tab键开头")
+call append(line(".")+82, "	$(CXX) $(OBJ_DIR) -o $(TARGET)")
+call append(line(".")+83, "")
+call append(line(".")+84, "$(OBJ_DIR) : %.o : %.cpp")
+call append(line(".")+85, "\#注意：命令是Tab键开头")
+call append(line(".")+86, "	$(CXX) $(CXX_FLAGS) -o $@ -c $<")
+call append(line(".")+87, "")
+call append(line(".")+88, "clean :")
+call append(line(".")+89, "	rm $(OBJ_DIR)")
+call append(line(".")+90, "	rm $(TARGET)")
+call append(line(".")+91, "")
+
+"新建文件后，自动定位到文件末尾
+normal G
+
+endfunc
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"键盘命令
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"比较文件  
+nnoremap <C-F2> :vert diffsplit 
+
+"C，C++ 按F5编译运行
+map <F5> :call CompileRunGcc()<CR>
+
+func! CompileRunGcc()
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'cpp'
+        exec "!g++ % -o %<"
+        exec "! ./%<"
+    elseif &filetype == 'java' 
+        exec "!javac %" 
+        exec "!java %<"
+    elseif &filetype == 'sh'
+        :!./%
+    endif
+endfunc
+
+"C,C++的调试
+map <F8> :call Rungdb()<CR>
+func! Rungdb()
+    exec "w"
+    exec "!g++ % -g -o %<"
+    exec "!gdb ./%<"
+endfunc
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""实用设置
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 设置当文件被改动时自动载入
+set autoread
+
+"允许插件  
+filetype plugin on
+
+"共享剪贴板  
+set clipboard+=unnamed 
+
+"从不备份  
+set nobackup
+
+"自动保存
+set autowrite
+
+set ruler                   " 打开状态栏标尺
+set cursorline              " 突出显示当前行
+set magic                   " 设置魔术
+set foldcolumn=0
+set foldmethod=indent 
+set foldlevel=3 
+set foldenable              " 开始折叠
+
+" 不要使用vi的键盘模式，而是vim自己的
+set nocompatible
+
+" 语法高亮
+set syntax=on
+
+" 去掉输入错误的提示声音
+set noeb
+
+" 在处理未保存或只读文件的时候，弹出确认
+set confirm
+
+" 自动缩进
+set autoindent
+set cindent
+
+" Tab键的宽度
 set tabstop=4
+
+" 统一缩进为4
+set softtabstop=4
 set shiftwidth=4
 
-"高亮显示搜索匹配项
+" 不要用空格代替制表符
+set noexpandtab
+
+" 在行和段开始处使用制表符
+set smarttab
+
+" 历史记录数
+set history=1000
+
+"禁止生成临时文件
+set noswapfile
+
+"搜索忽略大小写
+set ignorecase
+
+"搜索逐字符高亮
 set hlsearch
 set incsearch
 
-"
-"显示括号配对情况
-set magic 
+"行内替换
+set gdefault
+
+"编码设置
+set enc=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+
+"语言设置
+set langmenu=zh_CN.UTF-8
+set helplang=cn
 
 
-"显示状态栏
+" 总是显示状态行
 set laststatus=2
+" 命令行（在状态行下）的高度，默认为1，这里是2
+set cmdheight=2
 
-"粘贴不缩进
-set paste
+" 侦测文件类型
+filetype on
+
+" 载入文件类型插件
+filetype plugin on
+
+" 为特定文件类型载入相关缩进文件
+filetype indent on
+
+" 保存全局变量
+set viminfo+=!
+
+" 带有如下符号的单词不要被换行分割
+set iskeyword+=_,$,@,%,#,-
+
+" 字符间插入的像素行数目
+set linespace=0
+
+" 增强模式中的命令行自动完成操作
+set wildmenu
+
+" 使回格键（backspace）正常处理indent, eol, start等
+set backspace=2
+
+" 允许backspace和光标键跨越行边界
+"set whichwrap+=<,>,h,l
+"set selection=exclusive
+"set selectmode=mouse,key
+
+" 通过使用: commands命令，告诉我们文件的哪一行被改变过
+set report=0
+
+" 在被分割的窗口间显示空白，便于阅读
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+
+" 高亮显示匹配的括号
+set showmatch
+
+" 匹配括号高亮的时间（单位是十分之一秒）
+set matchtime=1
+
+" 光标移动到buffer的顶部和底部时保持3行距离
+set scrolloff=3
+
+" 为C程序提供自动缩进
+set smartindent
+
+"自动补全
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {<CR>}<ESC>O
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+:inoremap " ""<ESC>i
+:inoremap ' ''<ESC>i
+
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+        return "\<Right>"
+    else
+        return a:char
+    endif
+endfunction
+
+filetype plugin indent on 
+"打开文件类型检测, 加了这句才可以用智能补全
+set completeopt=longest,menu
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CTags的设定  
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let Tlist_Sort_Type = "name"    " 按照名称排序  
+let Tlist_Compart_Format = 1    " 压缩方式  
+let Tlist_File_Fold_Auto_Close = 0  " 不要关闭其他文件的tags  
+let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
+
+"autocmd FileType java set tags+=D:\tools\java\tags  
+"autocmd FileType h,cpp,cc,c set tags+=D:\tools\cpp\tags  
+
+"设置tags  
+" add any database in current directory
+if filereadable("tags")
+	set tags=tags
+endif
+
+"默认打开Taglist 
+"let Tlist_Auto_Open = 1 
+
+"""""""""""""""""""""""""""""" 
+" Tag list (ctags) 
+"""""""""""""""""""""""""""""""" 
+
+let Tlist_Ctags_Cmd = '/usr/bin/ctags' 
+let Tlist_Show_One_File = 1 "不同时显示多个文件的tag，只显示当前文件的 
+let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim 
+"let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+
+let g:winManagerWindowLayout='FileExplorer|TagList'
+nmap wm :WMToggle<cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Cscope
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"这个是设定是否使用 quickfix 窗口来显示 cscope 结果
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+if has("cscope")
+    set csprg=/usr/bin/cscope
+	set csto=1
+	set cst
+	set nocsverb
+	" add any database in current directory
+	if filereadable("cscope.out")
+		cs add cscope.out
+	endif
+	set csverb
+endif
+
+nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Quickfix
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <F6> :cn<cr>           "切换到下一个结果
+nmap <F7> :cp<cr>			"切换到上一个结果
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"MiniBufExplorer
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 用<C-h,j,k,l>切换到上下左右的窗口中去
+let g:miniBufExplMapWindowNavVim = 1
+
+" 用<C-箭头键>切换到上下左右窗口中去
+let g:miniBufExplMapWindowNavArrows = 1
+
+" <C-Tab>	向前循环切换到每个buffer上,并在当前窗口打开
+" <C-S-Tab>	向后循环切换到每个buffer上,并在当前窗口打开
+let g:miniBufExplMapCTabSwitchBufs = 1
+
+let g:miniBufExplModSelTarget = 1
+
+" 多个窗口的错误
+let g:miniBufExplorerMoreThanOne=0
+
 
