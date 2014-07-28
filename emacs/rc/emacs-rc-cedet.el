@@ -49,6 +49,9 @@
 
 (global-set-key [(control \\)] 'semantic-analyze-proto-impl-toggle)
 
+;; 不显示解析不了时的红色下划线
+(global-semantic-show-unmatched-syntax-mode 0)
+
 ;; gnu global support
 (when (cedet-gnu-global-version-check t)
   (require 'semanticdb-global)

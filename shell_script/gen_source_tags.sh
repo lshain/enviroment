@@ -3,7 +3,6 @@
 function android_gen_tags( ) 
 {
 	MY_ANDROID_ROOT=$PWD
-	MY_ANDROID_VERSION=4
 	
 	if [ $# -gt 0 ]; then
 		MY_ANDROID_VERSION=$1
@@ -17,17 +16,9 @@ function android_gen_tags( )
 		exit 0
 	fi
 
-	MY_SUBDIRS=""
-	MY_OUT_DIRS=""
 	DONT_CARE_DIRS=""
-	if [ $MY_ANDROID_VERSION -eq 4 ]; then
-		MY_SUBDIRS="abi frameworks system bionic dalvik libcore development/samples/ApiDemos external/skia hardware packages device"
-		MY_OUT_DIRS="out/target/common/obj/JAVA_LIBRARIES"
-		DONT_CARE_DIRS="libnativehelper"
-	else
-		MY_SUBDIRS="frameworks system bionic dalvik development/samples/ApiDemos external/skia hardware packages/apps/Settings"
-		MY_OUT_DIRS="out/target/common/obj/JAVA_LIBRARIES"
-	fi
+	MY_SUBDIRS="frameworks system bionic libcore dalvik external/skia hardware packages"
+	MY_OUT_DIRS="out/target/common/obj/JAVA_LIBRARIES"
 
 	for dir in ${MY_SUBDIRS}; do
 		if [ ! -e ${MY_ANDROID_ROOT}/${dir} ]; then
@@ -62,17 +53,17 @@ function android_gen_tags( )
 
 	for dir in ${MY_SUBDIRS}; do
 		find -L ${MY_ANDROID_ROOT}/${dir}  -name .repo -prune -o -name .git -prune -o \
-			-type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.java' \) -print >>${MY_ANDROID_ROOT}/gtags.files
+			-type f \( -name '*.c' -o -name "*.cpp" -o -name "*.cc" -o -name "*.hpp" -o -name '*.h' -o -name '*.java' \) -print >>${MY_ANDROID_ROOT}/gtags.files
 	done
 
 	for dir in ${MY_SUBDIRS}; do
 		find -L ${MY_ANDROID_ROOT}/${dir}  -name .repo -prune -o -name .git -prune -o \
-			-type f \( -name '*.c' -o -name '*.h' \) -print >>${MY_ANDROID_ROOT}/cscope.files
+			-type f \( -name '*.c' -o -name "*.cpp" -o -name "*.cc" -o -name "*.hpp" -o -name '*.h' \) -print >>${MY_ANDROID_ROOT}/cscope.files
 	done
 
 	export GTAGSFORCECPP="yes"
 	gtags -f ${MY_ANDROID_ROOT}/gtags.files
-	cscope -b -q -k
+	cscope -R -b -q -k -i ${MY_ANDROID_ROOT}/cscope.files
 
 	kill $PROGRESS_BAR
 	echo
@@ -123,12 +114,11 @@ function kernel_gen_tags( )
         done
 
         export GTAGSFORCECPP="yes"
-        cscope -b -q -k
+        cscope -R -b -q -k -i ${MY_ANDROID_ROOT}/cscope.files
 
         kill $PROGRESS_BAR
         echo
 }
-
 
 function source_gen_tags( ) 
 {
@@ -196,7 +186,7 @@ function source_gen_tags( )
 
 	export GTAGSFORCECPP="yes"
 	gtags -f ${MY_SOURCE_ROOT}/gtags.files
-	cscope -b -q -k
+	cscope -R -b -q -k
 
 	kill $PROGRESS_BAR
 	echo
