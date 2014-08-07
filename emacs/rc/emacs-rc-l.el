@@ -122,3 +122,5 @@
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end]  'end-of-buffer)
 
+;; buffer刷新
+(global-set-key [C-f5] 'revert-buffer)

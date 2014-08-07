@@ -115,6 +115,3 @@
 ;;(global-set-key [f5] 'compile)
 ;;(setq-default compile-command "make -k")
 
-;; 启动窗口gdb    
-(global-set-key [f10] 'gdb-many-windows)
-

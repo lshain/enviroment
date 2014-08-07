@@ -168,7 +168,7 @@
  '(column-number-mode t)
  '(display-time-mode t)
  '(ecb-options-version "2.40")
- '(ecb-source-path (quote ("$HOME/android-code/source/device/asus/flo-kernel/android-msm-flo-3.4-kitkat-mr1" "$HOME/android-code/source")))
+ '(ecb-source-path (quote ("$HOME/android-code/kernel/linux-2.6.28.6" "$HOME/android-code/TelephonyAnalysis")))
  '(jde-global-classpath (quote ("$HOME/develop/android/android-sdk-linux/platforms/android-11/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-12/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-13/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-14/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-15/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-16/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-17/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-18/android.jar" "$HOME/develop/android/android-sdk-linux/platforms/android-19/android.jar")))
  '(menu-bar-mode t)
  '(mode-line-format (quote ("%e" #("-" 0 1 (help-echo "mouse-1: Select (drag to resize)
