@@ -31,3 +31,12 @@ function 4SpaceToTab( )
 	fi
 }
 
+function iconv_filetranscoding( )
+{
+	for i in `find $1 -type f`
+	do
+		iconv -c -f $2 -t $3 $i -o /tmp/iconv.tmp
+		mv /tmp/iconv.tmp $i
+	done
+}
+
