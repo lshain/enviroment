@@ -191,3 +191,12 @@ function source_gen_tags( )
 	kill $PROGRESS_BAR
 	echo
 }
+
+function gen_cocos_tag( )
+{
+	cd $PWD
+	find . -name "*.h" -o -name "*.c" -o -name "*.cc" -o -name "*.cpp" -o -name "*.hpp" -o -name "*.lua" > cscope.files
+	cscope -Rbkq -i cscope.files
+	ctags -R
+}
+
