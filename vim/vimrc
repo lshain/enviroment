@@ -294,8 +294,8 @@ call append(line(".")+85, "\#注意：命令是Tab键开头")
 call append(line(".")+86, "	$(CXX) $(CXX_FLAGS) -o $@ -c $<")
 call append(line(".")+87, "")
 call append(line(".")+88, "clean :")
-call append(line(".")+89, "	rm $(OBJ_DIR)")
-call append(line(".")+90, "	rm $(TARGET)")
+call append(line(".")+89, "	rm -f $(OBJ_DIR)")
+call append(line(".")+90, "	rm -f $(TARGET)")
 call append(line(".")+91, "")
 
 "新建文件后，自动定位到文件末尾
